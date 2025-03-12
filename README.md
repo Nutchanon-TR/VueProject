@@ -1,29 +1,24 @@
-# apiTest
+# PROJECT2-SEC-2-AreLaiKorDai
+## Member
 
-This template should help get you started developing with Vue 3 in Vite.
+| รหัสนักศึกษา | ชื่อ | หน้าที่ |
+|--------------|------------------------|--------|
+| 66130500095 | นายชิษณุพงศ์ โฉมทอง | -  |
+| 66130500115 | นายณัฐชนน เจริญเสริมสิริ | -  |
+| 66130500116 | นายธนกร โพธิ์ทรัพย์สุข | -  |
+| 66130500117 | นายปิยโชค มีวิเวิเศษ | -  |
 
-## Recommended IDE Setup
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+# Design
+https://www.canva.com/design/DAGg3-m6WtU/0pYba9n7QDymJ7Y71w_vOQ/edit?utm_content=DAGg3-m6WtU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
-## Customize configuration
+## ตารางงานของสมาชิกแต่ละสัปดาห์
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+| งานแต่ละสัปดาห์ / สมาชิก | 66130500095 | 66130500115 | 66130500116 | 66130500117 |
+|----------------|------------|------------|------------|------------|
+| **Week 1**    | -          | -          | -          | -          |
+| **Week 2**    | -          | -          | -          | -          |
+| **Week 3**    | -          | -          | -          | -          |
+| **Week 4**    | -          | -          | -          | -          |
+| **Week 5**    | -          | -          | -          | -          |
 
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
