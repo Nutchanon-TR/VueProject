@@ -1,9 +1,10 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-
 </script>
 
 <template>
+
+
  <nav class="fixed bottom-0 left-0 w-full bg-gray-800 text-white shadow-md">
     <div class="flex justify-around py-3">
       <!-- Login -->
