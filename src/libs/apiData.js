@@ -19,4 +19,22 @@ async function getAllData(url) {
     }
   }
 
-   export { getAllData, getDataById }
+  async function addData(url, newData) {
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          ...newData
+        })
+      })
+      const addedData = await res.json()
+      return addedData
+    } catch (error) {
+      throw new Error('can not add your Data')
+    }
+  }
+
+   export { getAllData, getDataById, addData }
