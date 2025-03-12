@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, ref } from "vue";
-import { getAllData } from "../libs/apiData.js";
+import { getAllData } from "./../../libs/apiData.js";
 const userData = ref([]);
 const allowCreate = ref(false);
 const emailSending = ref('');
