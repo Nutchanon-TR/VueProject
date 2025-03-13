@@ -1,8 +1,13 @@
 <script setup>
 import {} from "vue";
 import ExamBlog from "@/components/ExamBlog.vue";
+import navBar from '@/components/navBar.vue'
+import {userLogin} from '@/stores/loginDataUser.js'
+const userLoginData = userLogin()
+
 </script>
 <template>
+          <navBar/>
 <div class="p-6 mx-[100px]">
        <div class="flex justify-between items-center">
          <div>

@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-
+import navBar from '@/components/navBar.vue'
 import {userLogin} from '@/stores/loginDataUser.js'
 import { getDataById } from '@/libs/apiData.js'
 const userLoginData = userLogin()
@@ -26,6 +26,9 @@ userLoginData.keepDataFromLogin(idUserData.value)
 </script>
 
 <template>
+  
+  <navBar/>
+
 This is the Admin page
 <div>
      <input type="text" placeholder="name" v-model="cookiesText" />

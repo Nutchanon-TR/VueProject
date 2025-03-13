@@ -3,15 +3,9 @@ import { onMounted, ref } from "vue";
 import { getAllData } from "./../../libs/apiData.js";
 import {userLogin} from '@/stores/loginDataUser.js'
 import { getDataById } from '@/libs/apiData.js'
+
+
 const userData = ref([]);
-const email = ref("");
-const password = ref("");
-const errorMsg = ref("");
-//load user data
-const userLoginData = userLogin()
-const idUserData = ref('')
-
-
 onMounted(async () => {
   try {
     userData.value = await getAllData(`${import.meta.env.VITE_API_URL}/users`);
@@ -21,6 +15,10 @@ onMounted(async () => {
   }
 });
 
+
+const email = ref("");
+const password = ref("");
+const errorMsg = ref("");
 const loginChecking = (pass) => {
   const userExist = userData.value.find((user) => user.email === email.value);
   errorMsg.value = "";
@@ -46,8 +44,11 @@ const loginChecking = (pass) => {
   }
 };
 
+//load user data
+const userLoginData = userLogin()
+const idUserData = ref('')
+//keep user data in pinia
 const informUser = async(userId) => {
-  //keep user data in pinia
   document.cookie = `${userId}; path=/; max-age=3600*24*7; secure`;
   idUserData.value = await getDataById(`${import.meta.env.VITE_API_URL}/users`,document.cookie);
   userLoginData.keepDataFromLogin(idUserData.value)
