@@ -58,9 +58,9 @@ https://www.canva.com/design/DAGg3-m6WtU/0pYba9n7QDymJ7Y71w_vOQ/edit?utm_content
 
 | งานแต่ละสัปดาห์ / สมาชิก | 66130500095 | 66130500115 | 66130500116 | 66130500117 |
 |----------------|------------|------------|------------|------------|
-| **Week 1**    | หา inspiration คิดว่าจะทำ project อะไรดี| -          | ช่วยคิดหัวข้อในการทำโปรเจค          | -          |
-| **Week 2**    | UI design && add template readme| -          | Discuss And Help Design The UI          | -          |
-| **Week 3**    | ทำส่วน profile user && update profile         | -          | ทำฟีเจอร์ในการสร้าง/แก้ไข/ลบ ข้อสอบ(ยังไม่สมบูรณ์)         | -          |
+| **Week 1**    | หา inspiration คิดว่าจะทำ project อะไรดี| -          | ช่วยคิดหัวข้อในการทำโปรเจค          | คุยหัวข้อโปรเจค           |
+| **Week 2**    | UI design && add template readme| -          | Discuss And Help Design The UI          |ออกแบบUI คุย scope งาน         |
+| **Week 3**    | ทำส่วน profile user && update profile         | -          | ทำฟีเจอร์ในการสร้าง/แก้ไข/ลบ ข้อสอบ(ยังไม่สมบูรณ์)         | ทำฟีดเจอร์เช็คคำตอบ กับคะแนน (ยังไม่สมบูรณ์)           |
 | **Week 4**    | -          | -          | -          | -          |
 | **Week 5**    | -          | -          | -          | -          |
 
