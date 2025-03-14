@@ -37,11 +37,11 @@ async function getAllData(url) {
     }
   }
 
-// ฟังก์ชันอัปเดตข้อมูล
+
 async function updateData(url, id, updatedData) {
   try {
     const res = await fetch(`${url}/${id}`, {
-      method: 'PUT', // ใช้ PUT หรือ PATCH ขึ้นอยู่กับการตั้งค่า API ของคุณ
+      method: 'PUT', 
       headers: {
         'Content-Type': 'application/json',
       },
