@@ -49,6 +49,11 @@
 # Design
 https://www.canva.com/design/DAGg3-m6WtU/0pYba9n7QDymJ7Y71w_vOQ/edit?utm_content=DAGg3-m6WtU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
+# reference
+- https://testimate.app/
+- https://app.leb2.org/class
+- https://github.com/
+
 ## ตารางงานของสมาชิกแต่ละสัปดาห์
 
 | งานแต่ละสัปดาห์ / สมาชิก | 66130500095 | 66130500115 | 66130500116 | 66130500117 |
