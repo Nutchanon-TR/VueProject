@@ -37,4 +37,24 @@ async function getAllData(url) {
     }
   }
 
-   export { getAllData, getDataById, addData }
+// ฟังก์ชันอัปเดตข้อมูล
+async function updateData(url, id, updatedData) {
+  try {
+    const res = await fetch(`${url}/${id}`, {
+      method: 'PUT', // ใช้ PUT หรือ PATCH ขึ้นอยู่กับการตั้งค่า API ของคุณ
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedData),
+    });
+    if (!res.ok) {
+      throw new Error('Failed to update data');
+    }
+    const updatedResponse = await res.json();
+    return updatedResponse;
+  } catch (error) {
+    throw new Error('Cannot update your data');
+  }
+}
+
+export { getAllData, getDataById, addData, updateData };
