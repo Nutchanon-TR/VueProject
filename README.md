@@ -53,8 +53,8 @@ https://www.canva.com/design/DAGg3-m6WtU/0pYba9n7QDymJ7Y71w_vOQ/edit?utm_content
 
 | งานแต่ละสัปดาห์ / สมาชิก | 66130500095 | 66130500115 | 66130500116 | 66130500117 |
 |----------------|------------|------------|------------|------------|
-| **Week 1**    | หา inspiration คิดว่าจะทำ project อะไรดี| -          | -          | -          |
-| **Week 2**    | UI design && add template readme| -          | -          | -          |
+| **Week 1**    | หา inspiration คิดว่าจะทำ project อะไรดี| -          | ช่วยคิดหัวข้อในการทำโปรเจค          | -          |
+| **Week 2**    | UI design && add template readme| -          | Discuss And Help Design The UI          | -          |
 | **Week 3**    | -          | -          | -          | -          |
 | **Week 4**    | -          | -          | -          | -          |
 | **Week 5**    | -          | -          | -          | -          |
