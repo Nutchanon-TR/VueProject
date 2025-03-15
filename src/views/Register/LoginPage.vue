@@ -136,7 +136,7 @@ const checkRoleRouteUser = () => {
 
     <!-- Right Panel - Windows Logo -->
     <div class="w-1/2 bg-blue-300 flex items-center justify-center">
-      <!-- This is where the Windows logo would be displayed -->
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrjs6HDrges8WFWKTdJvelXAFrbIEEM6j_kQ&s" class="w-2/3 rounded-2xl" />
     </div>
   </div>
 </template>

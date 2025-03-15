@@ -24,12 +24,12 @@ const byProfessor = (ownerId) => {
 
 <template>
    <div class="bg-black-100 min-h-screen">
-     <div class="p-6 mx-[50px]">
+     <div class="p-6 mx-[50px] py-[40px]">
        <div class="grid grid-cols-3 gap-12 mx-[120px] mt-[-20px]">
          <button
            v-for="(exam, index) in examData"
            :key="index"
-           class="bg-blue-400 text-white rounded-xl shadow-md overflow-hidden w-full text-left flex flex-col hover:cursor-pointer"
+           class="bg-blue-400 text-white rounded-3xl shadow-md overflow-hidden w-full text-left flex flex-col hover:cursor-pointer"
          >
            <!-- Upper Section -->
            <div class="px-7 py-5">

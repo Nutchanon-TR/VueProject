@@ -91,6 +91,7 @@ const goToLoginPage = () => {
     <div class="relative bg-blue-300 w-full h-28 flex items-center">
       <div
         class="absolute top-6 left-4 text-black font-bold text-2xl cursor-pointer"
+        @click="goToLoginPage"
       >
         ← BACK
       </div>

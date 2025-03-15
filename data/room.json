@@ -10,9 +10,9 @@
       "id": "0"
     },
     {
-      "email": "Allie14@gmail.com",
-      "name": "Neha",
-      "password": "Vx9BlC2O38xqkhe",
+      "email": "P@",
+      "name": "Super Prof",
+      "password": "p",
       "bio": "Unde repellat amet quisquam maiores perferendis laboriosam ex asperiores reiciendis.\nRerum ipsum atque dolor ipsum nemo.",
       "role": "professor",
       "history": [],
@@ -28,9 +28,9 @@
       "id": "2"
     },
     {
-      "email": "Anais_Romaguera@hotmail.com",
-      "name": "Mafalda",
-      "password": "TMuRdzqO9PP3s0C",
+      "email": "S@",
+      "name": "Newbie",
+      "password": "s",
       "bio": "Qui ex sequi sequi fugiat maxime ipsa autem at maxime.",
       "role": "student",
       "history": [
@@ -421,6 +421,25 @@
           "answer": [
             "9.8 m/s²"
           ]
+        }
+      ]
+    },
+    {
+      "id": 1742072068412,
+      "ownerExam_id": 1,
+      "name": "New Quiz",
+      "description": "Test your knowledge!",
+      "category": "General",
+      "likes": 0,
+      "papers": [
+        {
+          "id": 1,
+          "question": "",
+          "options": [
+            "",
+            ""
+          ],
+          "answer": []
         }
       ]
     }

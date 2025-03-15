@@ -64,7 +64,7 @@ const FindProfilePage = () => {
 
 <template>
   <nav
-    class="bg-blue-400 flex justify-between items-center py-[20px] px-[50px]"
+    class="bg-blue-500 flex justify-between items-center py-[20px] px-[50px]"
   >
     <button
       class="text-black font-bold text-3xl hover:cursor-pointer"
