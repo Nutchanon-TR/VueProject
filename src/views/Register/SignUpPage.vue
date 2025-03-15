@@ -1,6 +1,8 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { getAllData, addData } from "./../../libs/apiData.js";
+import { RouterLink, useRouter } from "vue-router";
+const router = useRouter();
 const userData = ref([]);
 const errorMsg = ref("");
 //input value
@@ -25,11 +27,10 @@ const signUpChecking = () => {
   if (email.value === "") {
     errorMsg.value = "Please fill your email";
     console.log("error: ", errorMsg.value);
-  }else if (email.value === "@") {
+  } else if (email.value === "@") {
     errorMsg.value = "กวนตีนอ่อ😡";
     console.log("error: ", errorMsg.value);
-  }  
-  else if (!email.value.includes("@")) {
+  } else if (!email.value.includes("@")) {
     errorMsg.value = "Please fill @ on your email";
     console.log("error: ", errorMsg.value);
   } else if (userExist) {
@@ -53,6 +54,7 @@ const createUser = (nameData, emailData, passwordData) => {
     emailData !== "" ||
     passwordData !== "" ||
     errorEmail.value == false
+    //delete
   ) {
     const user = {
       email: emailData,
@@ -79,50 +81,65 @@ const createUser = (nameData, emailData, passwordData) => {
 const goToLoginPage = () => {
   console.log("Go to login page");
   //route to login page
+  router.push({ name: "LoginPage" });
 };
 </script>
 
 <template>
-  <div class="flex flex-col items-center min-h-screen bg-gray-100">
-    
+  <div class="flex flex-col items-center min-h-screen bg-white">
+    <!-- Header with Back Button -->
+    <div class="relative bg-blue-300 w-full h-28 flex items-center">
+      <div
+        class="absolute top-6 left-4 text-black font-bold text-2xl cursor-pointer"
+      >
+        ← BACK
+      </div>
+    </div>
+
     <!-- Profile Icon -->
-    <div class="relative bg-blue-300 w-full h-32 flex justify-center items-center">
-      <div class="absolute bottom-[-30px] bg-white p-2 rounded-full shadow-md">
-        <div class="w-20 h-20 bg-black rounded-full flex items-center justify-center">
-          <div class="w-10 h-10 bg-white rounded-full"></div>
+    <div class="relative w-full flex justify-center">
+      <div
+        class="absolute top-[-40px] bg-white rounded-full border-2 border-black"
+      >
+        <div class="w-20 h-20 flex items-center justify-center">
+          <div
+            class="w-16 h-16 bg-black rounded-full flex items-center justify-center"
+          >
+            <div class="w-8 h-8 bg-white rounded-full"></div>
+          </div>
         </div>
       </div>
     </div>
-    
-    <!-- Back Button -->
-    <div class="absolute top-4 left-4 text-black cursor-pointer">
-      ← BACK
-    </div>
-    
+
     <!-- Sign Up Form -->
-    <div class="mt-12 w-full max-w-sm p-6 bg-white shadow-md rounded-md text-center">
-      <h2 class="text-lg font-bold">SIGN UP</h2>
-      <input
-        type="email"
-        placeholder="USER_EMAIL"
-        v-model="email"
-        class="w-full px-4 py-2 mt-4 border rounded-full focus:outline-none"
-      />
+    <div class="mt-16 w-full max-w-md px-4 text-center">
+      <h2 class="text-3xl font-bold mb-8">SIGN UP</h2>
+
       <input
         type="text"
         placeholder="USER_NAME"
         v-model="name"
-        class="w-full px-4 py-2 mt-4 border rounded-full focus:outline-none"
+        class="w-full px-4 py-3 mb-4 border border-gray-300 rounded-full focus:outline-none"
       />
+
+      <input
+        type="email"
+        placeholder="USER_EMAIL"
+        v-model="email"
+        class="w-full px-4 py-3 mb-4 border border-gray-300 rounded-full focus:outline-none"
+      />
+
       <input
         type="password"
         placeholder="PASSWORD"
         v-model="password"
-        class="w-full px-4 py-2 mt-4 border rounded-full focus:outline-none"
+        class="w-full px-4 py-3 mb-4 border border-gray-300 rounded-full focus:outline-none"
       />
+
       <p class="text-red-500 mt-2" v-if="errorMsg">{{ errorMsg }}</p>
+
       <button
-        class="mt-6 px-6 py-2 bg-black text-white rounded-full hover:bg-gray-800 transition"
+        class="mt-4 px-6 py-2 w-32 bg-white text-black border border-gray-300 font-bold text-lg rounded-none hover:bg-gray-100 transition"
         @click="signUpChecking"
       >
         CREATE
@@ -130,12 +147,3 @@ const goToLoginPage = () => {
     </div>
   </div>
 </template>
-
-<style scoped>
-input::placeholder {
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: bold;
-}
-</style>
-

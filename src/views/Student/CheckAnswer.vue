@@ -55,6 +55,6 @@ const checkAnswers = () => {
     </div>
 
     <button @click="checkAnswers">ตรวจคำตอบ</button>
-    <h3>คะแนนที่ได้: {{ score }} / {{ exams.exams.reduce((acc, exam) => acc + exam.papers.length, 0) }}</h3>
+    <h3>คะแนนที่ได้: {{ score }} / {{ exams.reduce((acc, exam) => acc + exam.papers.length, 0) }}</h3>
   </div>
 </template>

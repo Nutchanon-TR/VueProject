@@ -1,6 +1,15 @@
 {
   "users": [
     {
+      "email": "T@",
+      "name": "TerZa",
+      "password": "admin",
+      "bio": "I'm admin",
+      "role": "admin",
+      "history": [],
+      "id": "0"
+    },
+    {
       "email": "Allie14@gmail.com",
       "name": "Neha",
       "password": "Vx9BlC2O38xqkhe",
@@ -95,6 +104,15 @@
       "email": "กไฟ@",
       "name": "dwa",
       "password": "กไฟ",
+      "bio": "",
+      "role": "student",
+      "history": []
+    },
+    {
+      "id": "b664",
+      "email": "fff@",
+      "name": "ert",
+      "password": "123",
       "bio": "",
       "role": "student",
       "history": []

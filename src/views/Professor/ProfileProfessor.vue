@@ -6,7 +6,7 @@ const userLoginData = userLogin()
 </script>
 
 <template>
-          <navBar/>
+<navBar/>
 This is the ProfileProfessor page
      
 </template>
