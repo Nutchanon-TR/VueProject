@@ -62,60 +62,6 @@
         }
       ],
       "id": "4"
-    },
-    {
-      "id": "419b",
-      "email": "dwa@gg",
-      "name": "dwa",
-      "password": "fesf",
-      "bio": "",
-      "role": "student",
-      "history": []
-    },
-    {
-      "id": "eb41",
-      "email": "sasaa@ss",
-      "name": "aaa",
-      "password": "sasas",
-      "bio": "",
-      "role": "student",
-      "history": []
-    },
-    {
-      "id": "b41d",
-      "email": "",
-      "name": "dwa",
-      "password": "",
-      "bio": "",
-      "role": "student",
-      "history": []
-    },
-    {
-      "id": "a617",
-      "email": "",
-      "name": "",
-      "password": "",
-      "bio": "",
-      "role": "student",
-      "history": []
-    },
-    {
-      "id": "71ca",
-      "email": "กไฟ@",
-      "name": "dwa",
-      "password": "กไฟ",
-      "bio": "",
-      "role": "student",
-      "history": []
-    },
-    {
-      "id": "b664",
-      "email": "fff@",
-      "name": "ert",
-      "password": "123",
-      "bio": "",
-      "role": "student",
-      "history": []
     }
   ],
   "exams": [
@@ -425,7 +371,7 @@
       ]
     },
     {
-      "id": 1742072068412,
+      "id": "1742072068412",
       "ownerExam_id": 1,
       "name": "New Quiz",
       "description": "Test your knowledge!",

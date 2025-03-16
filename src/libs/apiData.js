@@ -57,4 +57,35 @@ async function updateData(url, id, updatedData) {
   }
 }
 
-export { getAllData, getDataById, addData, updateData };
+async function updateSomeData(url, id, updatedData) {
+  try {
+    const res = await fetch(`${url}/${id}`, {
+      method: 'PATCH', // เปลี่ยนจาก PUT เป็น PATCH
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedData),
+    });
+    if (!res.ok) {
+      throw new Error('Failed to update data');
+    }
+    const updatedResponse = await res.json();
+    return updatedResponse;
+  } catch (error) {
+    throw new Error('Cannot update your data');
+  }
+}
+
+async function deleteUserById(url, id) {
+  try {
+    const res = await fetch(`${url}/${id}`, {
+      method: 'DELETE'
+    })
+    return res.status
+  } catch (error) {
+    throw new Error('can not delete your item')
+  }
+}
+
+
+export { getAllData, getDataById, addData, updateData, updateSomeData, deleteUserById };

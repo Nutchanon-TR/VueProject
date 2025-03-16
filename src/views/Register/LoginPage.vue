@@ -61,7 +61,6 @@ const informUser = async (userId) => {
   checkRoleRouteUser();
 };
 
-//Comming soon
 const router = useRouter();
 const checkRoleRouteUser = () => {
   if (userLoginData.role === "admin") {
@@ -134,7 +133,6 @@ const checkRoleRouteUser = () => {
       </div>
     </div>
 
-    <!-- Right Panel - Windows Logo -->
     <div class="w-1/2 bg-blue-300 flex items-center justify-center">
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrjs6HDrges8WFWKTdJvelXAFrbIEEM6j_kQ&s" class="w-2/3 rounded-2xl" />
     </div>
