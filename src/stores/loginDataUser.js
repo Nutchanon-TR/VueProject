@@ -8,7 +8,9 @@ export const userLogin = defineStore('loginDataUser', {
     password: '',
     bio: "",
     role: "",
+    imageURL: "",
     history: [],
+    likeExam_Id: [],
   }),
   actions:{
     keepDataFromLogin(data){

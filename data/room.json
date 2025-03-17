@@ -6,6 +6,8 @@
       "password": "admin",
       "bio": "I'm admin",
       "role": "admin",
+      "imageURL": "",
+      "likeExam_Id": [],
       "history": [],
       "id": "0"
     },
@@ -15,6 +17,8 @@
       "password": "p",
       "bio": "Unde repellat amet quisquam maiores perferendis laboriosam ex asperiores reiciendis.\nRerum ipsum atque dolor ipsum nemo.",
       "role": "professor",
+      "imageURL": "",
+      "likeExam_Id": [],
       "history": [],
       "id": "1"
     },
@@ -24,25 +28,19 @@
       "password": "VoF0Jl4N90ExxuJ",
       "bio": "Ipsam distinctio temporibus corporis eaque itaque praesentium ipsam necessitatibus facere.",
       "role": "professor",
+      "imageURL": "",
+      "likeExam_Id": [],
       "history": [],
       "id": "2"
     },
     {
-      "email": "S@",
-      "name": "Newbie",
-      "password": "s",
-      "bio": "Qui ex sequi sequi fugiat maxime ipsa autem at maxime.",
-      "role": "student",
-      "history": [
-        {
-          "exam_id": 1,
-          "score": 2
-        },
-        {
-          "exam_id": 2,
-          "score": 1
-        }
-      ],
+      "name": "",
+      "email": "",
+      "bio": "",
+      "role": "",
+      "imageURL": "",
+      "likeExam_Id": [],
+      "history": [],
       "id": "3"
     },
     {
@@ -51,6 +49,8 @@
       "password": "E3JjVI9rafgfvkP",
       "bio": "fugit",
       "role": "student",
+      "imageURL": "",
+      "likeExam_Id": [],
       "history": [
         {
           "exam_id": 1,
@@ -62,6 +62,17 @@
         }
       ],
       "id": "4"
+    },
+    {
+      "id": "35da",
+      "email": "Test@tt",
+      "name": "Test",
+      "password": "tt",
+      "bio": "",
+      "role": "student",
+      "imageURL": "",
+      "history": [],
+      "likeExam_Id": []
     }
   ],
   "exams": [
@@ -77,40 +88,66 @@
           "id": 1,
           "question": "What is 2 + 2?",
           "options": [
-            "3",
-            "4",
-            "5",
-            "6"
-          ],
-          "answer": [
-            "4"
+            {
+              "choice": "3",
+              "answer": false
+            },
+            {
+              "choice": "4",
+              "answer": true
+            },
+            {
+              "choice": "5",
+              "answer": false
+            },
+            {
+              "choice": "6",
+              "answer": false
+            }
           ]
         },
         {
           "id": 2,
           "question": "Which numbers are prime?",
           "options": [
-            "2",
-            "4",
-            "5",
-            "9"
-          ],
-          "answer": [
-            "2",
-            "5"
+            {
+              "choice": "2",
+              "answer": true
+            },
+            {
+              "choice": "4",
+              "answer": false
+            },
+            {
+              "choice": "5",
+              "answer": true
+            },
+            {
+              "choice": "9",
+              "answer": false
+            }
           ]
         },
         {
           "id": 3,
           "question": "What is the square root of 16?",
           "options": [
-            "2",
-            "3",
-            "4",
-            "5"
-          ],
-          "answer": [
-            "4"
+            {
+              "choice": "2",
+              "answer": false
+            },
+            {
+              "choice": "3",
+              "answer": false
+            },
+            {
+              "choice": "4",
+              "answer": true
+            },
+            {
+              "choice": "5",
+              "answer": false
+            }
           ]
         }
       ]
@@ -127,40 +164,66 @@
           "id": 1,
           "question": "Which of the following are programming languages?",
           "options": [
-            "Python",
-            "HTML",
-            "CSS",
-            "Java"
-          ],
-          "answer": [
-            "Python",
-            "Java"
+            {
+              "choice": "Python",
+              "answer": true
+            },
+            {
+              "choice": "HTML",
+              "answer": false
+            },
+            {
+              "choice": "CSS",
+              "answer": false
+            },
+            {
+              "choice": "Java",
+              "answer": true
+            }
           ]
         },
         {
           "id": 2,
           "question": "Which language is primarily used for web development?",
           "options": [
-            "C++",
-            "Java",
-            "JavaScript",
-            "Python"
-          ],
-          "answer": [
-            "JavaScript"
+            {
+              "choice": "C++",
+              "answer": false
+            },
+            {
+              "choice": "Java",
+              "answer": false
+            },
+            {
+              "choice": "JavaScript",
+              "answer": true
+            },
+            {
+              "choice": "Python",
+              "answer": false
+            }
           ]
         },
         {
           "id": 3,
           "question": "What is the output type of a function that has 'void' as return type?",
           "options": [
-            "Integer",
-            "Boolean",
-            "None",
-            "String"
-          ],
-          "answer": [
-            "None"
+            {
+              "choice": "Integer",
+              "answer": false
+            },
+            {
+              "choice": "Boolean",
+              "answer": false
+            },
+            {
+              "choice": "None",
+              "answer": true
+            },
+            {
+              "choice": "String",
+              "answer": false
+            }
           ]
         }
       ]
@@ -177,41 +240,66 @@
           "id": 1,
           "question": "Which gas do plants absorb from the atmosphere?",
           "options": [
-            "Oxygen",
-            "Carbon Dioxide",
-            "Nitrogen",
-            "Hydrogen"
-          ],
-          "answer": [
-            "Carbon Dioxide"
+            {
+              "choice": "Oxygen",
+              "answer": false
+            },
+            {
+              "choice": "Carbon Dioxide",
+              "answer": true
+            },
+            {
+              "choice": "Nitrogen",
+              "answer": false
+            },
+            {
+              "choice": "Hydrogen",
+              "answer": false
+            }
           ]
         },
         {
           "id": 2,
           "question": "Which of the following are states of matter?",
           "options": [
-            "Solid",
-            "Liquid",
-            "Gas",
-            "Energy"
-          ],
-          "answer": [
-            "Solid",
-            "Liquid",
-            "Gas"
+            {
+              "choice": "Solid",
+              "answer": true
+            },
+            {
+              "choice": "Liquid",
+              "answer": true
+            },
+            {
+              "choice": "Gas",
+              "answer": true
+            },
+            {
+              "choice": "Energy",
+              "answer": false
+            }
           ]
         },
         {
           "id": 3,
           "question": "What is the chemical symbol for water?",
           "options": [
-            "H2O",
-            "CO2",
-            "O2",
-            "NaCl"
-          ],
-          "answer": [
-            "H2O"
+            {
+              "choice": "H2O",
+              "answer": true
+            },
+            {
+              "choice": "CO2",
+              "answer": false
+            },
+            {
+              "choice": "O2",
+              "answer": false
+            },
+            {
+              "choice": "NaCl",
+              "answer": false
+            }
           ]
         }
       ]
@@ -228,40 +316,66 @@
           "id": 1,
           "question": "What is the derivative of x^2?",
           "options": [
-            "x",
-            "2x",
-            "x^2",
-            "x^3"
-          ],
-          "answer": [
-            "2x"
+            {
+              "choice": "x",
+              "answer": false
+            },
+            {
+              "choice": "2x",
+              "answer": true
+            },
+            {
+              "choice": "x^2",
+              "answer": false
+            },
+            {
+              "choice": "x^3",
+              "answer": false
+            }
           ]
         },
         {
           "id": 2,
           "question": "Which of the following numbers are even?",
           "options": [
-            "2",
-            "3",
-            "4",
-            "5"
-          ],
-          "answer": [
-            "2",
-            "4"
+            {
+              "choice": "2",
+              "answer": true
+            },
+            {
+              "choice": "3",
+              "answer": false
+            },
+            {
+              "choice": "4",
+              "answer": true
+            },
+            {
+              "choice": "5",
+              "answer": false
+            }
           ]
         },
         {
           "id": 3,
           "question": "What is the value of π (pi) rounded to two decimal places?",
           "options": [
-            "3.12",
-            "3.14",
-            "3.16",
-            "3.18"
-          ],
-          "answer": [
-            "3.14"
+            {
+              "choice": "3.12",
+              "answer": false
+            },
+            {
+              "choice": "3.14",
+              "answer": true
+            },
+            {
+              "choice": "3.16",
+              "answer": false
+            },
+            {
+              "choice": "3.18",
+              "answer": false
+            }
           ]
         }
       ]
@@ -278,43 +392,66 @@
           "id": 1,
           "question": "Which of the following are frontend languages?",
           "options": [
-            "HTML",
-            "JavaScript",
-            "Python",
-            "CSS"
-          ],
-          "answer": [
-            "HTML",
-            "JavaScript",
-            "CSS"
+            {
+              "choice": "HTML",
+              "answer": true
+            },
+            {
+              "choice": "JavaScript",
+              "answer": true
+            },
+            {
+              "choice": "Python",
+              "answer": false
+            },
+            {
+              "choice": "CSS",
+              "answer": true
+            }
           ]
         },
         {
           "id": 2,
           "question": "What does CSS stand for?",
           "options": [
-            "Creative Style Sheets",
-            "Cascading Style Sheets",
-            "Computer Styling System",
-            "Colorful Styling Sheets"
-          ],
-          "answer": [
-            "Cascading Style Sheets"
+            {
+              "choice": "Creative Style Sheets",
+              "answer": false
+            },
+            {
+              "choice": "Cascading Style Sheets",
+              "answer": true
+            },
+            {
+              "choice": "Computer Styling System",
+              "answer": false
+            },
+            {
+              "choice": "Colorful Styling Sheets",
+              "answer": false
+            }
           ]
         },
         {
           "id": 3,
           "question": "Which language is commonly used for backend development?",
           "options": [
-            "JavaScript",
-            "Python",
-            "PHP",
-            "C++"
-          ],
-          "answer": [
-            "JavaScript",
-            "Python",
-            "PHP"
+            {
+              "choice": "JavaScript",
+              "answer": true
+            },
+            {
+              "choice": "Python",
+              "answer": true
+            },
+            {
+              "choice": "PHP",
+              "answer": true
+            },
+            {
+              "choice": "C++",
+              "answer": false
+            }
           ]
         }
       ]
@@ -331,61 +468,67 @@
           "id": 1,
           "question": "What is the unit of force?",
           "options": [
-            "Newton",
-            "Joule",
-            "Watt",
-            "Pascal"
-          ],
-          "answer": [
-            "Newton"
+            {
+              "choice": "Newton",
+              "answer": true
+            },
+            {
+              "choice": "Joule",
+              "answer": false
+            },
+            {
+              "choice": "Watt",
+              "answer": false
+            },
+            {
+              "choice": "Pascal",
+              "answer": false
+            }
           ]
         },
         {
           "id": 2,
           "question": "Which of the following are types of energy?",
           "options": [
-            "Kinetic",
-            "Potential",
-            "Thermal",
-            "Gravity"
-          ],
-          "answer": [
-            "Kinetic",
-            "Potential",
-            "Thermal"
+            {
+              "choice": "Kinetic",
+              "answer": true
+            },
+            {
+              "choice": "Potential",
+              "answer": true
+            },
+            {
+              "choice": "Thermal",
+              "answer": true
+            },
+            {
+              "choice": "Gravity",
+              "answer": false
+            }
           ]
         },
         {
           "id": 3,
           "question": "What is the acceleration due to gravity on Earth?",
           "options": [
-            "8.9 m/s²",
-            "9.8 m/s²",
-            "10 m/s²",
-            "9.6 m/s²"
-          ],
-          "answer": [
-            "9.8 m/s²"
+            {
+              "choice": "8.9 m/s²",
+              "answer": false
+            },
+            {
+              "choice": "9.8 m/s²",
+              "answer": true
+            },
+            {
+              "choice": "10 m/s²",
+              "answer": false
+            },
+            {
+              "choice": "9.6 m/s²",
+              "answer": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      "id": "1742072068412",
-      "ownerExam_id": 1,
-      "name": "New Quiz",
-      "description": "Test your knowledge!",
-      "category": "General",
-      "likes": 0,
-      "papers": [
-        {
-          "id": 1,
-          "question": "",
-          "options": [
-            "",
-            ""
-          ],
-          "answer": []
         }
       ]
     }

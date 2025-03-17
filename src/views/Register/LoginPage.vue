@@ -110,7 +110,7 @@ const checkRoleRouteUser = () => {
         <!-- Login Button -->
         <button
           @click="loginChecking(password)"
-          class="w-full text-center py-3 text-2xl font-bold hover:opacity-90"
+          class="w-full text-center py-3 text-2xl font-bold cursor-pointer hover:opacity-90"
         >
           LOG_IN
         </button>
@@ -125,7 +125,7 @@ const checkRoleRouteUser = () => {
         <!-- Sign Up Button -->
         <RouterLink :to="{ name: 'SignUpPage' }" class="block">
           <button
-            class="w-full text-center py-3 text-2xl font-bold hover:opacity-90"
+            class="w-full text-center py-3 text-2xl font-bold hover:opacity-90 cursor-pointer"
           >
             SIGN_UP
           </button>
