@@ -1,9 +1,12 @@
 <script setup>
   import QuestionItem from "@/components/ExamCreation/QuestionItem.vue";
   import navBar from '@/components/navBar.vue'
-  import {addData} from '../../libs/apiData.js';
+  import {addData,getAllData} from '../../libs/apiData.js';
   import {ref} from 'vue';
+  import {userLogin} from '@/stores/loginDataUser.js';
 
+  const userStore = userLogin()
+  const nextId =ref(2)
   const questions = ref([
   {
     id: 1,
@@ -17,12 +20,16 @@
 ]);
 
 const addQuestion = () => {
+
   questions.value.push({
-    id: Date.now(),
+    id: nextId.value,
     question: "",
     type: "single",
     options: [{ id: 1, text: "", isCorrect: false }],
   });
+  nextId.value++
+
+  
 };
 
 const deleteQuestion = (index) => {
@@ -48,9 +55,16 @@ const toggleQuestionType = (index) => {
 };
 
 const publishQuiz = async () => {
-  const newExam = {
-    id: Date.now(),
-    ownerExam_id: 1,
+  try {
+    const res = await getAllData(`${import.meta.env.VITE_API_URL}/exams`)
+    const lastId = res.length > 0 ? Math.max(...res.map(exam => Number(exam.id))) : 0;
+    const newId = lastId + 1;
+    const toStringID = newId.toString()
+    const currentUser = userStore.id
+    const currentUser02 = Number(currentUser)
+    const newExam = {
+    id: toStringID  ,
+    ownerExam_id: currentUser02,
     name: "New Quiz",
     description: "Test your knowledge!",
     category: "General",
@@ -58,12 +72,9 @@ const publishQuiz = async () => {
     papers: questions.value.map((q) => ({
       id: q.id,
       question: q.question,
-      options: q.options.map((o) => o.text),
-      answer: q.options.filter((o) => o.isCorrect).map((o) => o.text),
+      options: q.options.map((o) => ({choice: o.text,isCorrect:o.isCorrect})),
     })),
   };
- 
-  try {
     await addData(`${import.meta.env.VITE_API_URL}/exams`,newExam)
     alert("Quiz Published!");
   } catch (error) {

@@ -12,7 +12,7 @@
       <input
         :type="questionType === 'single' ? 'radio' : 'checkbox'"
         :name="'question-' + questionId"
-        v-model="option.isCorrect"
+        @change="option.isCorrect = !option.isCorrect"
       />
       <input
         type="text"
