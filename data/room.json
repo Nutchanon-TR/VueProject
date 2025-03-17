@@ -90,19 +90,19 @@
           "options": [
             {
               "choice": "3",
-              "answer": false
+              "isCorrect": false
             },
             {
               "choice": "4",
-              "answer": true
+              "isCorrect": true
             },
             {
               "choice": "5",
-              "answer": false
+              "isCorrect": false
             },
             {
               "choice": "6",
-              "answer": false
+              "isCorrect": false
             }
           ]
         },
@@ -112,19 +112,19 @@
           "options": [
             {
               "choice": "2",
-              "answer": true
+              "isCorrect": true
             },
             {
               "choice": "4",
-              "answer": false
+              "isCorrect": false
             },
             {
               "choice": "5",
-              "answer": true
+              "isCorrect": true
             },
             {
               "choice": "9",
-              "answer": false
+              "isCorrect": false
             }
           ]
         },
@@ -134,19 +134,19 @@
           "options": [
             {
               "choice": "2",
-              "answer": false
+              "isCorrect": false
             },
             {
               "choice": "3",
-              "answer": false
+              "isCorrect": false
             },
             {
               "choice": "4",
-              "answer": true
+              "isCorrect": true
             },
             {
               "choice": "5",
-              "answer": false
+              "isCorrect": false
             }
           ]
         }
@@ -166,19 +166,19 @@
           "options": [
             {
               "choice": "Python",
-              "answer": true
+              "isCorrect": true
             },
             {
               "choice": "HTML",
-              "answer": false
+              "isCorrect": false
             },
             {
               "choice": "CSS",
-              "answer": false
+              "isCorrect": false
             },
             {
               "choice": "Java",
-              "answer": true
+              "isCorrect": true
             }
           ]
         },
@@ -188,19 +188,19 @@
           "options": [
             {
               "choice": "C++",
-              "answer": false
+              "isCorrect": false
             },
             {
               "choice": "Java",
-              "answer": false
+              "isCorrect": false
             },
             {
               "choice": "JavaScript",
-              "answer": true
+              "isCorrect": true
             },
             {
               "choice": "Python",
-              "answer": false
+              "isCorrect": false
             }
           ]
         },
@@ -210,19 +210,19 @@
           "options": [
             {
               "choice": "Integer",
-              "answer": false
+              "isCorrect": false
             },
             {
               "choice": "Boolean",
-              "answer": false
+              "isCorrect": false
             },
             {
               "choice": "None",
-              "answer": true
+              "isCorrect": true
             },
             {
               "choice": "String",
-              "answer": false
+              "isCorrect": false
             }
           ]
         }
@@ -242,19 +242,19 @@
           "options": [
             {
               "choice": "Oxygen",
-              "answer": false
+              "isCorrect": false
             },
             {
               "choice": "Carbon Dioxide",
-              "answer": true
+              "isCorrect": true
             },
             {
               "choice": "Nitrogen",
-              "answer": false
+              "isCorrect": false
             },
             {
               "choice": "Hydrogen",
-              "answer": false
+              "isCorrect": false
             }
           ]
         },
@@ -264,19 +264,19 @@
           "options": [
             {
               "choice": "Solid",
-              "answer": true
+              "isCorrect": true
             },
             {
               "choice": "Liquid",
-              "answer": true
+              "isCorrect": true
             },
             {
               "choice": "Gas",
-              "answer": true
+              "isCorrect": true
             },
             {
               "choice": "Energy",
-              "answer": false
+              "isCorrect": false
             }
           ]
         },
@@ -286,19 +286,19 @@
           "options": [
             {
               "choice": "H2O",
-              "answer": true
+              "isCorrect": true
             },
             {
               "choice": "CO2",
-              "answer": false
+              "isCorrect": false
             },
             {
               "choice": "O2",
-              "answer": false
+              "isCorrect": false
             },
             {
               "choice": "NaCl",
-              "answer": false
+              "isCorrect": false
             }
           ]
         }
@@ -318,19 +318,19 @@
           "options": [
             {
               "choice": "x",
-              "answer": false
+              "isCorrect": false
             },
             {
               "choice": "2x",
-              "answer": true
+              "isCorrect": true
             },
             {
               "choice": "x^2",
-              "answer": false
+              "isCorrect": false
             },
             {
               "choice": "x^3",
-              "answer": false
+              "isCorrect": false
             }
           ]
         },
@@ -340,19 +340,19 @@
           "options": [
             {
               "choice": "2",
-              "answer": true
+              "isCorrect": true
             },
             {
               "choice": "3",
-              "answer": false
+              "isCorrect": false
             },
             {
               "choice": "4",
-              "answer": true
+              "isCorrect": true
             },
             {
               "choice": "5",
-              "answer": false
+              "isCorrect": false
             }
           ]
         },
@@ -362,19 +362,19 @@
           "options": [
             {
               "choice": "3.12",
-              "answer": false
+              "isCorrect": false
             },
             {
               "choice": "3.14",
-              "answer": true
+              "isCorrect": true
             },
             {
               "choice": "3.16",
-              "answer": false
+              "isCorrect": false
             },
             {
               "choice": "3.18",
-              "answer": false
+              "isCorrect": false
             }
           ]
         }
@@ -394,19 +394,19 @@
           "options": [
             {
               "choice": "HTML",
-              "answer": true
+              "isCorrect": true
             },
             {
               "choice": "JavaScript",
-              "answer": true
+              "isCorrect": true
             },
             {
               "choice": "Python",
-              "answer": false
+              "isCorrect": false
             },
             {
               "choice": "CSS",
-              "answer": true
+              "isCorrect": true
             }
           ]
         },
@@ -416,19 +416,19 @@
           "options": [
             {
               "choice": "Creative Style Sheets",
-              "answer": false
+              "isCorrect": false
             },
             {
               "choice": "Cascading Style Sheets",
-              "answer": true
+              "isCorrect": true
             },
             {
               "choice": "Computer Styling System",
-              "answer": false
+              "isCorrect": false
             },
             {
               "choice": "Colorful Styling Sheets",
-              "answer": false
+              "isCorrect": false
             }
           ]
         },
@@ -438,19 +438,19 @@
           "options": [
             {
               "choice": "JavaScript",
-              "answer": true
+              "isCorrect": true
             },
             {
               "choice": "Python",
-              "answer": true
+              "isCorrect": true
             },
             {
               "choice": "PHP",
-              "answer": true
+              "isCorrect": true
             },
             {
               "choice": "C++",
-              "answer": false
+              "isCorrect": false
             }
           ]
         }
@@ -470,19 +470,19 @@
           "options": [
             {
               "choice": "Newton",
-              "answer": true
+              "isCorrect": true
             },
             {
               "choice": "Joule",
-              "answer": false
+              "isCorrect": false
             },
             {
               "choice": "Watt",
-              "answer": false
+              "isCorrect": false
             },
             {
               "choice": "Pascal",
-              "answer": false
+              "isCorrect": false
             }
           ]
         },
@@ -492,19 +492,19 @@
           "options": [
             {
               "choice": "Kinetic",
-              "answer": true
+              "isCorrect": true
             },
             {
               "choice": "Potential",
-              "answer": true
+              "isCorrect": true
             },
             {
               "choice": "Thermal",
-              "answer": true
+              "isCorrect": true
             },
             {
               "choice": "Gravity",
-              "answer": false
+              "isCorrect": false
             }
           ]
         },
@@ -514,19 +514,19 @@
           "options": [
             {
               "choice": "8.9 m/s²",
-              "answer": false
+              "isCorrect": false
             },
             {
               "choice": "9.8 m/s²",
-              "answer": true
+              "isCorrect": true
             },
             {
               "choice": "10 m/s²",
-              "answer": false
+              "isCorrect": false
             },
             {
               "choice": "9.6 m/s²",
-              "answer": false
+              "isCorrect": false
             }
           ]
         }
