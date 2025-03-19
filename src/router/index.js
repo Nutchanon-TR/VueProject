@@ -14,6 +14,8 @@ import ProfileStudent from '@/views/Student/ProfileStudent.vue'
 import AdminPage from '@/views/AdminPage.vue'
 //DoExam
 import DoExamPage from '@/views/DoExamPage.vue'
+//Manage
+import Manage from '@/views/Manage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -29,49 +31,54 @@ const router = createRouter({
       component: SignUpPage,
     },
     {
-      path: '/professor/123/home',
+      path: '/professor/home',
       name: 'HomePagePro',
       component: HomePagePro,
     },
     {
-      path: '/professor/123/profile',
+      path: '/professor/profile',
       name: 'ProfileProfessor',
       component: ProfileProfessor,
     },
     {
-      path: '/professor/123/create',
+      path: '/professor/create',
       name: 'CreateExamPage',
       component: CreateExamPage,
     },
     {
-      path: '/professor/123/edit/1',
+      path: '/professor/edit/1',
       name: 'EditExamPage',
       component: EditExamPage,
     },
     {
-      path: '/student/123/home',
+      path: '/student/home',
       name: 'HomePageStud',
       component: HomePageStud,
     },
     {
-      path: '/student/123/profile',
+      path: '/student/profile',
       name: 'ProfileStudent',
       component: ProfileStudent,
     },
     {
-      path: '/student/123/exam/1',
+      path: '/student/exam/1',
       name: 'DoExamPage',
       component: DoExamPage,
     },
     {
-      path: '/professor/123/exam/1',
+      path: '/professor/exam/1',
       name: 'DoExamPage',
       component: DoExamPage,
     },
     {
-      path: '/admin/999',
+      path: '/admin',
       name: 'AdminPage',
       component: AdminPage,
+    },
+    {
+      path: '/manage',
+      name: 'Manage',
+      component: Manage,
     },
   ],
 })

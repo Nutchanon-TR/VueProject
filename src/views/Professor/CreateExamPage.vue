@@ -1,5 +1,6 @@
 <script setup>
   import QuestionItem from "@/components/ExamCreation/QuestionItem.vue";
+  import navBar from '@/components/navBar.vue'
   import {addData} from '../../libs/apiData.js';
   import {ref} from 'vue';
 
@@ -72,7 +73,7 @@ const publishQuiz = async () => {
   </script>
 
 <template>
-   
+   <navBar/>
     <div class="p-5">
     <h1 class="text-2xl font-bold">Create Your Quiz</h1>
 

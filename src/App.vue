@@ -1,32 +1,42 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import { onMounted, ref } from 'vue'
-import {userLogin} from './stores/loginDataUser.js'
-import { getDataById } from '@/libs/apiData.js'
-const userLoginData = userLogin()
-const idUserData = ref('')
+import { RouterLink, RouterView, useRouter } from "vue-router";
+import { onMounted, ref } from "vue";
+import { userLogin } from "./stores/loginDataUser.js";
+import { getDataById } from "@/libs/apiData.js";
+const userLoginData = userLogin();
+const router = useRouter();
+const idUserData = ref("");
 
 //load page and check cookie login
-onMounted(async() => {
-  idUserData.value = await getDataById(`${import.meta.env.VITE_API_URL}/users`,document.cookie);
-  console.log("idUserData.value: ",idUserData.value.id);
-  console.log("App: ",document.cookie);
-  userLoginData.keepDataFromLogin(idUserData.value)
-  console.log("userLoginData: ",userLoginData)
-  console.log("userLoginData.email: ",userLoginData.email)
-  console.log("userLoginData.firstName: ",userLoginData.name)
-  console.log("userLoginData.history: ",userLoginData.history)
-})
+onMounted(async () => {
+  if (document.cookie === "" || document.cookie === "empty") {
+    console.log("No Cookie");
+    router.push({ name: "LoginPage" });
+  } else {
+    idUserData.value = await getDataById(
+      `${import.meta.env.VITE_API_URL}/users`,
+      document.cookie
+    );
+    userLoginData.keepDataFromLogin(idUserData.value);
+    if(userLoginData.role === "admin"){
+      router.push({ name: "AdminPage" });
+    }else if(userLoginData.role === "professor"){
+      router.push({ name: "HomePagePro" });
+    }else if(userLoginData.role === "student"){
+      router.push({ name: "HomePageStud" });
+    }
+  }
+});
 </script>
 
 <template>
- <nav class="fixed bottom-0 left-0 w-full bg-gray-800 text-white shadow-md">
+  <nav class="fixed bottom-0 left-0 w-full bg-gray-800 text-white shadow-md">
     <div class="flex justify-around py-3">
       <!-- Login -->
       <RouterLink :to="{ name: 'LoginPage' }" class="nav-item">
         🔑 Login
       </RouterLink>
-      
+
       <!-- Sign Up -->
       <RouterLink :to="{ name: 'SignUpPage' }" class="nav-item">
         📝 Sign Up
@@ -69,7 +79,12 @@ onMounted(async() => {
 
       <!-- Admin Page -->
       <RouterLink :to="{ name: 'AdminPage' }" class="nav-item">
-        ⚙️ Admin
+        👀 Admin
+      </RouterLink>
+
+      <!-- Manage Page -->
+      <RouterLink :to="{ name: 'Manage' }" class="nav-item">
+        ⚙️ Manage
       </RouterLink>
     </div>
   </nav>

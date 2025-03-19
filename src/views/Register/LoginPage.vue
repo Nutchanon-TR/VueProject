@@ -1,9 +1,9 @@
 <script setup>
+import { RouterLink, RouterView, useRouter } from "vue-router";
 import { onMounted, ref } from "vue";
 import { getAllData } from "./../../libs/apiData.js";
-import {userLogin} from '@/stores/loginDataUser.js'
-import { getDataById } from '@/libs/apiData.js'
-
+import { userLogin } from "@/stores/loginDataUser.js";
+import { getDataById } from "@/libs/apiData.js";
 
 const userData = ref([]);
 onMounted(async () => {
@@ -14,7 +14,6 @@ onMounted(async () => {
     console.error(error);
   }
 });
-
 
 const email = ref("");
 const password = ref("");
@@ -45,28 +44,31 @@ const loginChecking = (pass) => {
 };
 
 //load user data
-const userLoginData = userLogin()
-const idUserData = ref('')
+const userLoginData = userLogin();
+const idUserData = ref("");
 //keep user data in pinia
-const informUser = async(userId) => {
+const informUser = async (userId) => {
   document.cookie = `${userId}; path=/; max-age=3600*24*7; secure`;
-  idUserData.value = await getDataById(`${import.meta.env.VITE_API_URL}/users`,document.cookie);
-  userLoginData.keepDataFromLogin(idUserData.value)
-  console.log("userLoginData: ",userLoginData)
-  console.log("userLoginData.email: ",userLoginData.email)
-  console.log("userLoginData.firstName: ",userLoginData.name)
-  console.log("userLoginData.history: ",userLoginData.history[1])
-  checkRoleRouteUser(userLoginData.role);
+  idUserData.value = await getDataById(
+    `${import.meta.env.VITE_API_URL}/users`,
+    document.cookie
+  );
+  userLoginData.keepDataFromLogin(idUserData.value);
+  console.log("userLoginData: ", userLoginData);
+  console.log("userLoginData.email: ", userLoginData.email);
+  console.log("userLoginData.firstName: ", userLoginData.name);
+  console.log("userLoginData.history: ", userLoginData.history[1]);
+  checkRoleRouteUser();
 };
 
-//Comming soon
-const checkRoleRouteUser = (role) => {
-  if (role === "student") {
-    console.log("student");
-  } else if (role === "professor") {
-    console.log("professor");
-  } else if (role === "admin") {
-    console.log("admin");
+const router = useRouter();
+const checkRoleRouteUser = () => {
+  if (userLoginData.role === "admin") {
+    router.push({ name: "AdminPage" });
+  } else if (userLoginData.role === "professor") {
+    router.push({ name: "HomePagePro" });
+  } else if (userLoginData.role === "student") {
+    router.push({ name: "HomePageStud" });
   } else {
     console.log("error");
   }
@@ -74,26 +76,65 @@ const checkRoleRouteUser = (role) => {
 </script>
 
 <template>
-  <input type="email" placeholder="EMAIL" v-model="email" />
-  <input type="password" placeholder="PASSWORD" v-model="password" />
-  <p class="text-red-500 mb-4">{{ errorMsg }}</p>
-  <button @click="loginChecking(password)">LOG IN</button>
-  <hr />
-  <p>Anais_Romaguera@hotmail.com</p>
-  <p>TMuRdzqO9PP3s0C</p>
-</template>
-
-<!-- <template>
-  login page
-  <div>
-    <input type="email" placeholder="email" v-model="email" />
-    <input type="password" placeholder="password" v-model="password" />
-    <button
-      class="bg-blue-200 hover:bg-blue-300"
-      @click="loginChecking(password)"
+  <div class="flex min-h-screen bg-white">
+    <!-- Left Panel -->
+    <div
+      class="w-1/2 flex flex-col items-center justify-center p-12 border-r border-gray-200"
     >
-      login
-    </button>
-    {{ errorMsg }}
+      <h1 class="text-4xl font-bold mb-12">TEST2HUB</h1>
+
+      <div class="w-full max-w-md space-y-6">
+        <!-- Email Input -->
+        <div class="relative">
+          <input
+            type="email"
+            placeholder="EMAIL"
+            v-model="email"
+            class="w-full px-6 py-4 border-2 border-black rounded-full text-lg font-medium focus:outline-none"
+          />
+        </div>
+
+        <!-- Password Input -->
+        <div class="relative">
+          <input
+            type="password"
+            placeholder="PASSWORD"
+            v-model="password"
+            class="w-full px-6 py-4 border-2 border-black rounded-full text-lg font-medium focus:outline-none"
+          />
+        </div>
+
+        <!-- Error Message -->
+        <p class="text-red-500" v-if="errorMsg">{{ errorMsg }}</p>
+
+        <!-- Login Button -->
+        <button
+          @click="loginChecking(password)"
+          class="w-full text-center py-3 text-2xl font-bold cursor-pointer hover:opacity-90"
+        >
+          LOG_IN
+        </button>
+
+        <!-- Divider -->
+        <div class="flex items-center justify-center space-x-4 my-4">
+          <div class="h-px bg-gray-300 w-1/3"></div>
+          <span class="text-gray-500">OR</span>
+          <div class="h-px bg-gray-300 w-1/3"></div>
+        </div>
+
+        <!-- Sign Up Button -->
+        <RouterLink :to="{ name: 'SignUpPage' }" class="block">
+          <button
+            class="w-full text-center py-3 text-2xl font-bold hover:opacity-90 cursor-pointer"
+          >
+            SIGN_UP
+          </button>
+        </RouterLink>
+      </div>
+    </div>
+
+    <div class="w-1/2 bg-blue-300 flex items-center justify-center">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrjs6HDrges8WFWKTdJvelXAFrbIEEM6j_kQ&s" class="w-2/3 rounded-2xl" />
+    </div>
   </div>
-</template> -->
+</template>

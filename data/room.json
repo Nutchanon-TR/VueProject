@@ -1,0 +1,536 @@
+{
+  "users": [
+    {
+      "email": "T@",
+      "name": "TerZa",
+      "password": "admin",
+      "bio": "I'm admin",
+      "role": "admin",
+      "imageURL": "",
+      "likeExam_Id": [],
+      "history": [],
+      "id": "0"
+    },
+    {
+      "email": "P@",
+      "name": "Super Prof",
+      "password": "p",
+      "bio": "Unde repellat amet quisquam maiores perferendis laboriosam ex asperiores reiciendis.\nRerum ipsum atque dolor ipsum nemo.",
+      "role": "professor",
+      "imageURL": "",
+      "likeExam_Id": [],
+      "history": [],
+      "id": "1"
+    },
+    {
+      "email": "Amira.Goyette0@yahoo.com",
+      "name": "Tremaine",
+      "password": "VoF0Jl4N90ExxuJ",
+      "bio": "Ipsam distinctio temporibus corporis eaque itaque praesentium ipsam necessitatibus facere.",
+      "role": "professor",
+      "imageURL": "",
+      "likeExam_Id": [],
+      "history": [],
+      "id": "2"
+    },
+    {
+      "name": "",
+      "email": "",
+      "bio": "",
+      "role": "",
+      "imageURL": "",
+      "likeExam_Id": [],
+      "history": [],
+      "id": "3"
+    },
+    {
+      "email": "Santina87@hotmail.com",
+      "name": "Danny_test",
+      "password": "E3JjVI9rafgfvkP",
+      "bio": "fugit -> jill",
+      "role": "student",
+      "imageURL": "",
+      "likeExam_Id": [],
+      "history": [
+        {
+          "exam_id": 1,
+          "score": 1
+        },
+        {
+          "exam_id": 2,
+          "score": 2
+        }
+      ],
+      "id": "4"
+    },
+    {
+      "id": "35da",
+      "email": "Test@tt",
+      "name": "Test",
+      "password": "tt",
+      "bio": "",
+      "role": "student",
+      "imageURL": "",
+      "history": [],
+      "likeExam_Id": []
+    }
+  ],
+  "exams": [
+    {
+      "id": "1",
+      "ownerExam_id": 1,
+      "name": "Math Quiz",
+      "description": "Test your mathematical skills.",
+      "category": "Math",
+      "likes": 0,
+      "papers": [
+        {
+          "id": 1,
+          "question": "What is 2 + 2?",
+          "options": [
+            {
+              "choice": "3",
+              "isCorrect": false
+            },
+            {
+              "choice": "4",
+              "isCorrect": true
+            },
+            {
+              "choice": "5",
+              "isCorrect": false
+            },
+            {
+              "choice": "6",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "question": "Which numbers are prime?",
+          "options": [
+            {
+              "choice": "2",
+              "isCorrect": true
+            },
+            {
+              "choice": "4",
+              "isCorrect": false
+            },
+            {
+              "choice": "5",
+              "isCorrect": true
+            },
+            {
+              "choice": "9",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "question": "What is the square root of 16?",
+          "options": [
+            {
+              "choice": "2",
+              "isCorrect": false
+            },
+            {
+              "choice": "3",
+              "isCorrect": false
+            },
+            {
+              "choice": "4",
+              "isCorrect": true
+            },
+            {
+              "choice": "5",
+              "isCorrect": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "ownerExam_id": 1,
+      "name": "Programming Basics",
+      "description": "Test your knowledge of programming languages.",
+      "category": "Coding Language",
+      "likes": 0,
+      "papers": [
+        {
+          "id": 1,
+          "question": "Which of the following are programming languages?",
+          "options": [
+            {
+              "choice": "Python",
+              "isCorrect": true
+            },
+            {
+              "choice": "HTML",
+              "isCorrect": false
+            },
+            {
+              "choice": "CSS",
+              "isCorrect": false
+            },
+            {
+              "choice": "Java",
+              "isCorrect": true
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "question": "Which language is primarily used for web development?",
+          "options": [
+            {
+              "choice": "C++",
+              "isCorrect": false
+            },
+            {
+              "choice": "Java",
+              "isCorrect": false
+            },
+            {
+              "choice": "JavaScript",
+              "isCorrect": true
+            },
+            {
+              "choice": "Python",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "question": "What is the output type of a function that has 'void' as return type?",
+          "options": [
+            {
+              "choice": "Integer",
+              "isCorrect": false
+            },
+            {
+              "choice": "Boolean",
+              "isCorrect": false
+            },
+            {
+              "choice": "None",
+              "isCorrect": true
+            },
+            {
+              "choice": "String",
+              "isCorrect": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "ownerExam_id": 1,
+      "name": "Science Trivia",
+      "description": "Challenge yourself with science-related papers.",
+      "category": "Science",
+      "likes": 0,
+      "papers": [
+        {
+          "id": 1,
+          "question": "Which gas do plants absorb from the atmosphere?",
+          "options": [
+            {
+              "choice": "Oxygen",
+              "isCorrect": false
+            },
+            {
+              "choice": "Carbon Dioxide",
+              "isCorrect": true
+            },
+            {
+              "choice": "Nitrogen",
+              "isCorrect": false
+            },
+            {
+              "choice": "Hydrogen",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "question": "Which of the following are states of matter?",
+          "options": [
+            {
+              "choice": "Solid",
+              "isCorrect": true
+            },
+            {
+              "choice": "Liquid",
+              "isCorrect": true
+            },
+            {
+              "choice": "Gas",
+              "isCorrect": true
+            },
+            {
+              "choice": "Energy",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "question": "What is the chemical symbol for water?",
+          "options": [
+            {
+              "choice": "H2O",
+              "isCorrect": true
+            },
+            {
+              "choice": "CO2",
+              "isCorrect": false
+            },
+            {
+              "choice": "O2",
+              "isCorrect": false
+            },
+            {
+              "choice": "NaCl",
+              "isCorrect": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "ownerExam_id": 1,
+      "name": "Advanced Math",
+      "description": "Test your advanced mathematical knowledge.",
+      "category": "Math",
+      "likes": 0,
+      "papers": [
+        {
+          "id": 1,
+          "question": "What is the derivative of x^2?",
+          "options": [
+            {
+              "choice": "x",
+              "isCorrect": false
+            },
+            {
+              "choice": "2x",
+              "isCorrect": true
+            },
+            {
+              "choice": "x^2",
+              "isCorrect": false
+            },
+            {
+              "choice": "x^3",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "question": "Which of the following numbers are even?",
+          "options": [
+            {
+              "choice": "2",
+              "isCorrect": true
+            },
+            {
+              "choice": "3",
+              "isCorrect": false
+            },
+            {
+              "choice": "4",
+              "isCorrect": true
+            },
+            {
+              "choice": "5",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "question": "What is the value of π (pi) rounded to two decimal places?",
+          "options": [
+            {
+              "choice": "3.12",
+              "isCorrect": false
+            },
+            {
+              "choice": "3.14",
+              "isCorrect": true
+            },
+            {
+              "choice": "3.16",
+              "isCorrect": false
+            },
+            {
+              "choice": "3.18",
+              "isCorrect": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "ownerExam_id": 2,
+      "name": "Web Development",
+      "description": "Test your knowledge of web technologies.",
+      "category": "Coding Language",
+      "likes": 1,
+      "papers": [
+        {
+          "id": 1,
+          "question": "Which of the following are frontend languages?",
+          "options": [
+            {
+              "choice": "HTML",
+              "isCorrect": true
+            },
+            {
+              "choice": "JavaScript",
+              "isCorrect": true
+            },
+            {
+              "choice": "Python",
+              "isCorrect": false
+            },
+            {
+              "choice": "CSS",
+              "isCorrect": true
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "question": "What does CSS stand for?",
+          "options": [
+            {
+              "choice": "Creative Style Sheets",
+              "isCorrect": false
+            },
+            {
+              "choice": "Cascading Style Sheets",
+              "isCorrect": true
+            },
+            {
+              "choice": "Computer Styling System",
+              "isCorrect": false
+            },
+            {
+              "choice": "Colorful Styling Sheets",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "question": "Which language is commonly used for backend development?",
+          "options": [
+            {
+              "choice": "JavaScript",
+              "isCorrect": true
+            },
+            {
+              "choice": "Python",
+              "isCorrect": true
+            },
+            {
+              "choice": "PHP",
+              "isCorrect": true
+            },
+            {
+              "choice": "C++",
+              "isCorrect": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "ownerExam_id": 2,
+      "name": "Physics Essentials",
+      "description": "Test your understanding of fundamental physics concepts.",
+      "category": "Science",
+      "likes": 0,
+      "papers": [
+        {
+          "id": 1,
+          "question": "What is the unit of force?",
+          "options": [
+            {
+              "choice": "Newton",
+              "isCorrect": true
+            },
+            {
+              "choice": "Joule",
+              "isCorrect": false
+            },
+            {
+              "choice": "Watt",
+              "isCorrect": false
+            },
+            {
+              "choice": "Pascal",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "question": "Which of the following are types of energy?",
+          "options": [
+            {
+              "choice": "Kinetic",
+              "isCorrect": true
+            },
+            {
+              "choice": "Potential",
+              "isCorrect": true
+            },
+            {
+              "choice": "Thermal",
+              "isCorrect": true
+            },
+            {
+              "choice": "Gravity",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "question": "What is the acceleration due to gravity on Earth?",
+          "options": [
+            {
+              "choice": "8.9 m/s²",
+              "isCorrect": false
+            },
+            {
+              "choice": "9.8 m/s²",
+              "isCorrect": true
+            },
+            {
+              "choice": "10 m/s²",
+              "isCorrect": false
+            },
+            {
+              "choice": "9.6 m/s²",
+              "isCorrect": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
