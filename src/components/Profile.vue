@@ -5,7 +5,7 @@ import { updateSomeData } from "@/libs/apiData";
 
 const userLoginData = userLogin();
 
-// สร้างตัวแปรสำหรับข้อมูลที่จะอัปเดต
+
 const updatedUser = ref({
     name: userLoginData.name,
     email: userLoginData.email,
@@ -16,16 +16,16 @@ const errorMsg = ref('');
 const successMsg = ref('');
 const showUpdateForm = ref(false);
 
-// ฟังก์ชันที่ใช้ในการอัปเดตข้อมูลผู้ใช้
+
 const updateUserProfile = async () => {
     try {
         const userId = userLoginData.id;
         const apiUrl = `${import.meta.env.VITE_API_URL}/users`;
 
-        // ใช้ updateSomeData แทน updateData
+        
         const updatedData = await updateSomeData(apiUrl, userId, updatedUser.value);
 
-        // อัปเดตข้อมูลใน store
+        
         userLoginData.keepDataFromLogin(updatedData);
 
         successMsg.value = 'Profile updated successfully!';
@@ -40,8 +40,6 @@ onMounted(() => {
 });
 </script>
 <template>
-
-    <!-- ซ้าย -->
     <div class="w-full md:w-1/5 p-6 bg-white">
         <img class="w-32 h-32 mx-auto" src="../assets/logo.svg" alt="" />
 

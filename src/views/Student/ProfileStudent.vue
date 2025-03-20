@@ -3,22 +3,46 @@ import { ref, onMounted } from "vue";
 import navBar from '@/components/navBar.vue';
 import { userLogin } from '@/stores/loginDataUser.js';
 import { getAllData } from "@/libs/apiData";
-import { updateSomeData } from "@/libs/apiData";
 import Profile from "@/components/Profile.vue";
 
 const exams = ref([]); // เก็บข้อมูล exams
 const userExams = ref([]); // เก็บข้อสอบที่ตรงกับ history.exam_id
+const users = ref([]); // เก็บข้อมูล users
 
-// ฟังก์ชันดึงข้อมูล exams
-const fetchExams = async () => {
+// ฟังก์ชันเชื่อมโยง ownerExam_id กับ users
+const getExamWithOwner = (exams, users) => {
+  return exams.map(exam => {
+    const owner = users.find(user => user.id == exam.ownerExam_id);
+    return {
+      ...exam,
+      owner: owner ? { id: owner.id, name: owner.name, email: owner.email } : null
+    };
+  });
+};
+
+// ฟังก์ชันดึงข้อมูล exams และ users
+const fetchExamsAndUsers = async () => {
   try {
-    const apiUrl = `${import.meta.env.VITE_API_URL}/exams`;
-    // ใช้ฟังก์ชัน getAllData แทน fetch
-    exams.value = await getAllData(apiUrl);
+    const examsUrl = `${import.meta.env.VITE_API_URL}/exams`;
+    const usersUrl = `${import.meta.env.VITE_API_URL}/users`;
+
+    // ดึงข้อมูล exams และ users
+    const [examsData, usersData] = await Promise.all([
+      getAllData(examsUrl),
+      getAllData(usersUrl)
+    ]);
+
+    // อัปเดตข้อมูล users
+    users.value = usersData;
+
+    // รวมข้อมูล owner เข้าไปใน exams
+    exams.value = getExamWithOwner(examsData, users.value);
+
     // กรองเฉพาะข้อสอบที่ผู้ใช้เคยทำ
     userExams.value = exams.value.filter(exam =>
       userLoginData.history.some(historyItem => historyItem.exam_id == exam.id)
     );
+
   } catch (error) {
     console.error(error.message);
   }
@@ -26,41 +50,12 @@ const fetchExams = async () => {
 
 const userLoginData = userLogin();
 
-// สร้างตัวแปรสำหรับข้อมูลที่จะอัปเดต
-const updatedUser = ref({
-  name: userLoginData.name,
-  email: userLoginData.email,
-  bio: userLoginData.bio,
-});
-
-const errorMsg = ref('');
-const successMsg = ref('');
-const showUpdateForm = ref(false);
-
-// ฟังก์ชันที่ใช้ในการอัปเดตข้อมูลผู้ใช้
-const updateUserProfile = async () => {
-  try {
-    const userId = userLoginData.id;
-    const apiUrl = `${import.meta.env.VITE_API_URL}/users`;
-
-    // ใช้ updateSomeData แทน updateData
-    const updatedData = await updateSomeData(apiUrl, userId, updatedUser.value);
-
-    // อัปเดตข้อมูลใน store
-    userLoginData.keepDataFromLogin(updatedData);
-
-    successMsg.value = 'Profile updated successfully!';
-    showUpdateForm.value = false;
-  } catch (error) {
-    errorMsg.value = error.message;
-  }
-};
-
 onMounted(() => {
   console.log(userLoginData.name);
-  fetchExams();
+  fetchExamsAndUsers();
 });
 </script>
+
 
 
 <template>
@@ -73,7 +68,8 @@ onMounted(() => {
       <h2 class="text-lg font-semibold mb-2">Your Exam History</h2>
       <ul class="space-y-2">
         <li v-for="(exam, index) in userExams" :key="index">
-          <div class="p-4 bg-white rounded-lg shadow-md border border-gray-200">
+          <button @click="console.log(exam)"
+            class="p-4 bg-white rounded-lg shadow-md border border-gray-200 w-full text-left hover:bg-gray-100 transition">
             <h3 class="text-gray-700 font-medium">{{ exam.name }}</h3>
             <p class="text-gray-600">{{ exam.description }}</p>
             <p class="text-gray-600">Category: {{ exam.category }}</p>
@@ -84,13 +80,13 @@ onMounted(() => {
                 {{userLoginData.history.find(h => h.exam_id == exam.id)?.score}}
               </span>
             </p>
-          </div>
+            <p class="text-gray-500 text-sm">
+              Created by: {{ exam.owner ? exam.owner.name : 'Unknown' }}
+            </p>
+          </button>
         </li>
       </ul>
     </div>
-
-
+    
   </div>
-
-
 </template>
