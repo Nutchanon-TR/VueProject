@@ -61,6 +61,6 @@ https://www.canva.com/design/DAGg3-m6WtU/0pYba9n7QDymJ7Y71w_vOQ/edit?utm_content
 | **Week 1**    | หา inspiration คิดว่าจะทำ project อะไรดี| คิดหัวข้อทำโปรเจค & fegureหลักโปรเจค          | ช่วยคิดหัวข้อในการทำโปรเจค          | คุยหัวข้อโปรเจค           |
 | **Week 2**    | UI design && add template readme| UI design & JSON design & คุย scope งาน          | Discuss And Help Design The UI          |ออกแบบUI คุย scope งาน         |
 | **Week 3**    | ทำส่วน profile user && update profile         | -. สร้างไฟล์JSONที่disignไว้และใส่ข้อมูลuserลงไป <br> -. design path routing <br> -. ทำระบบ login(get&post), signin(get&post), HomePage(get) และ fetchAPI <br> -. สร้างระบบเก็บข้อมูล login user ลง cookie และผูกกับ pinia เพื่อเรียกใช้ <br> -. navBar(getข้อมูลชื่อuserที่loginจากpinia)            | ทำฟีเจอร์ในการสร้าง/แก้ไข/ลบ ข้อสอบ(ยังไม่สมบูรณ์)         | ทำฟีดเจอร์เช็คคำตอบ กับคะแนน (ยังไม่สมบูรณ์)           |
-| **Week 4**    | -          | -          | -          | -          |
+| **Week 4**    | -          | -          | ปรับปรุง ฟีเจอร์ในการสร้างข้อสอบ(สมบูรณ์)         | -          |
 | **Week 5**    | -          | -          | -          | -          |
 
