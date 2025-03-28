@@ -2,6 +2,9 @@
   const props = defineProps(["option", "questionId", "questionType"]);
   const emit = defineEmits(["deleteOption"]);
   
+  // onMounted({
+
+  // })
   const removeOption = () => {
     emit("deleteOption", props.option.id);
   };
