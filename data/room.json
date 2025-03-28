@@ -534,7 +534,7 @@
     },
     {
       "id": "7",
-      "ownerExam_id": "1",
+      "ownerExam_id": 1,
       "name": "New Quiz",
       "description": "Test your knowledge!",
       "category": "General",
@@ -572,30 +572,6 @@
             },
             {
               "choice": "erffcvv",
-              "isCorrect": false
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "8",
-      "ownerExam_id": 1,
-      "name": "New Quiz",
-      "description": "Test your knowledge!",
-      "category": "General",
-      "likes": 0,
-      "papers": [
-        {
-          "id": 1,
-          "question": "ssdvsdvsdvsvd",
-          "options": [
-            {
-              "choice": "sdvsdv",
-              "isCorrect": false
-            },
-            {
-              "choice": "sdvsdvsdv",
               "isCorrect": false
             }
           ]

@@ -6,9 +6,9 @@ import { getAllData } from "@/libs/apiData";
 import Profile from "@/components/Profile.vue";
 import { deleteUserById } from "@/libs/apiData";
 
-const exams = ref([]); 
-const ownedExams = ref([]); 
-const users = ref([]); 
+const exams = ref([]);
+const ownedExams = ref([]);
+const users = ref([]);
 
 const userLoginData = userLogin();
 
@@ -21,7 +21,7 @@ const fetchExams = async () => {
         // ข้อสอบที่ id ตรงกันกับ professor
         ownedExams.value = exams.value.filter(exam => exam.ownerExam_id == userLoginData.id);
 
-        
+
         const usersApiUrl = `${import.meta.env.VITE_API_URL}/users`;
         users.value = await getAllData(usersApiUrl);
     } catch (error) {
@@ -76,23 +76,36 @@ onMounted(() => {
         <Profile />
 
         <div v-if="ownedExams.length" class="w-full md:w-4/5">
-            <h2 class="text-lg font-semibold mb-2">Your Created Exams</h2>
-            <ul class="space-y-2">
-                <li v-for="(exam, index) in ownedExams" :key="index">
-                    <div
-                        class="p-4 bg-white rounded-lg shadow-md border border-gray-200 w-full flex justify-between items-center">
-                        <div>
-                            <h3 class="text-gray-700 font-medium">{{ exam.name }}</h3>
-                            <p class="text-gray-600">{{ exam.description }}</p>
-                            <p class="text-gray-600">Category: {{ exam.category }}</p>
-                        </div>
+            <h2 class="text-lg font-semibold mb-4 text-gray-800">Your Created Exams</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div v-for="(exam, index) in ownedExams" :key="index"
+                    class="bg-blue-400 text-white rounded-3xl shadow-md overflow-hidden w-full flex flex-col hover:cursor-pointer transition-transform transform hover:scale-105">
+
+                    <!-- Upper Section -->
+                    <div class="px-7 py-5 relative">
+                        <h2 class="text-4xl font-bold text-black">{{ exam.category }}</h2>
+                        <p class="font-semibold pb-[50px] text-2xl pt-[7px]">{{ exam.name }}</p>
+
+                        
                         <button @click="deleteExam(exam.id)"
-                            class="ml-4 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-700 transition">
-                            Delete
+                            class="absolute bottom-3 right-3 p-2 rounded-full text-white transition text-4xl">
+                            🗑️
                         </button>
                     </div>
-                </li>
-            </ul>
+
+
+
+                    <!-- Bottom Section (White Box) -->
+                    <div class="flex justify-between items-center bg-white p-3 text-black border-t w-full">
+                        <div class="flex items-center">
+                            <span class="text-red-500 text-xl">❤️</span>
+                            <span class="ml-2 text-2xl font-semibold">{{ exam.likes }}</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
 </template>
