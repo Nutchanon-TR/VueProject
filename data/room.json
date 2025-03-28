@@ -531,52 +531,6 @@
           ]
         }
       ]
-    },
-    {
-      "id": "7",
-      "ownerExam_id": 1,
-      "name": "New Quiz",
-      "description": "Test your knowledge!",
-      "category": "General",
-      "likes": 0,
-      "papers": [
-        {
-          "id": 1,
-          "question": "eeeee",
-          "options": [
-            {
-              "choice": "errr",
-              "isCorrect": false
-            },
-            {
-              "choice": "qrw",
-              "isCorrect": false
-            },
-            {
-              "choice": "oooo",
-              "isCorrect": true
-            }
-          ]
-        },
-        {
-          "id": 2,
-          "question": "eeee",
-          "options": [
-            {
-              "choice": "wwww",
-              "isCorrect": true
-            },
-            {
-              "choice": "wrrrrrrrr",
-              "isCorrect": true
-            },
-            {
-              "choice": "erffcvv",
-              "isCorrect": false
-            }
-          ]
-        }
-      ]
     }
   ]
 }
