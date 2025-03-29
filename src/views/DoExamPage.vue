@@ -3,6 +3,7 @@ import { ref, computed, reactive } from 'vue';
 import navBar from '@/components/navBar.vue';
 import { getAllData } from "@/libs/apiData.js"; // นำเข้าฟังก์ชันในการดึงข้อมูลจาก room.json
 
+
 // ข้อมูลข้อสอบและข้อมูลผู้ใช้
 const examData = ref(null);
 const usersData = ref([]);
@@ -30,11 +31,13 @@ const fetchData = async () => {
       examData.value.papers.forEach(paper => {
         userAnswers[paper.id] = paper.options.filter(opt => opt.answer).length === 1 ? '' : [];
       });
+
     }
   } catch (error) {
     console.error("Error fetching data:", error);
   }
 };
+
 
 // คำนวณคะแนนเต็ม
 const maxScore = computed(() => {
@@ -46,6 +49,7 @@ const maxScore = computed(() => {
 const submitExam = () => {
   if (!examData.value) return;
   
+
   let score = 0;
   let correctQuestions = 0;
 
@@ -55,6 +59,7 @@ const submitExam = () => {
 
     let correctAnswerCount = userChoices.filter(choice => correctChoices.includes(choice)).length;
     let incorrectAnswerCount = userChoices.filter(choice => !correctChoices.includes(choice)).length;
+
 
     let questionScore = correctAnswerCount;
     let isCorrect = incorrectAnswerCount === 0 && correctAnswerCount === correctChoices.length;
@@ -80,6 +85,7 @@ const submitExam = () => {
   examResult.value = results;
   showResultPopup.value = true;
 
+
   // อัพเดตข้อมูล history ของผู้ใช้
   const user = usersData.value.find(user => user.id === usersID.value);
   if (user) {
@@ -101,6 +107,7 @@ const restartExam = () => {
   showResultPopup.value = false;
 };
 
+
 // ตรวจสอบว่า Submit ปิดใช้งานหรือไม่
 const isSubmitDisabled = computed(() => {
   return Object.values(userAnswers).every(ans => (Array.isArray(ans) ? ans.length === 0 : ans === ''));
@@ -109,6 +116,7 @@ const isSubmitDisabled = computed(() => {
 
 <template>
   <navBar />
+
   <div class="flex flex-col items-center mt-30">
     <!-- Input สำหรับกรอก usersID และ examID -->
     <input v-model="usersID" placeholder="Enter User ID" class="mb-4 p-2 border rounded" />
@@ -121,6 +129,7 @@ const isSubmitDisabled = computed(() => {
 
     <!-- แสดงคำถามและตัวเลือก -->
     <div v-for="paper in examData?.papers" :key="paper.id" class="bg-white p-4 rounded-lg shadow-md w-80 mb-4">
+
       <h3 class="font-semibold">{{ paper.question }}</h3>
       <div v-for="option in paper.options" :key="option.choice">
         <label class="flex items-center space-x-2">
@@ -144,7 +153,9 @@ const isSubmitDisabled = computed(() => {
     </div>
 
     <button @click="submitExam" :disabled="isSubmitDisabled" 
+
       class="bg-blue-500 text-white px-4 py-2 rounded-lg mt-4 mb-4 disabled:bg-gray-400">
+
       Submit
     </button>
 
@@ -164,11 +175,13 @@ const isSubmitDisabled = computed(() => {
                   {{ result.correct ? '✅ Correct' : '❌ Incorrect' }}
                 </span>
               </p>
+
             </li>
           </ul>
         </div>
 
         <div class="flex justify-center gap-4 mt-4">
+
           <button @click="restartExam" class="bg-yellow-500 text-white px-4 py-2 rounded-lg">Restart</button>
           <button @click="showResultPopup = false" class="bg-gray-500 text-white px-4 py-2 rounded-lg">Home</button>
           <button @click="showResultPopup = false" class="bg-green-500 text-white px-4 py-2 rounded-lg">Profile</button>

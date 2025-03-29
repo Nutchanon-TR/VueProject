@@ -49,6 +49,16 @@ const idUserData = ref("");
 //keep user data in pinia
 const informUser = async (userId) => {
   document.cookie = `${userId}; path=/; max-age=3600*24*7; secure`;
+  // // ดึง userId จาก cookie
+  // const cookieValue = document.cookie
+  //   .split("; ")
+  //   .find((row) => row.startsWith("userId="))
+  //   ?.split("=")[1]; // แยกค่าจาก "userId=1" เป็น 1
+
+  //   if (!cookieValue) {
+  //   console.error("User ID not found in cookie");
+  //   return;
+  // }
   idUserData.value = await getDataById(
     `${import.meta.env.VITE_API_URL}/users`,
     document.cookie

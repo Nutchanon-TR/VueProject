@@ -2,10 +2,12 @@
 import { RouterLink, RouterView, useRouter } from "vue-router";
 import { onMounted, ref } from "vue";
 import { userLogin } from "./stores/loginDataUser.js";
-import { getDataById } from "@/libs/apiData.js";
+import { getDataById,getAllData } from "@/libs/apiData.js";
 const userLoginData = userLogin();
 const router = useRouter();
 const idUserData = ref("");
+const allExams =ref([])
+const quizId = ref("");
 
 //load page and check cookie login
 onMounted(async () => {
@@ -17,16 +19,35 @@ onMounted(async () => {
       `${import.meta.env.VITE_API_URL}/users`,
       document.cookie
     );
+
     userLoginData.keepDataFromLogin(idUserData.value);
-    if(userLoginData.role === "admin"){
+
+    // ✅ Log ดูข้อมูล
+    console.log("User ID:", idUserData.value.id);
+
+    // โหลดข้อมูล Quiz
+    allExams.value = await getAllData(`${import.meta.env.VITE_API_URL}/exams`);
+    const currentExam = allExams.value.find(
+      (exam) => exam.userId === idUserData.value.id
+    );
+
+    if (currentExam) {
+      quizId.value = currentExam.id;
+      console.log("Quiz ID:", quizId.value); // ✅ Log ค่า Quiz ID
+    } else {
+      console.log("No quiz found for this user");
+    }
+
+    if (userLoginData.role === "admin") {
       router.push({ name: "AdminPage" });
-    }else if(userLoginData.role === "professor"){
+    } else if (userLoginData.role === "professor") {
       router.push({ name: "HomePagePro" });
-    }else if(userLoginData.role === "student"){
+    } else if (userLoginData.role === "student") {
       router.push({ name: "HomePageStud" });
     }
   }
 });
+
 </script>
 
 <template>
@@ -57,8 +78,8 @@ onMounted(async () => {
         ✏️ Create Exam
       </RouterLink>
 
-      <!-- Edit Exam -->
-      <RouterLink :to="{ name: 'EditExamPage' }" class="nav-item">
+      <!-- Edit Exam (params: { id: quizId })-->
+      <RouterLink v-if="quizId" :to="{ name: 'EditExamPage' }" class="nav-item"> 
         🛠️ Edit Exam
       </RouterLink>
 

@@ -2,6 +2,9 @@
   const props = defineProps(["option", "questionId", "questionType"]);
   const emit = defineEmits(["deleteOption"]);
   
+  // onMounted({
+
+  // })
   const removeOption = () => {
     emit("deleteOption", props.option.id);
   };
@@ -12,7 +15,7 @@
       <input
         :type="questionType === 'single' ? 'radio' : 'checkbox'"
         :name="'question-' + questionId"
-        v-model="option.isCorrect"
+        @change="option.isCorrect = !option.isCorrect"
       />
       <input
         type="text"
