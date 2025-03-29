@@ -21,6 +21,7 @@ export const userLogin = defineStore('loginDataUser', {
       this.bio = data.bio
       this.role = data.role
       this.history = data.history
+      this.imageURL = data.imageURL;
     }
   }
 })

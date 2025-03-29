@@ -8,8 +8,9 @@ const userLoginData = userLogin();
 
 const updatedUser = ref({
     name: userLoginData.name,
-    email: userLoginData.email,
+    // email: userLoginData.email,
     bio: userLoginData.bio,
+    imageURL: userLoginData.imageURL,
 });
 
 const errorMsg = ref('');
@@ -37,11 +38,13 @@ const updateUserProfile = async () => {
 
 onMounted(() => {
     console.log(userLoginData.name);
+    console.log(userLoginData.imageURL);
+
 });
 </script>
 <template>
     <div class="w-full md:w-2/6 p-6 bg-white">
-        <img class="w-32 h-32 mx-auto" src="../assets/logo.svg" alt="" />
+        <img class="w-32 h-32 mx-auto" :src="userLoginData.imageURL" alt="Profile Image" />
 
 
         <div v-if="!showUpdateForm" class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg text-center">
@@ -71,8 +74,9 @@ onMounted(() => {
                 <input v-model="updatedUser.name" placeholder="Update Name"
                     class="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400" />
 
-                <input v-model="updatedUser.email" placeholder="Update Email"
+                <input v-model="updatedUser.imageURL" placeholder="Update Image URL"
                     class="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400" />
+
 
                 <textarea v-model="updatedUser.bio" placeholder="Update Bio"
                     class="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 h-32 resize-none"></textarea>
