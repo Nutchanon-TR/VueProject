@@ -1,124 +1,179 @@
 <script setup>
 import { ref, computed, reactive } from 'vue';
 import navBar from '@/components/navBar.vue';
+import { getAllData } from "@/libs/apiData.js"; // นำเข้าฟังก์ชันในการดึงข้อมูลจาก room.json
 
-const examData = ref({
-  id: "1",
-  ownerExam_id: 1,
-  name: "Math Quiz",
-  description: "Test your mathematical skills.",
-  category: "Math",
-  likes: 0,
-  papers: [
-    {
-      id: 1,
-      question: "What is 2 + 2?",
-      options: [
-        { choice: "3", answer: false },
-        { choice: "4", answer: true },
-        { choice: "5", answer: false },
-        { choice: "6", answer: false }
-      ]
-    },
-    {
-      id: 2,
-      question: "Which numbers are prime?",
-      options: [
-        { choice: "2", answer: true },
-        { choice: "4", answer: false },
-        { choice: "5", answer: true },
-        { choice: "9", answer: false }
-      ]
-    },
-    {
-      id: 3,
-      question: "What is the square root of 16?",
-      options: [
-        { choice: "2", answer: false },
-        { choice: "3", answer: false },
-        { choice: "4", answer: true },
-        { choice: "5", answer: false }
-      ]
-    }
-  ]
-});
-
-// สร้าง userAnswers ให้เก็บตัวเลือกของผู้ใช้
+// ข้อมูลข้อสอบและข้อมูลผู้ใช้
+const examData = ref(null);
+const usersData = ref([]);
 const userAnswers = reactive({});
-examData.value.papers.forEach(paper => {
-  userAnswers[paper.id] = [];
+const usersID = ref('');
+const examID = ref('');
+
+// เก็บผลลัพธ์
+const examResult = ref(null);
+const totalScore = ref(0);
+const correctCount = ref(0);
+const showResultPopup = ref(false);
+
+// ฟังก์ชันดึงข้อมูลจาก room.json
+const fetchData = async () => {
+  try {
+    const roomData = await getAllData('../../data/room.json');
+    usersData.value = roomData.users;
+    
+    // ค้นหาข้อสอบที่ตรงกับ examID ที่กรอก
+    examData.value = roomData.exams.find(exam => exam.id === examID.value);
+    
+    if (examData.value) {
+      // เก็บคำตอบของผู้ใช้
+      examData.value.papers.forEach(paper => {
+        userAnswers[paper.id] = paper.options.filter(opt => opt.answer).length === 1 ? '' : [];
+      });
+    }
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
+
+// คำนวณคะแนนเต็ม
+const maxScore = computed(() => {
+  if (!examData.value) return 0;
+  return examData.value.papers.reduce((sum, paper) => sum + paper.options.filter(opt => opt.answer).length, 0);
 });
 
-const examResult = ref(null); // เก็บผลลัพธ์ของข้อสอบ
-const score = ref(0); // เก็บคะแนน
-
+// ฟังก์ชันส่งคำตอบ
 const submitExam = () => {
-  let correctCount = 0;
+  if (!examData.value) return;
+  
+  let score = 0;
+  let correctQuestions = 0;
 
   const results = examData.value.papers.map(paper => {
-    // ดึงคำตอบที่ถูกต้อง
-    const correctAnswers = paper.options
-      .filter(option => option.answer)
-      .map(option => option.choice)
-      .sort()
-      .join(",");
+    const correctChoices = paper.options.filter(opt => opt.answer).map(opt => opt.choice);
+    const userChoices = Array.isArray(userAnswers[paper.id]) ? userAnswers[paper.id] : [userAnswers[paper.id]];
 
-    // คำตอบของผู้ใช้
-    const userResponse = (userAnswers[paper.id] || [])
-      .sort()
-      .join(",");
+    let correctAnswerCount = userChoices.filter(choice => correctChoices.includes(choice)).length;
+    let incorrectAnswerCount = userChoices.filter(choice => !correctChoices.includes(choice)).length;
 
-    const isCorrect = correctAnswers === userResponse;
-    if (isCorrect) correctCount++;
+    let questionScore = correctAnswerCount;
+    let isCorrect = incorrectAnswerCount === 0 && correctAnswerCount === correctChoices.length;
+
+    if (isCorrect) correctQuestions++;
+
+    score += questionScore;
 
     return {
       question: paper.question,
-      correct: isCorrect
+      correct: isCorrect,
+      score: `${questionScore}/${correctChoices.length}`,
+      userChoices: paper.options.map(opt => ({
+        choice: opt.choice,
+        selected: userChoices.includes(opt.choice),
+        isCorrect: opt.answer
+      }))
     };
   });
 
-  score.value = correctCount; // อัปเดตคะแนน
+  totalScore.value = score;
+  correctCount.value = correctQuestions;
   examResult.value = results;
+  showResultPopup.value = true;
+
+  // อัพเดตข้อมูล history ของผู้ใช้
+  const user = usersData.value.find(user => user.id === usersID.value);
+  if (user) {
+    user.history.push({
+      exam_id: examID.value,
+      score: totalScore.value,
+    });
+  }
 };
 
+// รีเซ็ตข้อสอบ
+const restartExam = () => {
+  Object.keys(userAnswers).forEach(key => {
+    userAnswers[key] = Array.isArray(userAnswers[key]) ? [] : '';
+  });
+  examResult.value = null;
+  totalScore.value = 0;
+  correctCount.value = 0;
+  showResultPopup.value = false;
+};
+
+// ตรวจสอบว่า Submit ปิดใช้งานหรือไม่
 const isSubmitDisabled = computed(() => {
-  return Object.values(userAnswers).every(ans => ans.length === 0);
+  return Object.values(userAnswers).every(ans => (Array.isArray(ans) ? ans.length === 0 : ans === ''));
 });
 </script>
 
 <template>
   <navBar />
-  <div>
-    <h1>{{ examData.name }}</h1>
-    <p>{{ examData.description }}</p>
-    
-    <div v-for="paper in examData.papers" :key="paper.id">
-      <h3>{{ paper.question }}</h3>
+  <div class="flex flex-col items-center mt-30">
+    <!-- Input สำหรับกรอก usersID และ examID -->
+    <input v-model="usersID" placeholder="Enter User ID" class="mb-4 p-2 border rounded" />
+    <input v-model="examID" placeholder="Enter Exam ID" class="mb-4 p-2 border rounded" />
+    <button @click="fetchData" class="bg-blue-500 text-white px-4 py-2 rounded-lg mb-4">Fetch Exam Data</button>
+
+    <!-- แสดงชื่อข้อสอบและคำอธิบาย -->
+    <h1 class="text-2xl font-bold">{{ examData?.name }}</h1>
+    <p class="mb-4">{{ examData?.description }}</p>
+
+    <!-- แสดงคำถามและตัวเลือก -->
+    <div v-for="paper in examData?.papers" :key="paper.id" class="bg-white p-4 rounded-lg shadow-md w-80 mb-4">
+      <h3 class="font-semibold">{{ paper.question }}</h3>
       <div v-for="option in paper.options" :key="option.choice">
-        <label>
+        <label class="flex items-center space-x-2">
           <input
+            v-if="paper.options.filter(opt => opt.answer).length > 1"
             type="checkbox"
             :value="option.choice"
             v-model="userAnswers[paper.id]"
+            class="w-4 h-4"
           />
-          {{ option.choice }}
+          <input
+            v-else
+            type="radio"
+            :value="option.choice"
+            v-model="userAnswers[paper.id]"
+            class="w-4 h-4"
+          />
+          <span>{{ option.choice }}</span>
         </label>
       </div>
     </div>
 
-    <button @click="submitExam" :disabled="isSubmitDisabled">Submit</button>
+    <button @click="submitExam" :disabled="isSubmitDisabled" 
+      class="bg-blue-500 text-white px-4 py-2 rounded-lg mt-4 mb-4 disabled:bg-gray-400">
+      Submit
+    </button>
 
-    <div v-if="examResult">
-      <h2>Results</h2>
-      <p><strong>Score: {{ score }} / {{ examData.papers.length }}</strong></p>
-      <ul>
-        <li v-for="(result, index) in examResult" :key="index">
-          {{ result.question }} - 
-          <span :style="{ color: result.correct ? 'green' : 'red' }">
-            {{ result.correct ? 'True' : 'False' }}
-          </span>
-        </li>
-      </ul>
+    <!-- Popup Modal -->
+    <div v-if="showResultPopup" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
+      <div class="bg-white p-6 rounded-lg shadow-lg w-3/4 max-w-lg">
+        <h2 class="text-xl font-bold mb-2">Results</h2>
+        <p class="text-lg"><strong>Score: {{ totalScore }} / {{ maxScore }}</strong></p>
+        <p class="text-lg"><strong>Correct Answers: {{ correctCount }} / {{ examData.papers.length }}</strong></p>
+
+        <div class="overflow-y-auto max-h-60 mt-4">
+          <ul>
+            <li v-for="(result, index) in examResult" :key="index" class="border-b py-2">
+              <p>
+                {{ result.question }} - 
+                <span :class="result.correct ? 'text-green-500' : 'text-red-500'">
+                  {{ result.correct ? '✅ Correct' : '❌ Incorrect' }}
+                </span>
+              </p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="flex justify-center gap-4 mt-4">
+          <button @click="restartExam" class="bg-yellow-500 text-white px-4 py-2 rounded-lg">Restart</button>
+          <button @click="showResultPopup = false" class="bg-gray-500 text-white px-4 py-2 rounded-lg">Home</button>
+          <button @click="showResultPopup = false" class="bg-green-500 text-white px-4 py-2 rounded-lg">Profile</button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
