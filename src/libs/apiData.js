@@ -86,4 +86,6 @@ async function deleteUserById(url) {
 }
 
 
+
+
 export { getAllData, getDataById, addData, updateData, updateSomeData, deleteUserById };
