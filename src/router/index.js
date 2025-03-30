@@ -46,9 +46,10 @@ const router = createRouter({
       component: CreateExamPage,
     },
     {
-      path: '/professor/edit/1',
+      path: '/professor/edit/:quizId',
       name: 'EditExamPage',
       component: EditExamPage,
+      props: true,
     },
     {
       path: '/student/home',

@@ -1,4 +1,4 @@
-<script setup>
+<!-- <script setup>
 import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { getAllData, updateData } from "../../libs/apiData.js";
@@ -179,4 +179,12 @@ const toggleQuestionType = (index) => {
       💾 Update
     </button>
   </div>
-</template>
+</template> -->
+<script setup>
+   import ExamForm from '@/components/ExamCreation/ExamForm.vue';
+   import { ref } from 'vue';
+   </script>
+   
+   <template>
+     <ExamForm mode="Edit" :quizId="$route.params.id"></ExamForm>
+   </template>

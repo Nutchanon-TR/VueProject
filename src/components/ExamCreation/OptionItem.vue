@@ -1,13 +1,26 @@
 <script setup>
-  const props = defineProps(["option", "questionId", "questionType","mode"]);
+  const props = defineProps({
+    option:{
+      type:Object,
+      required: true,
+    },
+     questionId:{
+      type:[String, Number],
+      required: true,
+     },
+      questionType:{
+        type:String
+      },
+      mode:{type:String}
+    });
   const emit = defineEmits(["deleteOption"]);
   
-  // onMounted({
-
-  // })
   const removeOption = () => {
-    emit("deleteOption", props.option.id);
-  };
+  emit("deleteOption", {
+    questionId: props.questionId,
+    optionId: props.option.id
+  });
+};
   </script>
 
 <template>

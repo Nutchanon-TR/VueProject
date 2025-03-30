@@ -1,12 +1,24 @@
 <script setup>
 import OptionItem from "@/components/ExamCreation/OptionItem.vue";
 
-const props = defineProps(["question","mode"]);
+const props = defineProps({
+  question:{
+    type:Object
+  }
+  ,mode:{
+    type:String
+  }
+});
 const emit = defineEmits(["deleteQuestion", "addOption", "deleteOption", "toggleType"]);
 
 const removeQuestion = () => emit("deleteQuestion");
 const addOption = () => emit("addOption");
-const deleteOption = (optionId) => emit("deleteOption", optionId);
+const deleteOption = (optionId) => {
+  emit("deleteOption", {
+    questionId: props.question.id,
+    optionId
+  });
+};
 const toggleType = () => emit("toggleType");
 </script>
 

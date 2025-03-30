@@ -13,7 +13,9 @@ const props = defineProps({
       type:String,
       default: 'Creation'
     },
-    // quizId:{type:"String"}
+    quizId:{
+      type:[String, Number]
+    }
 })
 
 onMounted(async () => {
@@ -116,10 +118,11 @@ const addOption = (questionIndex) => {
   });
 };
 
-const deleteOption = (questionIndex, optionId) => {
-  questions.value[questionIndex].options = questions.value[questionIndex].options.filter(
-    (o) => o.id !== optionId
-  );
+const deleteOption = ({ questionId, optionId }) => {
+  const question = questions.value.find(q => q.id === questionId);
+  if (question) {
+    question.options = question.options.filter(o => o.id !== optionId);
+  }
 };
 
 const toggleQuestionType = (index) => {
@@ -165,8 +168,9 @@ const submitQuiz = async () => {
     if(props.mode === "Creation"){
         await addData(`${import.meta.env.VITE_API_URL}/exams` , newExam)
         alert("Quiz Created!");
+        router.push({name:"HomePagePro"})
     }else if(props.mode === "Edit"){
-        await updateSomeData(`${import.meta.env.VITE_API_URL}/exams`,lastId.value , newExam)
+        await updateSomeData(`${import.meta.env.VITE_API_URL}/exams`, props.quizId, newExam); 
         alert("Quiz Updated!");
     }
     
@@ -187,6 +191,7 @@ const submitQuiz = async () => {
       v-for="(q, index) in questions"
       :key="q.id"
       :question="q"
+      :mode="mode"
       @deleteQuestion="deleteQuestion(index)"
       @addOption="addOption(index)"
       @deleteOption="deleteOption(index, $event)"
@@ -200,6 +205,9 @@ const submitQuiz = async () => {
     <button @click="submitQuiz" class="bg-green-500 text-white p-2 rounded mt-3">📤
       📤 {{ mode === "Creation" ? "Publish" : "Edit" }}
     </button>
+    <div v-if="mode === 'Edit'">
+        <button @click="$router.go(-1)"> back</button>
+    </div>
   </div>
   </template>
   
