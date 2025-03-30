@@ -5,9 +5,14 @@
   import {ref,onMounted} from 'vue';
   import {userLogin} from '@/stores/loginDataUser.js';
   import DescriptionItem from "@/components/ExamCreation/DescriptionItem.vue";
+  import { useRouter } from "vue-router";
 
+  const router = useRouter()
 const props = defineProps({
-    mode:{type:"String"},
+    mode:{
+      type:String,
+      default: 'Creation'
+    },
     // quizId:{type:"String"}
 })
 
@@ -54,6 +59,9 @@ const addQuestion = () => {
 
 const checkQuestion = () =>{
   let isValid = true;
+  if(questions.value.length === 0){
+    alert("You must add some question")
+  }
   if (!quizName.value.trim()) {
     alert("Please enter a quiz name.");
     return false;
@@ -131,15 +139,17 @@ const setQuizDescription = (desc) =>{
     description.value =desc
 }
 
-const setMode = "Creation"
+// const setMode = "Creation"
 
 const submitQuiz = async () => {
   if (!checkQuestion()) return;
-    const currentUser = userStore.id
-    const currentUser02 = Number(currentUser)
+    const res = await getAllData(`${import.meta.env.VITE_API_URL}/exams`)
+    const lastId = res.length > 0 ? Math.max(...res.map(exam => Number(exam.id))) : 0
+    const ExamID = (lastId + 1).toString()
+    const currentUser = Number(userStore.id)
     const newExam = {
-    id: lastId.value  ,
-    ownerExam_id: currentUser02,
+    id: ExamID  ,
+    ownerExam_id: currentUser,
     name: quizName.value,
     description: description.value,
     category: selectedCategory.value,
@@ -153,9 +163,6 @@ const submitQuiz = async () => {
   try {
     
     if(props.mode === "Creation"){
-        const res = await getAllData(`${import.meta.env.VITE_API_URL}/exams`)
-        const lastId = res.length > 0 ? Math.max(...res.map(exam => Number(exam.id))) : 0;
-        newExam.id = (lastId + 1).toString();
         await addData(`${import.meta.env.VITE_API_URL}/exams` , newExam)
         alert("Quiz Created!");
     }else if(props.mode === "Edit"){
@@ -167,12 +174,13 @@ const submitQuiz = async () => {
     console.error("Error publishing quiz:", error);
   }
 };
+
   </script>
 
 <template>
    <navBar/>
     <div class="p-5">
-        <h1 class="text-2xl font-bold">{{ mode === setMode ? "Create Your Quiz" : "Edit Your Quiz" }}</h1>
+        <h1 class="text-2xl font-bold">{{ mode === "Edit" ? "Edit Your Quiz" : "Create Your Quiz" }}</h1>
     
     <DescriptionItem @quizCategory="setQuizCategory" @sendQuizName="setQuizName" @sendQuizDescription="setQuizDescription"></DescriptionItem>
     <QuestionItem
@@ -190,7 +198,7 @@ const submitQuiz = async () => {
     </button>
 
     <button @click="submitQuiz" class="bg-green-500 text-white p-2 rounded mt-3">📤
-      📤 {{ mode === setMode ? "Publish" : "Update" }}
+      📤 {{ mode === "Creation" ? "Publish" : "Edit" }}
     </button>
   </div>
   </template>

@@ -181,5 +181,5 @@ const publishQuiz = async () => {
    </script>
    
    <template>
-     <ExamForm :mode="Create"></ExamForm>
+     <ExamForm mode="Creation"></ExamForm>
    </template>

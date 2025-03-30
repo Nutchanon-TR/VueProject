@@ -79,7 +79,7 @@ onMounted(async () => {
       </RouterLink>
 
       <!-- Edit Exam (params: { id: quizId })-->
-      <RouterLink v-if="quizId" :to="{ name: 'EditExamPage' }" class="nav-item"> 
+      <RouterLink  :to="{ name: 'EditExamPage' }" class="nav-item"> 
         🛠️ Edit Exam
       </RouterLink>
 
