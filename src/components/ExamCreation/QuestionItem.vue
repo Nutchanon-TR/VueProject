@@ -1,7 +1,7 @@
 <script setup>
 import OptionItem from "@/components/ExamCreation/OptionItem.vue";
 
-const props = defineProps(["question"]);
+const props = defineProps(["question","mode"]);
 const emit = defineEmits(["deleteQuestion", "addOption", "deleteOption", "toggleType"]);
 
 const removeQuestion = () => emit("deleteQuestion");
@@ -32,6 +32,7 @@ const toggleType = () => emit("toggleType");
         :option="opt"
         :questionId="question.id"
         :questionType="question.type"
+        :mode="mode"
         @deleteOption="deleteOption"
       />
       <button @click="addOption" class="text-green-500 mt-2">➕ Add Option</button>

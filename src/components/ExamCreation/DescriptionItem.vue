@@ -2,7 +2,7 @@
 
 import { ref } from 'vue';
 
-const emit = defineEmits(["quizCategory","sendQuizDescription","sendQuizName"])
+const emit = defineEmits(["quizCategory","sendQuizDescription","sendQuizName","mode"])
 const isOpen = ref(false);
 const category = ref([
     {

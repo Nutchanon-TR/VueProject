@@ -1,5 +1,5 @@
 <script setup>
-  const props = defineProps(["option", "questionId", "questionType"]);
+  const props = defineProps(["option", "questionId", "questionType","mode"]);
   const emit = defineEmits(["deleteOption"]);
   
   // onMounted({

@@ -1,24 +1,42 @@
-<!-- <script setup>
+<script setup>
   import QuestionItem from "@/components/ExamCreation/QuestionItem.vue";
   import navBar from '@/components/navBar.vue'
-  import {addData,getAllData} from '../../libs/apiData.js';
-  import {ref} from 'vue';
+  import {addData,getAllData,updateSomeData,getDataById} from '../../libs/apiData.js';
+  import {ref,onMounted} from 'vue';
   import {userLogin} from '@/stores/loginDataUser.js';
   import DescriptionItem from "@/components/ExamCreation/DescriptionItem.vue";
 
+const props = defineProps({
+    mode:{type:"String"},
+    // quizId:{type:"String"}
+})
+
+onMounted(async () => {
+  if (props.mode === "Edit" ) {
+    try {
+      const quiz = await getDataById(`${import.meta.env.VITE_API_URL}/exams`,props.quizId)
+      quizName.value = quiz.name
+      description.value = quiz.description
+      selectedCategory.value = quiz.category
+      questions.value = quiz.papers.map((q) => ({
+        id: q.id,
+        question: q.question,
+        type: q.options.length > 1 ? "multiple" : "single",
+        options: q.options.map((o, index) => ({
+          id: index + 1,
+          text: o.choice,
+          isCorrect: o.isCorrect,
+        })),
+      }));
+    } catch (error) {
+      console.error("Error loading quiz data:", error);
+    }
+  }
+});
+
   const userStore = userLogin()
   const nextId =ref(2)
-  const questions = ref([
-  {
-    id: 1,
-    question: "",
-    type: "single",
-    options: [
-      { id: 1, text: "", isCorrect: false },
-      { id: 2, text: "", isCorrect: false },
-    ],
-  },
-]);
+  const questions = ref([]);
 
 const addQuestion = () => {
 
@@ -113,17 +131,14 @@ const setQuizDescription = (desc) =>{
     description.value =desc
 }
 
-const publishQuiz = async () => {
+const setMode = "Creation"
+
+const submitQuiz = async () => {
   if (!checkQuestion()) return;
-  try {
-    const res = await getAllData(`${import.meta.env.VITE_API_URL}/exams`)
-    const lastId = res.length > 0 ? Math.max(...res.map(exam => Number(exam.id))) : 0;
-    const newId = lastId + 1;
-    const toStringID = newId.toString()
     const currentUser = userStore.id
     const currentUser02 = Number(currentUser)
     const newExam = {
-    id: toStringID  ,
+    id: lastId.value  ,
     ownerExam_id: currentUser02,
     name: quizName.value,
     description: description.value,
@@ -135,8 +150,19 @@ const publishQuiz = async () => {
       options: q.options.map((o) => ({choice: o.text,isCorrect:o.isCorrect})),
     })),
   };
-    await addData(`${import.meta.env.VITE_API_URL}/exams`,newExam)
-    alert("Quiz Published!");
+  try {
+    
+    if(props.mode === "Creation"){
+        const res = await getAllData(`${import.meta.env.VITE_API_URL}/exams`)
+        const lastId = res.length > 0 ? Math.max(...res.map(exam => Number(exam.id))) : 0;
+        newExam.id = (lastId + 1).toString();
+        await addData(`${import.meta.env.VITE_API_URL}/exams` , newExam)
+        alert("Quiz Created!");
+    }else if(props.mode === "Edit"){
+        await updateSomeData(`${import.meta.env.VITE_API_URL}/exams`,lastId.value , newExam)
+        alert("Quiz Updated!");
+    }
+    
   } catch (error) {
     console.error("Error publishing quiz:", error);
   }
@@ -146,7 +172,7 @@ const publishQuiz = async () => {
 <template>
    <navBar/>
     <div class="p-5">
-    <h1 class="text-2xl font-bold">Create Your Quiz</h1>
+        <h1 class="text-2xl font-bold">{{ mode === setMode ? "Create Your Quiz" : "Edit Your Quiz" }}</h1>
     
     <DescriptionItem @quizCategory="setQuizCategory" @sendQuizName="setQuizName" @sendQuizDescription="setQuizDescription"></DescriptionItem>
     <QuestionItem
@@ -163,23 +189,11 @@ const publishQuiz = async () => {
       ➕ Add Question
     </button>
 
-    <button @click="publishQuiz" class="bg-green-500 text-white p-2 rounded mt-3">
-      📤 Publish
+    <button @click="submitQuiz" class="bg-green-500 text-white p-2 rounded mt-3">📤
+      📤 {{ mode === setMode ? "Publish" : "Update" }}
     </button>
   </div>
   </template>
   
   
-   -->
-
-
-
-   <script setup>
-   import ExamForm from '@/components/ExamCreation/ExamForm.vue';
-   import { ref } from 'vue';
-   
-   </script>
-   
-   <template>
-     <ExamForm :mode="Create"></ExamForm>
-   </template>
+  
