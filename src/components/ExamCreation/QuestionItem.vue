@@ -9,7 +9,7 @@ const props = defineProps({
     type:String
   }
 });
-const emit = defineEmits(["deleteQuestion", "addOption", "deleteOption", "toggleType"]);
+const emit = defineEmits(["deleteQuestion", "addOption", "deleteOption", "toggleType","updateQuestion"]);
 
 const removeQuestion = () => emit("deleteQuestion");
 const addOption = () => emit("addOption");
@@ -20,6 +20,29 @@ const deleteOption = (optionId) => {
   });
 };
 const toggleType = () => emit("toggleType");
+
+
+
+const updateOption = (updatedOption) => {
+  let updatedOptions;
+  
+  if (props.question.type === 'single') {
+    updatedOptions = props.question.options.map(opt => ({
+      ...opt,
+      isCorrect: opt.id === updatedOption.id
+    }));
+  } else {
+    updatedOptions = props.question.options.map(opt => 
+      opt.id === updatedOption.id 
+        ? { ...opt, isCorrect: updatedOption.isCorrect }
+        : opt
+    );
+  }
+  emit('updateQuestion', {
+    ...props.question,
+    options: updatedOptions
+  });
+};
 </script>
 
 <template>
@@ -45,6 +68,7 @@ const toggleType = () => emit("toggleType");
         :questionId="question.id"
         :questionType="question.type"
         :mode="mode"
+        @updateOption="updateOption"
         @deleteOption="deleteOption"
       />
       <button @click="addOption" class="text-green-500 mt-2">➕ Add Option</button>

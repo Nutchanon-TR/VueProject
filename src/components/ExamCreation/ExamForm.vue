@@ -19,20 +19,22 @@ const props = defineProps({
 })
 
 onMounted(async () => {
-  if (props.mode === "Edit" ) {
+  if (props.mode === "Edit") {
     try {
-      const quiz = await getDataById(`${import.meta.env.VITE_API_URL}/exams`,props.quizId)
-      quizName.value = quiz.name
-      description.value = quiz.description
-      selectedCategory.value = quiz.category
+      const quiz = await getDataById(`${import.meta.env.VITE_API_URL}/exams`, props.quizId);
+      quizName.value = quiz.name || "";
+      description.value = quiz.description || "";
+      selectedCategory.value = quiz.category || "";
+      
+      // แปลงข้อมูลคำถามให้ตรงกับโครงสร้างที่ต้องการ
       questions.value = quiz.papers.map((q) => ({
-        id: q.id,
-        question: q.question,
-        type: q.options.length > 1 ? "multiple" : "single",
+        id: q.id || Date.now(),
+        question: q.question || "",
+        type: q.options.filter(o => o.isCorrect).length > 1 ? "multiple" : "single",
         options: q.options.map((o, index) => ({
           id: index + 1,
-          text: o.choice,
-          isCorrect: o.isCorrect,
+          text: o.choice || "",
+          isCorrect: o.isCorrect || false,
         })),
       }));
     } catch (error) {
@@ -56,6 +58,10 @@ const addQuestion = () => {
   nextId.value++
 
   
+};
+
+const updateQuestion = (index, updatedQuestion) => {
+  questions.value[index] = updatedQuestion;
 };
 
 
@@ -172,6 +178,7 @@ const submitQuiz = async () => {
     }else if(props.mode === "Edit"){
         await updateSomeData(`${import.meta.env.VITE_API_URL}/exams`, props.quizId, newExam); 
         alert("Quiz Updated!");
+        router.push({name:"HomePagePro"});
     }
     
   } catch (error) {
@@ -186,7 +193,14 @@ const submitQuiz = async () => {
     <div class="p-5">
         <h1 class="text-2xl font-bold">{{ mode === "Edit" ? "Edit Your Quiz" : "Create Your Quiz" }}</h1>
     
-    <DescriptionItem @quizCategory="setQuizCategory" @sendQuizName="setQuizName" @sendQuizDescription="setQuizDescription"></DescriptionItem>
+    <DescriptionItem
+    :initial-category="selectedCategory"
+    :initial-quiz-name="quizName"
+    :initial-description="description"
+     @quizCategory="setQuizCategory" 
+     @sendQuizName="setQuizName" 
+     @sendQuizDescription="setQuizDescription"
+     ></DescriptionItem>
     <QuestionItem
       v-for="(q, index) in questions"
       :key="q.id"
@@ -194,6 +208,7 @@ const submitQuiz = async () => {
       :mode="mode"
       @deleteQuestion="deleteQuestion(index)"
       @addOption="addOption(index)"
+      @updateQuestion="updateQuestion(index, $event)"
       @deleteOption="deleteOption(index, $event)"
       @toggleType="toggleQuestionType(index)"
     />
@@ -205,9 +220,13 @@ const submitQuiz = async () => {
     <button @click="submitQuiz" class="bg-green-500 text-white p-2 rounded mt-3">📤
       📤 {{ mode === "Creation" ? "Publish" : "Edit" }}
     </button>
-    <div v-if="mode === 'Edit'">
-        <button @click="$router.go(-1)"> back</button>
-    </div>
+    <button 
+        v-if="mode === 'Edit'" 
+        @click="$router.go(-1)"
+        class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded"
+      >
+        Cancel
+      </button>
   </div>
   </template>
   

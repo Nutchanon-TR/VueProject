@@ -1,8 +1,14 @@
 <script setup>
 
-import { ref } from 'vue';
+import { ref,watch } from 'vue';
 
 const emit = defineEmits(["quizCategory","sendQuizDescription","sendQuizName","mode"])
+
+const props = defineProps({
+    initialCategory: {type:String},
+  initialQuizName: {type:String},
+  initialDescription: {type:String}
+})
 const isOpen = ref(false);
 const category = ref([
     {
@@ -26,9 +32,24 @@ const toggleDropdown = () => {
   isOpen.value = !isOpen.value;
 };
 
-const selected = ref("CATEGORY")
-const quizName = ref("");
-const quizDescription = ref("");
+const selected = ref(props.initialCategory || "CATEGORY");
+const quizName = ref(props.initialQuizName || "");
+const quizDescription = ref(props.initialDescription || "");
+
+watch(() => props.initialCategory, (newVal) => {
+  selected.value = newVal || '';
+});
+
+watch(() => props.initialQuizName, (newVal) => {
+  quizName.value = newVal || '';
+});
+
+watch(() => props.initialDescription, (newVal) => {
+  quizDescription.value = newVal || '';
+});
+
+
+
 const selectCategory = (name) =>{
     selected.value = name
     isOpen.value = false;
@@ -36,10 +57,10 @@ const selectCategory = (name) =>{
 }
 
 const sendQuizDescription = () =>{
-    emit("sendQuizDescription",quizDescription.value)
+    emit("sendQuizDescription", quizDescription.value);
 }
 const sendQuizName = () =>{
-    emit("sendQuizName",quizName.value)
+    emit("sendQuizName", quizName.value);
 }
 
 
@@ -70,7 +91,7 @@ const sendQuizName = () =>{
         <div class="flex justify-between items-center">
             <input
                 v-model="quizName"
-                @input="sendQuizName"
+                @input="sendQuizName()"
                 type="text"
                 placeholder="Enter your Quiz name..."
                 class="w-full border p-1 rounded"
@@ -79,7 +100,7 @@ const sendQuizName = () =>{
         <br>
         <div class="flex justify-between items-center">
             <textarea 
-                @input="sendQuizDescription"
+                @input="sendQuizDescription()"
                 v-model="quizDescription"
                 placeholder="Enter your Description..."
                 class="w-full border p-1 rounded"
