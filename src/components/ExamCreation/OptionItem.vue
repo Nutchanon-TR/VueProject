@@ -30,6 +30,13 @@ const handleChange = (e) => {
     isCorrect: isChecked
   });
 };
+
+const handleTextChange = (e) => {
+  emit("updateOption", {
+    ...props.option,
+    text: e.target.value
+  });
+};
 </script>
 
 <template>
@@ -42,8 +49,8 @@ const handleChange = (e) => {
     />
     <input
       type="text"
-      :value="option.text"
-      @input="$emit('updateOption', { ...option, text: $event.target.value })"
+      v-model="option.text"
+      @input="handleTextChange"
       placeholder="Enter option..."
       class="border p-1 rounded"
     />
