@@ -1,10 +1,13 @@
   <script setup>
   import { onMounted, ref } from "vue";
   import { getAllData } from "@/libs/apiData";
+  import { RouterLink} from 'vue-router'
+
 
   const examData = ref([]);
   const userData = ref([]);
   const selectedExam = ref(null); // ตัวแปรเก็บข้อสอบที่ถูกเลือก
+
 
   onMounted(async () => {
     try {
@@ -74,6 +77,9 @@
           <button @click="closeModal" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-700 transition">
             Close
           </button>
+          <RouterLink :to="{ name: 'DoExamPage' , params: { examId: selectedExam.id } }" class="ml-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-700 transition">
+            Start to Exam
+          </RouterLink>
         </div>
       </div>
     </div>

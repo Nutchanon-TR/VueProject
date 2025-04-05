@@ -1,8 +1,15 @@
-<script setup>
-import { ref, computed, reactive } from 'vue';
+  <script setup>
+import { ref, computed, reactive,defineProps,onMounted } from 'vue';
 import navBar from '@/components/navBar.vue';
 import { getAllData } from "@/libs/apiData.js"; // นำเข้าฟังก์ชันในการดึงข้อมูลจาก room.json
-
+import { userLogin } from "@/stores/loginDataUser.js";
+const userLoginData = userLogin();
+const props = defineProps({
+  examId:{
+      type:[String, Number],
+      required: true
+    }
+})
 
 // ข้อมูลข้อสอบและข้อมูลผู้ใช้
 const examData = ref(null);
@@ -17,14 +24,21 @@ const totalScore = ref(0);
 const correctCount = ref(0);
 const showResultPopup = ref(false);
 
+onMounted(() => {
+  console.log("userLoginData: ", userLoginData.id);
+  console.log("idExamForDoExam: ", props.examId);
+});
+
 // ฟังก์ชันดึงข้อมูลจาก room.json
-const fetchData = async () => {
+onMounted( async () => {
   try {
+    console.log("userLoginData: ", userLoginData.id);
+  console.log("idExamForDoExam: ", props.examId);
     const roomData = await getAllData('../../data/room.json');
     usersData.value = roomData.users;
     
     // ค้นหาข้อสอบที่ตรงกับ examID ที่กรอก
-    examData.value = roomData.exams.find(exam => exam.id === examID.value);
+    examData.value = roomData.exams.find(exam => exam.id === props.examId);
     
     if (examData.value) {
       // เก็บคำตอบของผู้ใช้
@@ -36,7 +50,7 @@ const fetchData = async () => {
   } catch (error) {
     console.error("Error fetching data:", error);
   }
-};
+})
 
 
 // คำนวณคะแนนเต็ม
@@ -87,10 +101,10 @@ const submitExam = () => {
 
 
   // อัพเดตข้อมูล history ของผู้ใช้
-  const user = usersData.value.find(user => user.id === usersID.value);
+  const user = usersData.value.find(user => user.id === userLoginData.id);
   if (user) {
     user.history.push({
-      exam_id: examID.value,
+      exam_id: props.examId,
       score: totalScore.value,
     });
   }
@@ -117,11 +131,11 @@ const isSubmitDisabled = computed(() => {
 <template>
   <navBar />
 
-  <div class="flex flex-col items-center mt-30">
+  <div class="flex flex-col items-center mt-10 mb-20">
     <!-- Input สำหรับกรอก usersID และ examID -->
-    <input v-model="usersID" placeholder="Enter User ID" class="mb-4 p-2 border rounded" />
+    <!-- <input v-model="usersID" placeholder="Enter User ID" class="mb-4 p-2 border rounded" />
     <input v-model="examID" placeholder="Enter Exam ID" class="mb-4 p-2 border rounded" />
-    <button @click="fetchData" class="bg-blue-500 text-white px-4 py-2 rounded-lg mb-4">Fetch Exam Data</button>
+    <button @click="fetchData" class="bg-blue-500 text-white px-4 py-2 rounded-lg mb-4">Fetch Exam Data</button> -->
 
     <!-- แสดงชื่อข้อสอบและคำอธิบาย -->
     <h1 class="text-2xl font-bold">{{ examData?.name }}</h1>

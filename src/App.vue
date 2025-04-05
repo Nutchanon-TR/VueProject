@@ -2,52 +2,54 @@
 import { RouterLink, RouterView, useRouter } from "vue-router";
 import { onMounted, ref } from "vue";
 import { userLogin } from "./stores/loginDataUser.js";
-import { getDataById,getAllData } from "@/libs/apiData.js";
-const userLoginData = userLogin();
-const router = useRouter();
-const idUserData = ref("");
-const allExams =ref([])
-const quizId = ref("");
+// import { getDataById, getAllData } from "@/libs/apiData.js";
+// const userLoginData = userLogin();
+// const router = useRouter();
+// const idUserData = ref("");
+// const allExams = ref([]);
+// const quizId = ref("");
 
+// onMounted(async () => {
+//   router.push({ name: "LoginPage" });
+// });
 //load page and check cookie login
-onMounted(async () => {
-  if (document.cookie === "" || document.cookie === "empty") {
-    console.log("No Cookie");
-    router.push({ name: "LoginPage" });
-  } else {
-    idUserData.value = await getDataById(
-      `${import.meta.env.VITE_API_URL}/users`,
-      document.cookie
-    );
+// onMounted(async () => {
+//   if (document.cookie === "" || document.cookie === "empty") {
+//     console.log("No Cookie");
+//     router.push({ name: "LoginPage" });
+//   } else {
+//     idUserData.value = await getDataById(
+//       `${import.meta.env.VITE_API_URL}/users`,
+//       document.cookie
+//     );
+//     // เพื่อ
+//     userLoginData.keepDataFromLogin(idUserData.value);
 
-    userLoginData.keepDataFromLogin(idUserData.value);
+//     // ✅ Log ดูข้อมูล
+//     console.log("User ID:", idUserData.value.id);
 
-    // ✅ Log ดูข้อมูล
-    console.log("User ID:", idUserData.value.id);
+//     // โหลดข้อมูล Quiz
+//     allExams.value = await getAllData(`${import.meta.env.VITE_API_URL}/exams`);
+//     const currentExam = allExams.value.find(
+//       (exam) => exam.userId === idUserData.value.id
+//     );
 
-    // โหลดข้อมูล Quiz
-    allExams.value = await getAllData(`${import.meta.env.VITE_API_URL}/exams`);
-    const currentExam = allExams.value.find(
-      (exam) => exam.userId === idUserData.value.id
-    );
+//     if (currentExam) {
+//       quizId.value = currentExam.id;
+//       console.log("Quiz ID:", quizId.value); // ✅ Log ค่า Quiz ID
+//     } else {
+//       console.log("No quiz found for this user");
+//     }
 
-    if (currentExam) {
-      quizId.value = currentExam.id;
-      console.log("Quiz ID:", quizId.value); // ✅ Log ค่า Quiz ID
-    } else {
-      console.log("No quiz found for this user");
-    }
-
-    if (userLoginData.role === "admin") {
-      router.push({ name: "AdminPage" });
-    } else if (userLoginData.role === "professor") {
-      router.push({ name: "HomePagePro" });
-    } else if (userLoginData.role === "student") {
-      router.push({ name: "HomePageStud" });
-    }
-  }
-});
-
+//     if (userLoginData.role === "admin") {
+//       router.push({ name: "AdminPage" });
+//     } else if (userLoginData.role === "professor") {
+//       router.push({ name: "HomePagePro" });
+//     } else if (userLoginData.role === "student") {
+//       router.push({ name: "HomePageStud" });
+//     }
+//   }
+// });
 </script>
 
 <template>
@@ -79,7 +81,10 @@ onMounted(async () => {
       </RouterLink>
 
       <!-- Edit Exam (params: { id: quizId })-->
-      <RouterLink  :to="{ name: 'EditExamPage',params: { quizId: 1 } }" class="nav-item"> 
+      <RouterLink
+        :to="{ name: 'EditExamPage', params: { quizId: 1 } }"
+        class="nav-item"
+      >
         🛠️ Edit Exam
       </RouterLink>
 
@@ -94,7 +99,10 @@ onMounted(async () => {
       </RouterLink>
 
       <!-- Do Exam -->
-      <RouterLink :to="{ name: 'DoExamPage' }" class="nav-item">
+      <RouterLink
+        :to="{ name: 'DoExamPage', params: { examId: 2 } }"
+        class="nav-item"
+      >
         📄 Do Exam
       </RouterLink>
 

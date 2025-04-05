@@ -32,7 +32,7 @@ onMounted(async () => {
 
 const logout = () => {
   console.log("logout");
-  document.cookie = `empty; path=/; max-age=3600*24*7; secure`;
+  document.cookie = "-1; path=/; max-age=0; secure"; // clear cookie
   userLoginData.keepDataFromLogin(idUserData);
   console.log("userLoginData: ", userLoginData);
   console.log("userLoginData.email: ", userLoginData.email);
