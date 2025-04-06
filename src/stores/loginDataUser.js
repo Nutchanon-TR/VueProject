@@ -1,27 +1,38 @@
 import { defineStore } from 'pinia'
+import { ref } from 'vue'
 
-export const userLogin = defineStore('loginDataUser', {
-  state:() => ({
-    id: '',
-    email: '',
-    name: '',
-    password: '',
-    bio: "",
-    role: "",
-    imageURL: "",
-    history: [],
-    likeExam_Id: [],
-  }),
-  actions:{
-    keepDataFromLogin(data){
-      this.id = data.id
-      this.email = data.email
-      this.name = data.name
-      this.password = data.password
-      this.bio = data.bio
-      this.role = data.role
-      this.history = data.history
-      this.imageURL = data.imageURL;
-    }
+export const userLogin = defineStore('loginDataUser', () => {
+  const id = ref('')
+  const email = ref('')
+  const name = ref('')
+  const password = ref('')
+  const bio = ref('')
+  const role = ref('')
+  const imageURL = ref('')
+  const history = ref([])
+  const likeExam_Id = ref([])
+
+  function keepDataFromLogin(data) {
+    id.value = data.id
+    email.value = data.email
+    name.value = data.name
+    password.value = data.password
+    bio.value = data.bio
+    role.value = data.role
+    history.value = data.history
+    imageURL.value = data.imageURL
+  }
+
+  return {
+    id,
+    email,
+    name,
+    password,
+    bio,
+    role,
+    imageURL,
+    history,
+    likeExam_Id,
+    keepDataFromLogin,
   }
 })

@@ -76,15 +76,24 @@ async function updateSomeData(url, id, updatedData) {
   }
 }
 
-async function deleteUserById(url) {
+// async function deleteUserById(url) {
+//   try {
+//     const res = await fetch(url, { method: 'DELETE' });
+//     return res.status;
+//   } catch (error) {
+//     throw new Error('Cannot delete your item');
+//   }
+// }
+async function deleteUserById(url, id) {
   try {
-    const res = await fetch(url, { method: 'DELETE' });
-    return res.status;
+    const res = await fetch(`${url}/${id}`, {
+      method: 'DELETE'
+    })
+    return res.status
   } catch (error) {
-    throw new Error('Cannot delete your item');
+    throw new Error('can not delete your item')
   }
 }
-
 
 
 

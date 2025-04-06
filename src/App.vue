@@ -1,7 +1,7 @@
 <script setup>
 import { RouterLink, RouterView, useRouter } from "vue-router";
-import { onMounted, ref } from "vue";
-import { userLogin } from "./stores/loginDataUser.js";
+// import { onMounted, ref } from "vue";
+// import { userLogin } from "./stores/loginDataUser.js";
 // import { getDataById, getAllData } from "@/libs/apiData.js";
 // const userLoginData = userLogin();
 // const router = useRouter();
@@ -53,69 +53,48 @@ import { userLogin } from "./stores/loginDataUser.js";
 </script>
 
 <template>
-  <nav class="fixed bottom-0 left-0 w-full bg-gray-800 text-white shadow-md">
+  <!-- <nav class="fixed bottom-0 left-0 w-full bg-gray-800 text-white shadow-md">
     <div class="flex justify-around py-3">
-      <!-- Login -->
       <RouterLink :to="{ name: 'LoginPage' }" class="nav-item">
         🔑 Login
       </RouterLink>
-
-      <!-- Sign Up -->
       <RouterLink :to="{ name: 'SignUpPage' }" class="nav-item">
         📝 Sign Up
       </RouterLink>
-
-      <!-- Professor Home -->
       <RouterLink :to="{ name: 'HomePagePro' }" class="nav-item">
         🏠 Prof Home
       </RouterLink>
-
-      <!-- Professor Profile -->
       <RouterLink :to="{ name: 'ProfileProfessor' }" class="nav-item">
         👨‍🏫 Prof Profile
       </RouterLink>
-
-      <!-- Create Exam -->
       <RouterLink :to="{ name: 'CreateExamPage' }" class="nav-item">
         ✏️ Create Exam
       </RouterLink>
-
-      <!-- Edit Exam (params: { id: quizId })-->
       <RouterLink
         :to="{ name: 'EditExamPage', params: { quizId: 1 } }"
         class="nav-item"
       >
         🛠️ Edit Exam
       </RouterLink>
-
-      <!-- Student Home -->
       <RouterLink :to="{ name: 'HomePageStud' }" class="nav-item">
         🎓 Stud Home
       </RouterLink>
-
-      <!-- Student Profile -->
       <RouterLink :to="{ name: 'ProfileStudent' }" class="nav-item">
         👤 Stud Profile
       </RouterLink>
-
-      <!-- Do Exam -->
       <RouterLink
         :to="{ name: 'DoExamPage', params: { examId: 2 } }"
         class="nav-item"
       >
         📄 Do Exam
       </RouterLink>
-
-      <!-- Admin Page -->
       <RouterLink :to="{ name: 'AdminPage' }" class="nav-item">
         👀 Admin
       </RouterLink>
-
-      <!-- Manage Page -->
       <RouterLink :to="{ name: 'Manage' }" class="nav-item">
         ⚙️ Manage
       </RouterLink>
     </div>
-  </nav>
+  </nav> -->
   <RouterView />
 </template>

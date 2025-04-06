@@ -11,6 +11,7 @@ const exams = ref([]);
 const ownedExams = ref([]);
 const users = ref([]);
 
+const router = useRouter();
 const userLoginData = userLogin();
 
 // ฟังก์ชันดึงข้อมูล exams
@@ -33,12 +34,9 @@ const fetchExams = async () => {
 
 // ฟังก์ชันลบข้อสอบ
 const deleteExam = async (examId) => {
-  const apiUrl = `${import.meta.env.VITE_API_URL}/exams/${examId}`;
-  console.log("Deleting Exam at URL:", apiUrl);
-
   if (confirm("Are you sure you want to delete this exam?")) {
     try {
-      const status = await deleteUserById(apiUrl);
+      const status = await deleteUserById(`${import.meta.env.VITE_API_URL}/exams`,examId);
       console.log("Delete Response Status:", status);
 
       if (status === 200 || status === 204) {
@@ -68,6 +66,9 @@ const deleteExam = async (examId) => {
       console.error(error.message);
       alert("Failed to delete the exam.");
     }
+  }else {
+    router.push({ name: "ProfileProfessor" })   ;
+
   }
 };
 
@@ -93,16 +94,17 @@ onMounted(() => {
           :key="index"
           class="bg-blue-400 text-white rounded-3xl shadow-md overflow-hidden w-full flex flex-col hover:cursor-pointer transition-transform transform hover:scale-105"
         >
-          <RouterLink
-            :to="{ name: 'EditExamPage', params: { quizId: exam.id } }"
-          >
-            <!-- Upper Section -->
-            <div class="px-7 py-5 relative">
+        <!-- Upper Section -->
+        <div class="px-7 py-5 relative">
+                <RouterLink
+                  :to="{ name: 'EditExamPage', params: { quizId: exam.id } }"
+                >
               <h2 class="text-4xl font-bold text-black">{{ exam.category }}</h2>
               <p class="font-semibold pb-[50px] text-2xl pt-[7px]">
                 {{ exam.name }}
               </p>
 
+            </RouterLink>
               <button
                 @click="deleteExam(exam.id)"
                 class="absolute bottom-3 right-3 p-2 rounded-full text-white transition text-4xl"
@@ -121,7 +123,6 @@ onMounted(() => {
                 }}</span>
               </div>
             </div>
-          </RouterLink>
         </div>
       </div>
     </div>

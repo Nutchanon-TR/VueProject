@@ -16,7 +16,7 @@
       "name": "Super Poor",
       "password": "p",
       "bio": "Unde repellat amet quisquam maiores perferendis laboriosam ex asperiores reiciendis.\nRerum ipsum atque dolor ipsum nemo.",
-      "role": "student",
+      "role": "professor",
       "imageURL": "",
       "likeExam_Id": [],
       "history": [],
@@ -32,16 +32,6 @@
       "likeExam_Id": [],
       "history": [],
       "id": "2"
-    },
-    {
-      "name": "",
-      "email": "",
-      "bio": "",
-      "role": "student",
-      "imageURL": "",
-      "likeExam_Id": [],
-      "history": [],
-      "id": "3"
     },
     {
       "email": "Santina87@hotmail.com",
@@ -222,82 +212,6 @@
             },
             {
               "choice": "String",
-              "isCorrect": false
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "3",
-      "ownerExam_id": 1,
-      "name": "Science Trivia",
-      "description": "Challenge yourself with science-related papers.",
-      "category": "Science",
-      "likes": 0,
-      "papers": [
-        {
-          "id": 1,
-          "question": "Which gas do plants absorb from the atmosphere?",
-          "options": [
-            {
-              "choice": "Oxygen",
-              "isCorrect": false
-            },
-            {
-              "choice": "Carbon Dioxide",
-              "isCorrect": true
-            },
-            {
-              "choice": "Nitrogen",
-              "isCorrect": false
-            },
-            {
-              "choice": "Hydrogen",
-              "isCorrect": false
-            }
-          ]
-        },
-        {
-          "id": 2,
-          "question": "Which of the following are states of matter?",
-          "options": [
-            {
-              "choice": "Solid",
-              "isCorrect": true
-            },
-            {
-              "choice": "Liquid",
-              "isCorrect": true
-            },
-            {
-              "choice": "Gas",
-              "isCorrect": true
-            },
-            {
-              "choice": "Energy",
-              "isCorrect": false
-            }
-          ]
-        },
-        {
-          "id": 3,
-          "question": "What is the chemical symbol for water?",
-          "options": [
-            {
-              "choice": "H2O",
-              "isCorrect": true
-            },
-            {
-              "choice": "CO2",
-              "isCorrect": false
-            },
-            {
-              "choice": "O2",
-              "isCorrect": false
-            },
-            {
-              "choice": "NaCl",
               "isCorrect": false
             }
           ]
