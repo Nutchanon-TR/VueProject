@@ -1,7 +1,14 @@
 <script setup>
-import { onMounted, reactive, ref } from "vue";
+import { onMounted, reactive, ref, computed, defineProps } from "vue";
 import { userLogin } from "@/stores/loginDataUser.js";
-import { RouterLink, useRouter } from "vue-router";
+import { useRouter } from "vue-router";
+
+const props = defineProps({
+  updateImage: {
+    type: String,
+    required: true,
+  },
+});
 
 const router = useRouter();
 const userLoginData = userLogin();
@@ -20,7 +27,6 @@ const isDropdownOpen = ref(false);
 const toggleDropdown = () => {
   isDropdownOpen.value = !isDropdownOpen.value;
 };
-
 
 onMounted(async () => {
   console.log("userLoginData: ", userLoginData);
@@ -60,6 +66,14 @@ const FindProfilePage = () => {
     router.push({ name: "AdminPage" });
   }
 };
+
+const useImage = computed(() => {
+  return (
+    props.updateImage ||
+    userLoginData.imageURL ||
+    "https://www.tech101.in/wp-content/uploads/2018/07/blank-profile-picture.png"
+  );
+});
 </script>
 
 <template>
@@ -73,34 +87,41 @@ const FindProfilePage = () => {
       TEST2HUB
     </button>
 
-    <div class="relative">
-    <!-- Username Button -->
-    <button
-      class="text-black font-bold text-3xl hover:cursor-pointer"
-      @click="toggleDropdown"
-    >
-      {{ userLoginData.name }} ▼
-    </button>
-    
-    <!-- Dropdown Menu -->
-    <div 
-      v-show="isDropdownOpen"
-      class="absolute right-0 mt-2 w-40 bg-white shadow-lg rounded-md overflow-hidden z-10"
-    >
-      <button 
-        class="w-full px-4 py-2 text-left hover:bg-gray-100 font-medium"
-        @click="FindProfilePage"
+    <!-- image profile -->
+
+    <div class="relative flex items-center space-x-4">
+      <img
+        :src="useImage"
+        alt="Profile"
+        class="w-16 h-16 rounded-full border-2 border-white shadow-lg"
+      />
+      <!-- Username Button -->
+      <button
+        class="text-black font-bold text-3xl hover:cursor-pointer"
+        @click="toggleDropdown"
       >
-        PROFILE
+        {{ userLoginData.name }} ▼
       </button>
-      <div class="border-b border-gray-200"></div>
-      <button 
-        class="w-full px-4 py-2 text-left hover:bg-gray-100 font-medium text-red-500"
-        @click="logout"
+
+      <!-- Dropdown Menu -->
+      <div
+        v-show="isDropdownOpen"
+        class="absolute right-0 mt-[130px] w-40 bg-white shadow-lg rounded-md overflow-hidden z-10"
       >
-        LOGOUT
-      </button>
+        <button
+          class="w-full px-4 py-2 text-left hover:bg-gray-100 font-medium"
+          @click="FindProfilePage"
+        >
+          PROFILE
+        </button>
+        <div class="border-b border-gray-200"></div>
+        <button
+          class="w-full px-4 py-2 text-left hover:bg-gray-100 font-medium text-red-500"
+          @click="logout"
+        >
+          LOGOUT
+        </button>
+      </div>
     </div>
-  </div>
   </nav>
 </template>

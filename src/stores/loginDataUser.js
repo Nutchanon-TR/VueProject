@@ -21,6 +21,7 @@ export const userLogin = defineStore('loginDataUser', () => {
     role.value = data.role
     history.value = data.history
     imageURL.value = data.imageURL
+    likeExam_Id.value = data.likeExam_Id
   }
 
   return {
