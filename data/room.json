@@ -13,11 +13,11 @@
     },
     {
       "email": "P@",
-      "name": "Super Prof",
+      "name": "Super Poor",
       "password": "p",
       "bio": "Unde repellat amet quisquam maiores perferendis laboriosam ex asperiores reiciendis.\nRerum ipsum atque dolor ipsum nemo.",
-      "role": "professor",
-      "imageURL": "https://www.alleycat.org/wp-content/uploads/2019/03/FELV-cat.jpg",
+      "role": "student",
+      "imageURL": "",
       "likeExam_Id": [],
       "history": [],
       "id": "1"
@@ -48,7 +48,7 @@
       "name": "Danny_test",
       "password": "E3JjVI9rafgfvkP",
       "bio": "fugit -> jill",
-      "role": "student",
+      "role": "professor",
       "imageURL": "",
       "likeExam_Id": [],
       "history": [
@@ -527,68 +527,6 @@
             {
               "choice": "9.6 m/s²",
               "isCorrect": false
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "7",
-      "ownerExam_id": 1,
-      "name": "SciEiei",
-      "description": "",
-      "category": "Science",
-      "likes": 0,
-      "papers": [
-        {
-          "id": 2,
-          "question": "sss",
-          "options": [
-            {
-              "choice": "123",
-              "isCorrect": false
-            },
-            {
-              "choice": "321",
-              "isCorrect": false
-            },
-            {
-              "choice": "222",
-              "isCorrect": false
-            },
-            {
-              "choice": "444",
-              "isCorrect": false
-            },
-            {
-              "choice": "5432342",
-              "isCorrect": true
-            }
-          ]
-        },
-        {
-          "id": 3,
-          "question": "444444444",
-          "options": [
-            {
-              "choice": "33",
-              "isCorrect": false
-            },
-            {
-              "choice": "3322",
-              "isCorrect": false
-            },
-            {
-              "choice": "3",
-              "isCorrect": false
-            },
-            {
-              "choice": "43",
-              "isCorrect": true
-            },
-            {
-              "choice": "4445",
-              "isCorrect": true
             }
           ]
         }

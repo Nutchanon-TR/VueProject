@@ -22,11 +22,8 @@ const updateUserProfile = async () => {
     try {
         const userId = userLoginData.id;
         const apiUrl = `${import.meta.env.VITE_API_URL}/users`;
-
-
+        
         const updatedData = await updateSomeData(apiUrl, userId, updatedUser.value);
-
-
         userLoginData.keepDataFromLogin(updatedData);
 
         successMsg.value = 'Profile updated successfully!';
