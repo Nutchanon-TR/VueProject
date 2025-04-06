@@ -209,7 +209,7 @@ const submitQuiz = async () => {
       @deleteQuestion="deleteQuestion(index)"
       @addOption="addOption(index)"
       @updateQuestion="updateQuestion(index, $event)"
-      @deleteOption="deleteOption(index, $event)"
+      @deleteOption="deleteOption($event)"
       @toggleType="toggleQuestionType(index)"
     />
 

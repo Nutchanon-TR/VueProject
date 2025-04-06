@@ -13,11 +13,8 @@ const emit = defineEmits(["deleteQuestion", "addOption", "deleteOption", "toggle
 
 const removeQuestion = () => emit("deleteQuestion");
 const addOption = () => emit("addOption");
-const deleteOption = (optionId) => {
-  emit("deleteOption", {
-    questionId: props.question.id,
-    optionId
-  });
+const deleteOption = ({ questionId, optionId }) => {
+  emit("deleteOption",  { questionId, optionId });
 };
 const toggleType = () => emit("toggleType");
 
