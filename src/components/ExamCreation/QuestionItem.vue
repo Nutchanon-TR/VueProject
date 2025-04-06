@@ -13,11 +13,8 @@ const emit = defineEmits(["deleteQuestion", "addOption", "deleteOption", "toggle
 
 const removeQuestion = () => emit("deleteQuestion");
 const addOption = () => emit("addOption");
-const deleteOption = (optionId) => {
-  emit("deleteOption", {
-    questionId: props.question.id,
-    optionId
-  });
+const deleteOption = ({ questionId, optionId }) => {
+  emit("deleteOption",  { questionId, optionId });
 };
 const toggleType = () => emit("toggleType");
 
@@ -46,19 +43,20 @@ const updateOption = (updatedOption) => {
 </script>
 
 <template>
-  <div class="border p-3 rounded shadow-md mb-3 bg-white">
-    <div class="flex justify-between items-center">
+  <div class="border p-3 rounded shadow-md mb-3 bg-white relative">
+    <div class="flex justify-between items-center mb-2">
       <input
         type="text"
         v-model="question.question"
         placeholder="Enter your question..."
-        class="w-full border p-1 rounded"
+        class="w-full border-b-4 border-black font-bold text-lg focus:outline-non"
       />
       <button @click="removeQuestion" class="text-red-500 ml-2">❌</button>
     </div>
 
-    <p class="text-gray-500 text-sm">Type: {{ question.type.toUpperCase() }}</p>
-    <button @click="toggleType" class="text-blue-500">Toggle Type (M)</button>
+    <p class="text-gray-500 text-sm font-bold">Type: {{ question.type.toUpperCase() }}</p>
+    <button @click="toggleType" class="text-blue-500  font-bold hover:bg-blue-100">click to change option type</button>
+    
 
     <div class="mt-2">
       <OptionItem
@@ -71,9 +69,45 @@ const updateOption = (updatedOption) => {
         @updateOption="updateOption"
         @deleteOption="deleteOption"
       />
-      <button @click="addOption" class="text-green-500 mt-2">➕ Add Option</button>
+      <button @click="addOption" class="text-gray-400 ml-6 hover:underline">➕ Add Option</button>
     </div>
   </div>
 </template>
+<!-- <template>
+  <div class="border p-3 rounded shadow-md mb-3 bg-white relative">
+    <div class="flex justify-between items-center mb-2">
+      <input
+        type="text"
+        v-model="question.question"
+        placeholder="Write your question ..."
+        class="w-full border-b-4 border-black font-bold text-lg focus:outline-none"
+      />
+    </div>
 
+    <p class="text-gray-500 text-sm font-bold">TYPE: {{ question.type.toUpperCase() }}</p> -->
+
+    <!-- <div class="mt-2 space-y-2">
+      <OptionItem
+        v-for="opt in question.options"
+        :key="opt.id"
+        :option="opt"
+        :questionId="question.id"
+        :questionType="question.type"
+        :mode="mode"
+        @updateOption="updateOption"
+        @deleteOption="deleteOption"
+      />
+      <button @click="addOption" class="text-gray-400 ml-6 hover:underline">➕ ADD OPTION</button>
+    </div> -->
+
+    <!-- Control panel -->
+    <!-- <div class="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-3 bg-blue-200 rounded-xl py-2 px-1 flex flex-col space-y-2 shadow-md z-10">
+      <button @click="toggleType" class="bg-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-blue-500 hover:bg-blue-100">M</button>
+      <button @click="$emit('toggleType')" class="bg-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-blue-500 hover:bg-blue-100">S</button>
+      <button @click="$emit('deleteQuestion')" class="bg-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-red-100">
+        <img src="../../assets/crosslogo.svg" alt="delete" class="w-4 h-4">
+      </button>
+    </div> -->
+  <!-- </div>
+</template> -->
 

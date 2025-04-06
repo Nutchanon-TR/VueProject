@@ -209,24 +209,26 @@ const submitQuiz = async () => {
       @deleteQuestion="deleteQuestion(index)"
       @addOption="addOption(index)"
       @updateQuestion="updateQuestion(index, $event)"
-      @deleteOption="deleteOption(index, $event)"
+      @deleteOption="deleteOption($event)"
       @toggleType="toggleQuestionType(index)"
     />
 
-    <button @click="addQuestion" class="bg-blue-500 text-white p-2 rounded mt-3">
+    <button @click="addQuestion" class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg mt-6 shadow-md hover:bg-blue-700 transition duration-200">
       ➕ Add Question
     </button>
 
-    <button @click="submitQuiz" class="bg-green-500 text-white p-2 rounded mt-3">📤
-      📤 {{ mode === "Creation" ? "Publish" : "Edit" }}
+    <button @click="submitQuiz" class="w-full bg-[#00308F] text-white font-bold py-3 rounded-lg mt-4 shadow-md hover:bg-[#002772] transition duration-200">
+       {{ mode === "Creation" ? "Publish" : "Confirm" }}
     </button>
     <button 
-        v-if="mode === 'Edit'" 
+        
         @click="$router.go(-1)"
-        class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded"
+        class="w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold rounded-lg mt-4 px-4 py-2 "
       >
         Cancel
       </button>
+
+      
   </div>
   </template>
   
