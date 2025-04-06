@@ -43,18 +43,18 @@ const updateOption = (updatedOption) => {
 </script>
 
 <template>
-  <div class="border p-3 rounded shadow-md mb-3 bg-white relative">
+  <div class="border p-[40px] rounded shadow-md mb-3 bg-white relative">
     <div class="flex justify-between items-center mb-2">
       <input
         type="text"
         v-model="question.question"
         placeholder="Enter your question..."
-        class="w-full border-b-4 border-black font-bold text-lg focus:outline-non"
+        class="w-full border-b-4 border-black font-bold text-xl focus:outline-non pb-[5px]"
       />
       <button @click="removeQuestion" class="text-red-500 ml-2">❌</button>
     </div>
 
-    <p class="text-gray-500 text-sm font-bold">Type: {{ question.type.toUpperCase() }}</p>
+    <p class="text-gray-500 text-lg font-bold">Type: {{ question.type.toUpperCase() }}</p>
     <button @click="toggleType" class="text-blue-500  font-bold hover:bg-blue-100">click to change option type</button>
     
 
