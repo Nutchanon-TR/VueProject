@@ -400,6 +400,44 @@
           ]
         }
       ]
+    },
+    {
+      "id": "7",
+      "ownerExam_id": 1,
+      "name": "Hi",
+      "description": "rew",
+      "category": "English",
+      "likes": 0,
+      "papers": [
+        {
+          "id": 2,
+          "question": "rewreww",
+          "options": [
+            {
+              "choice": "r",
+              "isCorrect": false
+            },
+            {
+              "choice": "rr",
+              "isCorrect": true
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "question": "r",
+          "options": [
+            {
+              "choice": "rr",
+              "isCorrect": false
+            },
+            {
+              "choice": "w",
+              "isCorrect": true
+            }
+          ]
+        }
+      ]
     }
   ]
 }

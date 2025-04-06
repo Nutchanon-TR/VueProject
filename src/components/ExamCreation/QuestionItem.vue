@@ -69,7 +69,7 @@ const updateOption = (updatedOption) => {
         @updateOption="updateOption"
         @deleteOption="deleteOption"
       />
-      <button @click="addOption" class="text-gray-400 ml-6 hover:underline">➕ Add Option</button>
+      <button @click="addOption" class="text-gray-400 text-lg ml-[5px] mt-[10px] hover:underline">➕ Add Option</button>
     </div>
   </div>
 </template>
