@@ -19,7 +19,16 @@
       "role": "professor",
       "imageURL": "",
       "likeExam_Id": [],
-      "history": [],
+      "history": [
+        {
+          "exam_id": 1,
+          "score": 1
+        },
+        {
+          "exam_id": 2,
+          "score": 2
+        }
+      ],
       "id": "1"
     },
     {
@@ -61,6 +70,17 @@
       "bio": "",
       "role": "student",
       "imageURL": "https://t1.blockdit.com/photos/2022/10/63384cac469024e2e47d007a_800x0xcover_PUamu6PN.jpg",
+      "history": [],
+      "likeExam_Id": []
+    },
+    {
+      "id": "0a4f",
+      "email": "4455@mail",
+      "name": "jill",
+      "password": "ch4455",
+      "bio": "jill is jill",
+      "role": "student",
+      "imageURL": "https://cdn-icons-png.flaticon.com/256/3135/3135768.png",
       "history": [],
       "likeExam_Id": []
     }
@@ -219,82 +239,6 @@
       ]
     },
     {
-      "id": "4",
-      "ownerExam_id": 1,
-      "name": "Advanced Math",
-      "description": "Test your advanced mathematical knowledge.",
-      "category": "Math",
-      "likes": 0,
-      "papers": [
-        {
-          "id": 1,
-          "question": "What is the derivative of x^2?",
-          "options": [
-            {
-              "choice": "x",
-              "isCorrect": false
-            },
-            {
-              "choice": "2x",
-              "isCorrect": true
-            },
-            {
-              "choice": "x^2",
-              "isCorrect": false
-            },
-            {
-              "choice": "x^3",
-              "isCorrect": false
-            }
-          ]
-        },
-        {
-          "id": 2,
-          "question": "Which of the following numbers are even?",
-          "options": [
-            {
-              "choice": "2",
-              "isCorrect": true
-            },
-            {
-              "choice": "3",
-              "isCorrect": false
-            },
-            {
-              "choice": "4",
-              "isCorrect": true
-            },
-            {
-              "choice": "5",
-              "isCorrect": false
-            }
-          ]
-        },
-        {
-          "id": 3,
-          "question": "What is the value of π (pi) rounded to two decimal places?",
-          "options": [
-            {
-              "choice": "3.12",
-              "isCorrect": false
-            },
-            {
-              "choice": "3.14",
-              "isCorrect": true
-            },
-            {
-              "choice": "3.16",
-              "isCorrect": false
-            },
-            {
-              "choice": "3.18",
-              "isCorrect": false
-            }
-          ]
-        }
-      ]
-    },
-    {
       "id": "5",
       "ownerExam_id": 2,
       "name": "Web Development",
@@ -440,6 +384,38 @@
             },
             {
               "choice": "9.6 m/s²",
+              "isCorrect": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "ownerExam_id": 1,
+      "name": "math",
+      "description": "test math",
+      "category": "Math",
+      "likes": 0,
+      "papers": [
+        {
+          "id": 2,
+          "question": "1+1",
+          "options": [
+            {
+              "choice": "2",
+              "isCorrect": true
+            },
+            {
+              "choice": "2.0",
+              "isCorrect": false
+            },
+            {
+              "choice": "2.00",
+              "isCorrect": false
+            },
+            {
+              "choice": "2/4",
               "isCorrect": false
             }
           ]

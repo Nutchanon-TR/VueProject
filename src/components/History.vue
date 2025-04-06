@@ -57,32 +57,35 @@ onMounted(() => {
 
 
 <template>
-    <div class="w-full md:w-4/5" :class="{'bg-gray-300 h-screen flex items-center justify-center': userExams.length === 0}">
-      <h2 v-if="userExams.length" class="text-lg font-semibold mb-2">Your Exam History</h2>
-  
-      <ul v-if="userExams.length" class="space-y-2">
+  <div class="w-full h-screen overflow-y-auto bg-gray-100 p-6">
+    <div v-if="userExams.length">
+      <h2 class="text-2xl font-bold mb-4">Your Exam History</h2>
+
+      <ul class="space-y-4">
         <li v-for="(exam, index) in userExams" :key="index">
           <button @click="console.log(exam)"
-            class="p-4 bg-white rounded-lg shadow-md border border-gray-200 w-full text-left hover:bg-gray-100 transition">
-            <h3 class="text-gray-700 font-medium">{{ exam.name }}</h3>
+            class="p-4 bg-white rounded-lg shadow-md border border-gray-300 w-full text-left hover:bg-gray-200 transition">
+            <h3 class="text-lg font-semibold text-gray-800">{{ exam.name }}</h3>
             <p class="text-gray-600">{{ exam.description }}</p>
             <p class="text-gray-600">Category: {{ exam.category }}</p>
-            <p class="text-gray-600">
+            <p class="text-gray-700">
               Score:
               <span
                 :class="userLoginData.history.find(h => h.exam_id == exam.id)?.score >= 5 ? 'text-green-600 font-bold' : 'text-red-600 font-bold'">
                 {{ userLoginData.history.find(h => h.exam_id == exam.id)?.score }}
               </span>
             </p>
-            <p class="text-gray-500 text-sm">
+            <p class="text-sm text-gray-500">
               Created by: {{ exam.owner ? exam.owner.name : 'Unknown' }}
             </p>
           </button>
         </li>
       </ul>
-  
-      <p v-else class="text-white text-center text-2xl font-bold">❌ History is empty</p>
     </div>
-  </template>
+
+    <p v-else class="text-center text-gray-500 text-xl font-semibold mt-10">❌ History is empty</p>
+  </div>
+</template>
+
   
 
