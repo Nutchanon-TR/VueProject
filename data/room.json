@@ -21,12 +21,14 @@
       "likeExam_Id": [
         "5",
         "4",
-        "1"
+        "1",
+        "2",
+        "6"
       ],
       "history": [
         {
           "exam_id": 1,
-          "score": 0
+          "score": 3
         },
         {
           "exam_id": 2,
@@ -184,7 +186,7 @@
       "name": "Programming Basics",
       "description": "Test your knowledge of programming languages.",
       "category": "Coding Language",
-      "likes": 6,
+      "likes": 8,
       "papers": [
         {
           "id": 1,
@@ -336,7 +338,7 @@
       "name": "Physics Essentials",
       "description": "Test your understanding of fundamental physics concepts.",
       "category": "Science",
-      "likes": 5,
+      "likes": 6,
       "papers": [
         {
           "id": 1,
