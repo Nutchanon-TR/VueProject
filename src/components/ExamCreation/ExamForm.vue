@@ -154,7 +154,7 @@ const submitQuiz = async () => {
     const res = await getAllData(`${import.meta.env.VITE_API_URL}/exams`)
     const lastId = res.length > 0 ? Math.max(...res.map(exam => Number(exam.id))) : 0
     const ExamID = (lastId + 1).toString()
-    const currentUser = Number(userStore.id)
+    const currentUser = userStore.id
     const newExam = {
     id: ExamID  ,
     ownerExam_id: currentUser,

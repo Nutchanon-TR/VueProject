@@ -17,14 +17,14 @@
       "password": "p",
       "bio": "Unde repellat amet quisquam maiores perferendis laboriosam ex asperiores reiciendis.\nRerum ipsum atque dolor ipsum nemo.",
       "role": "professor",
-      "imageURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQEtrZpSL4T_53zcFsGnhjpbYrvdJLpXBADw&s",
+      "imageURL": "",
       "likeExam_Id": [
         "4",
         "1",
-        "2",
-        "6",
         "5",
-        "7"
+        "9",
+        "6",
+        "12"
       ],
       "history": [
         {
@@ -58,6 +58,18 @@
         {
           "exam_id": 1,
           "score": 1
+        },
+        {
+          "exam_id": 9,
+          "score": 1
+        },
+        {
+          "exam_id": 5,
+          "score": 1
+        },
+        {
+          "exam_id": 6,
+          "score": 0
         }
       ],
       "id": "1"
@@ -136,10 +148,46 @@
       "name": "Eiei",
       "password": "e",
       "bio": "",
-      "role": "student",
+      "role": "professor",
       "imageURL": "",
-      "history": [],
-      "likeExam_Id": []
+      "history": [
+        {
+          "exam_id": 6,
+          "score": 1
+        }
+      ],
+      "likeExam_Id": [
+        "16"
+      ]
+    },
+    {
+      "id": "04ea",
+      "email": "R@",
+      "name": "Duck Jill",
+      "password": "r",
+      "bio": "ter",
+      "role": "professor",
+      "imageURL": "https://www.kalmbachfeeds.com/cdn/shop/articles/two-white-ducks-in-grass.jpg?v=1706873608",
+      "history": [
+        {
+          "exam_id": 1,
+          "score": 1
+        },
+        {
+          "exam_id": 1,
+          "score": 1
+        },
+        {
+          "exam_id": 5,
+          "score": 2
+        }
+      ],
+      "likeExam_Id": [
+        "7",
+        "12",
+        "10",
+        "14"
+      ]
     }
   ],
   "exams": [
@@ -225,7 +273,7 @@
       "name": "Programming Basics",
       "description": "Test your knowledge of programming languages.",
       "category": "Coding Language",
-      "likes": 8,
+      "likes": 7,
       "papers": [
         {
           "id": 1,
@@ -486,41 +534,167 @@
       ]
     },
     {
-      "id": "8",
+      "id": "9",
       "ownerExam_id": 1,
-      "name": "ควายเหย",
-      "description": "กาก",
+      "name": "eq",
+      "description": "e",
+      "category": "Math",
+      "likes": 1,
+      "papers": [
+        {
+          "id": 2,
+          "question": "www",
+          "options": [
+            {
+              "choice": "ww",
+              "isCorrect": false
+            },
+            {
+              "choice": "www",
+              "isCorrect": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "ownerExam_id": null,
+      "name": "d",
+      "description": "s",
+      "category": "Math",
+      "likes": 1,
+      "papers": [
+        {
+          "id": 2,
+          "question": "d",
+          "options": [
+            {
+              "choice": "d",
+              "isCorrect": false
+            },
+            {
+              "choice": "s",
+              "isCorrect": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "ownerExam_id": null,
+      "name": "you",
+      "description": "y",
+      "category": "Science",
+      "likes": 2,
+      "papers": [
+        {
+          "id": 2,
+          "question": "ty",
+          "options": [
+            {
+              "choice": "yy",
+              "isCorrect": false
+            },
+            {
+              "choice": "tt",
+              "isCorrect": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "ownerExam_id": 1,
+      "name": "me",
+      "description": "qqq",
       "category": "Math",
       "likes": 0,
       "papers": [
         {
           "id": 2,
-          "question": "กกก",
+          "question": "htf",
           "options": [
             {
-              "choice": "กก",
-              "isCorrect": true
-            },
-            {
-              "choice": "้ดเด",
-              "isCorrect": true
-            },
-            {
-              "choice": "เ",
+              "choice": "hhh",
               "isCorrect": false
+            },
+            {
+              "choice": "gg",
+              "isCorrect": true
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "ownerExam_id": "04ea",
+      "name": "Jill love Fish",
+      "description": "gg",
+      "category": "English",
+      "likes": 1,
+      "papers": [
         {
-          "id": 3,
-          "question": "กกก",
+          "id": 2,
+          "question": "gds",
           "options": [
             {
-              "choice": "ก",
+              "choice": "dd",
               "isCorrect": false
             },
             {
-              "choice": "กด",
+              "choice": "gggg",
+              "isCorrect": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "ownerExam_id": "04ea",
+      "name": "Fish Fearf",
+      "description": "ddd",
+      "category": "Science",
+      "likes": 0,
+      "papers": [
+        {
+          "id": 2,
+          "question": "dss",
+          "options": [
+            {
+              "choice": "ss",
+              "isCorrect": false
+            },
+            {
+              "choice": "aaa",
+              "isCorrect": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "ownerExam_id": "1",
+      "name": "123456",
+      "description": "ko",
+      "category": "Coding Language",
+      "likes": 0,
+      "papers": [
+        {
+          "id": 2,
+          "question": "lol",
+          "options": [
+            {
+              "choice": "ll",
+              "isCorrect": false
+            },
+            {
+              "choice": "oo",
               "isCorrect": true
             }
           ]
