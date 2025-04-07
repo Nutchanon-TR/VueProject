@@ -191,7 +191,7 @@ const submitQuiz = async () => {
 <template>
    <navBar/>
     <div class="p-5 mx-[300px]">
-        <h1 class="text-4xl font-bold mb-[10px]">{{ mode === "Edit" ? "Edit Your Quiz" : "Create Your Quiz" }}</h1>
+        <h1 class="text-4xl font-bold mb-[10px]">{{ mode === "Edit" ? "Edit Your Exam" : "Create Your Exam" }}</h1>
     
     <DescriptionItem
     :initial-category="selectedCategory"
