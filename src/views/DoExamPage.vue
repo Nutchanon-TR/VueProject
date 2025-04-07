@@ -18,7 +18,9 @@ const userLoginData = userLogin();
 const userID = ref(userLoginData.id);
 
 const route = useRoute();
+
 const examID = ref(route.params.examId || 'undefined');
+
 
 const fetchData = async () => {
   try {
@@ -30,6 +32,7 @@ const fetchData = async () => {
         const correctChoices = paper.options.filter(opt => opt.isCorrect);
         // Always initialize as array for consistent checkbox behavior
         userAnswers[paper.id] = [];
+
       });
     }
   } catch (error) {
@@ -92,6 +95,7 @@ const submitExam = async () => {
   const user = usersData.value.find(u => u.id === userID.value);
   if (user) {
     const newHistory = user.history ? [...user.history] : [];
+
     
     const existingExamIndex = newHistory.findIndex(entry => entry.exam_id === parseInt(examID.value));
 
@@ -106,6 +110,7 @@ const submitExam = async () => {
         score: parseInt(totalScore.value),
       });
     }
+
 
     try {
       await updateSomeData(`${import.meta.env.VITE_API_URL}/users`, user.id, { history: newHistory });
@@ -130,7 +135,7 @@ const isSubmitDisabled = computed(() => {
   return Object.values(userAnswers).every(ans => (Array.isArray(ans) ? ans.length === 0 : ans === ''));
 });
 
-// Helper function: For limiting selection in multiple choices
+// ฟังก์ชันช่วย: สำหรับจำกัดการเลือกใน multiple choices
 const isOptionDisabled = (paper, option) => {
   const userChoices = userAnswers[paper.id];
   if (!Array.isArray(userChoices)) return false;
@@ -225,8 +230,12 @@ onMounted(() => {
               SUBMIT
             </button>
           </div>
+
         </div>
       </div>
+      <button :disabled="isSubmitDisabled" @click="submitExam">ส่งคำตอบ</button>
+      <button @click="restartExam">เริ่มใหม่</button>
+      <button @click="$router.push('/')">กลับหน้าหลัก</button>
     </div>
 
     <!-- Popup Result with improved styling -->
@@ -270,11 +279,11 @@ onMounted(() => {
             HOME
           </button>
         </div>
+
       </div>
     </div>
   </div>
 </template>
-
 
 <style scoped>
 /* Additional custom styles */
@@ -293,3 +302,4 @@ button {
   border-left-width: 4px;
 }
 </style>
+
