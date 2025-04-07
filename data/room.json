@@ -6,7 +6,7 @@
       "password": "admin",
       "bio": "I'm admin",
       "role": "admin",
-      "imageURL": "",
+      "imageURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBWmqZ8Cs4AVnkei_AoaK-TVCokeEAkkrpTw&s",
       "likeExam_Id": [],
       "history": [],
       "id": "0"
@@ -19,9 +19,8 @@
       "role": "professor",
       "imageURL": "https://global.discourse-cdn.com/mcneel/uploads/default/original/4X/1/6/4/16475e4731dd92a89bf1b1515f63e979d7a76530.jpeg",
       "likeExam_Id": [
-        "5",
         "4",
-        "1"
+        "5"
       ],
       "history": [],
       "id": "1"
@@ -103,7 +102,7 @@
       "name": "Math Noob Eiei",
       "description": "Test your mathematical skills.",
       "category": "Math",
-      "likes": 5,
+      "likes": 4,
       "papers": [
         {
           "id": 1,

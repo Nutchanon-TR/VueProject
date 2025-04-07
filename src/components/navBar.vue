@@ -6,7 +6,6 @@ import { useRouter } from "vue-router";
 const props = defineProps({
   updateImage: {
     type: String,
-    required: true,
   },
 });
 
