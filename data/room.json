@@ -21,7 +21,8 @@
       "likeExam_Id": [
         "5",
         "4",
-        "1"
+        "1",
+        "2"
       ],
       "history": [
         {
@@ -184,7 +185,7 @@
       "name": "Programming Basics",
       "description": "Test your knowledge of programming languages.",
       "category": "Coding Language",
-      "likes": 7,
+      "likes": 8,
       "papers": [
         {
           "id": 1,
