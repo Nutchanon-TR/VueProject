@@ -83,7 +83,7 @@ const sendQuizName = () =>{
             class="absolute mt-1 bg-white border border-gray-300 shadow-lg rounded-lg w-full"
         >
             <ul class="text-black">
-                <li v-for="item in category" :key="item.id" @click="selectCategory(item.name)"  class="px-4 py-2 hover:bg-gray-200 cursor-pointer">{{ item.name }}</li><!--use for loop-->
+                <li v-for="item in category" :key="item.id" @click="selectCategory(item.name)"  class="px-4 py-2 hover:bg-gray-200 cursor-pointer">{{ item.name }}</li>
             </ul>
         </div>
   </div>

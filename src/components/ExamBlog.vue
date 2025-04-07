@@ -84,7 +84,7 @@ const closeModal = () => {
   <!-- Pop-up Modal -->
   <div
     v-if="selectedExam"
-    class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 px-4"
+    class="fixed inset-0 flex items-center justify-center bg-black/50 px-4"
   >
     <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg">
       <h2 class="text-2xl font-bold">{{ selectedExam.name }}</h2>

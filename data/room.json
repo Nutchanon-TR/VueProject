@@ -22,7 +22,20 @@
         "4",
         "5"
       ],
-      "history": [],
+      "history": [
+        {
+          "exam_id": 1,
+          "score": 0
+        },
+        {
+          "exam_id": 2,
+          "score": 1
+        },
+        {
+          "exam_id": 5,
+          "score": 3
+        }
+      ],
       "id": "1"
     },
     {
@@ -92,19 +105,6 @@
       "imageURL": "",
       "history": [],
       "likeExam_Id": []
-    },
-    {
-      "id": "d5a6",
-      "email": "D@",
-      "name": "Diddyหห",
-      "password": "d",
-      "bio": "",
-      "role": "student",
-      "imageURL": "https://global.discourse-cdn.com/mcneel/uploads/default/original/4X/1/6/4/16475e4731dd92a89bf1b1515f63e979d7a76530.jpeg",
-      "history": [],
-      "likeExam_Id": [
-        "4"
-      ]
     }
   ],
   "exams": [
@@ -190,7 +190,7 @@
       "name": "Programming Basics",
       "description": "Test your knowledge of programming languages.",
       "category": "Coding Language",
-      "likes": 6,
+      "likes": 7,
       "papers": [
         {
           "id": 1,

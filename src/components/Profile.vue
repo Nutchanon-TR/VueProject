@@ -18,6 +18,11 @@ const showUpdateForm = ref(false);
 
 
 const updateUserProfile = async () => {
+    if (!updatedUser.value.name || !updatedUser.value.bio) {
+        errorMsg.value = 'Please fill in all fields before updating.';
+        successMsg.value = '';
+        return;
+    }
     try {
 
         const userId = userLoginData.id;
@@ -42,11 +47,11 @@ onMounted(() => {
 </script>
 <template>
     <div class="w-full md:w-2/6 p-6 bg-white">
-        <img class="w-32 h-32 mx-auto" :src="userLoginData.imageURL" alt="Profile Image" />
+        <img class="w-32 h-32 mx-auto rounded-full object-cover" :src="userLoginData.imageURL || 'https://static.vecteezy.com/system/resources/thumbnails/005/544/718/small_2x/profile-icon-design-free-vector.jpg'" alt="Profile Image" />
 
 
         <div v-if="!showUpdateForm" class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg text-center">
-            <h1 class="text-2xl font-bold text-gray-800 mb-3">Profile of {{ userLoginData.name }}</h1>
+            <h1 class="text-2xl font-bold text-gray-800 mb-3">{{ userLoginData.name }}</h1>
             <div class="text-gray-600 space-y-2">
                 <p><span class="font-semibold">Email:</span> {{ userLoginData.email }}</p>
                 <p><span class="font-semibold">Role:</span> {{ userLoginData.role }}</p>
@@ -66,6 +71,10 @@ onMounted(() => {
 
         <!-- ฟอร์มอัปเดตข้อมูล -->
         <div v-if="showUpdateForm" class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg text-center">
+            
+            <p v-if="errorMsg" class="text-red-500 mb-3">{{ errorMsg }}</p>
+            <p v-if="successMsg" class="text-green-500 mb-3">{{ successMsg }}</p>
+
             <h2 class="text-2xl font-semibold text-gray-800 mb-4">Edit Profile</h2>
 
             <div class="space-y-3">
