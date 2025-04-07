@@ -61,7 +61,47 @@
       "bio": "",
       "role": "student",
       "imageURL": "https://t1.blockdit.com/photos/2022/10/63384cac469024e2e47d007a_800x0xcover_PUamu6PN.jpg",
-      "history": [],
+      "history": [
+        {
+          "exam_id": "1",
+          "score": 3,
+          "timestamp": "2025-04-07T01:11:03.337Z"
+        },
+        {
+          "exam_id": "1",
+          "score": "4/4",
+          "timestamp": "2025-04-07T01:21:52.298Z"
+        },
+        {
+          "exam_id": "1",
+          "score": 3,
+          "timestamp": "2025-04-07T01:22:36.189Z"
+        },
+        {
+          "exam_id": 1,
+          "score": 1
+        },
+        {
+          "exam_id": 1,
+          "score": 4
+        },
+        {
+          "exam_id": 1,
+          "score": 4
+        },
+        {
+          "exam_id": 1,
+          "score": 3
+        },
+        {
+          "exam_id": 1,
+          "score": 2
+        },
+        {
+          "exam_id": 1,
+          "score": 3
+        }
+      ],
       "likeExam_Id": []
     }
   ],
