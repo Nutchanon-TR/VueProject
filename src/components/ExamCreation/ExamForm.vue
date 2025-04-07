@@ -25,8 +25,6 @@ onMounted(async () => {
       quizName.value = quiz.name || "";
       description.value = quiz.description || "";
       selectedCategory.value = quiz.category || "";
-      
-      // แปลงข้อมูลคำถามให้ตรงกับโครงสร้างที่ต้องการ
       questions.value = quiz.papers.map((q) => ({
         id: q.id || Date.now(),
         question: q.question || "",
@@ -148,7 +146,7 @@ const setQuizDescription = (desc) =>{
     description.value =desc
 }
 
-// const setMode = "Creation"
+
 
 const submitQuiz = async () => {
   if (!checkQuestion()) return;
@@ -191,7 +189,7 @@ const submitQuiz = async () => {
 <template>
    <navBar/>
     <div class="p-5 mx-[300px]">
-        <h1 class="text-4xl font-bold mb-[10px]">{{ mode === "Edit" ? "Edit Your Quiz" : "Create Your Quiz" }}</h1>
+        <h1 class="text-4xl font-bold mb-[10px]">{{ mode === "Edit" ? "Edit Your Exam" : "Create Your Exam" }}</h1>
     
     <DescriptionItem
     :initial-category="selectedCategory"
