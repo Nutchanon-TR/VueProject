@@ -17,7 +17,7 @@ const props = defineProps({
       type:[String, Number]
     }
 })
-
+const liked = ref(0)
 onMounted(async () => {
   if (props.mode === "Edit") {
     try {
@@ -25,6 +25,7 @@ onMounted(async () => {
       quizName.value = quiz.name || "";
       description.value = quiz.description || "";
       selectedCategory.value = quiz.category || "";
+      liked.value = quiz.likes || 0 ;
       questions.value = quiz.papers.map((q) => ({
         id: q.id || Date.now(),
         question: q.question || "",
@@ -40,7 +41,7 @@ onMounted(async () => {
     }
   }
 });
-
+  
   const userStore = userLogin()
   const nextId =ref(2)
   const questions = ref([]);
@@ -160,7 +161,7 @@ const submitQuiz = async () => {
     name: quizName.value,
     description: description.value,
     category: selectedCategory.value,
-    likes: 0,
+    likes: liked.value,
     papers: questions.value.map((q) => ({
       id: q.id,
       question: q.question,
