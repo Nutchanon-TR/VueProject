@@ -9,6 +9,7 @@ const errorMsg = ref("");
 const name = ref("");
 const email = ref("");
 const password = ref("");
+const imageURL = ref("")
 //push data
 const postData = ref("");
 
@@ -44,11 +45,11 @@ const signUpChecking = () => {
     console.log("error: ", errorMsg.value);
   } else {
     console.log("Email is complete");
-    createUser(name.value, email.value, password.value);
+    createUser(name.value, email.value, password.value, imageURL.value);
   }
 };
 
-const createUser = (nameData, emailData, passwordData) => {
+const createUser = (nameData, emailData, passwordData, imadeData) => {
   if (
     nameData !== "" ||
     emailData !== "" ||
@@ -62,7 +63,7 @@ const createUser = (nameData, emailData, passwordData) => {
       password: passwordData,
       bio: "",
       role: "student",
-      imageURL: "",
+      imageURL: imadeData,
       history: [],
       likeExam_Id: [],
     };
@@ -106,7 +107,8 @@ const goToLoginPage = () => {
       >
         <div class="w-20 h-20 flex items-center justify-center">
           <!-- <img src="/assets/profile.png" alt="profile" /> -->
-           <h1 class="text-9xl mt-[-25px]">👴🏿</h1>
+           <!-- <h1 class="text-9xl mt-[-25px]">👴🏿</h1> -->
+           <img class="w-32 h-32 mx-auto rounded-full object-cover" src="https://static.vecteezy.com/system/resources/thumbnails/005/544/718/small_2x/profile-icon-design-free-vector.jpg" alt="Profile Image" />
         </div>
       </div>
     </div>
@@ -136,6 +138,13 @@ const goToLoginPage = () => {
         class="w-full px-4 py-3 mb-4 border border-black rounded-full focus:outline-none"
       />
 
+
+      <input
+        type="url"
+        placeholder="USER_PROFILE"
+        v-model="imageURL"
+        class="w-full px-4 py-3 mb-4 border border-black rounded-full focus:outline-none"
+      />
 
 
       <p class="text-red-500 mt-2" v-if="errorMsg">{{ errorMsg }}</p>
