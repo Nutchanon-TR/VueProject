@@ -96,21 +96,10 @@ const submitExam = async () => {
   if (user) {
     const newHistory = user.history ? [...user.history] : [];
 
-    
-    const existingExamIndex = newHistory.findIndex(entry => entry.exam_id === parseInt(examID.value));
-
-    if (existingExamIndex !== -1) {
-      newHistory[existingExamIndex] = {
-        exam_id: parseInt(examID.value),
-        score: parseInt(totalScore.value),
-      };
-    } else {
       newHistory.push({
         exam_id: parseInt(examID.value),
         score: parseInt(totalScore.value),
       });
-    }
-
 
     try {
       await updateSomeData(`${import.meta.env.VITE_API_URL}/users`, user.id, { history: newHistory });

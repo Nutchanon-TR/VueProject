@@ -71,6 +71,8 @@ const fetchExamsAndUsers = async () => {
     userExams.value = exams.value.filter(exam =>
       userLoginData.history.some(historyItem => historyItem.exam_id == exam.id)
     );
+    console.log(userExams.value);
+    console.log(userLoginData.history);
 
   } catch (error) {
     console.error(error.message);
@@ -83,6 +85,7 @@ onMounted(() => {
   console.log(userLoginData.name);
   console.log(userLoginData.history);
   fetchExamsAndUsers();
+  
 });
 </script>
 
