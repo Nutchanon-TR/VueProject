@@ -1,10 +1,10 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted,defineEmits  } from "vue";
 import { userLogin } from '@/stores/loginDataUser.js';
 import { updateSomeData } from "@/libs/apiData";
 
 const userLoginData = userLogin();
-
+const emit = defineEmits(['updateImageURL']);
 
 const updatedUser = ref({
     name: userLoginData.name,
@@ -24,13 +24,15 @@ const updateUserProfile = async () => {
         return;
     }
     try {
+
         const userId = userLoginData.id;
         const apiUrl = `${import.meta.env.VITE_API_URL}/users`;
         
         const updatedData = await updateSomeData(apiUrl, userId, updatedUser.value);
         userLoginData.keepDataFromLogin(updatedData);
-
         successMsg.value = 'Profile updated successfully!';
+
+        emit('updateImageURL', updatedUser.value.imageURL);
         showUpdateForm.value = false;
     } catch (error) {
         errorMsg.value = error.message;
@@ -101,10 +103,4 @@ onMounted(() => {
         </div>
 
     </div>
-
-
-
-
-
-
 </template>

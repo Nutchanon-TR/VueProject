@@ -6,6 +6,10 @@ import Profile from "@/components/Profile.vue";
 import History from "@/components/History.vue";
 
 const userLoginData = userLogin();
+const updateImageUser = ref("");
+const updateImage = (newImg) => {
+  updateImageUser.value = newImg;
+}
 
 onMounted(() => {
   console.log(userLoginData.name);
@@ -15,9 +19,9 @@ onMounted(() => {
 
 
 <template>
-  <navBar />
+  <navBar :updateImage="updateImageUser"/>
   <div class="flex flex-col md:flex-row justify-between items-start gap-6 p-6">
-    <Profile />
+    <Profile @updateImageURL="updateImage"/>
     <!-- ขวา -->
      <History />
   </div>

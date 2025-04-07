@@ -58,7 +58,7 @@ const handleTextChange = (e) => {
   </div>
 </template> -->
 <template>
-  <div class="flex items-center space-x-2 pl-2">
+  <div class="flex items-center space-x-2 pl-2 py-[10px]">
     <input
       :type="questionType === 'single' ? 'radio' : 'checkbox'"
       :name="questionType === 'single' ? 'question-' + questionId : undefined"

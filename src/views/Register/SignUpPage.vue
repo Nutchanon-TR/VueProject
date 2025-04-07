@@ -118,11 +118,18 @@ const goToLoginPage = () => {
       <h2 class="text-5xl font-bold mb-8">SIGN UP</h2>
 
       <input
+        type="email"
+        placeholder="USER_EMAIL"
+        v-model="email"
+        class="w-full px-4 py-3 mb-4 border border-black rounded-full focus:outline-none"
+      />
+      <input
         type="text"
         placeholder="USER_NAME"
         v-model="name"
         class="w-full px-4 py-3 mb-4 border border-black rounded-full focus:outline-none"
       />
+
 
       <input
         type="password"
@@ -131,12 +138,6 @@ const goToLoginPage = () => {
         class="w-full px-4 py-3 mb-4 border border-black rounded-full focus:outline-none"
       />
 
-      <input
-        type="email"
-        placeholder="USER_EMAIL"
-        v-model="email"
-        class="w-full px-4 py-3 mb-4 border border-black rounded-full focus:outline-none"
-      />
 
       <input
         type="url"

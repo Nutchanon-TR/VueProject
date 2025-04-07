@@ -58,12 +58,17 @@ onMounted(() => {
   console.log(userLoginData.name);
   fetchExams();
 });
+const updateImageUser = ref("");
+
+const updateImage = (newImg) => {
+  updateImageUser.value = newImg;
+}
 </script>
 
 <template>
-  <navBar />
+  <navBar :updateImage="updateImageUser"/>
   <div class="flex flex-col md:flex-row justify-between items-start gap-6 p-6">
-    <Profile />
+    <Profile @updateImageURL="updateImage"/>
 
     <div class="w-full md:w-4/5 flex flex-col">
       <!-- Toggle Button -->

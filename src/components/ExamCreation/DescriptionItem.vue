@@ -67,9 +67,9 @@ const sendQuizName = () =>{
 </script>
 
 <template>
-    <div class="border p-3 rounded shadow-md mb-3 bg-white">
+    <div class="border p-[30px] rounded shadow-md mb-3 bg-white">
 
-    <div class="relative inline-block">
+    <div class="relative inline-block ">
         <button 
             @click="toggleDropdown" 
             class="bg-blue-300 text-black font-bold px-4 py-2 rounded-lg shadow-md flex items-center"
