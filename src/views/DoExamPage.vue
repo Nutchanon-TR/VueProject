@@ -24,21 +24,36 @@ const examID = ref(route.params.examId || 'undefined');
 
 const fetchData = async () => {
   try {
-    const roomData = await getAllData('../../data/room.json');
-    usersData.value = roomData.users;
+    // Define the URLs to fetch exam and user data
+    const examsUrl = `${import.meta.env.VITE_API_URL}/exams`;
+    const usersUrl = `${import.meta.env.VITE_API_URL}/users`;
+
+    // Fetch the data from both the exam and users API
+    const [examDataResponse, usersDataResponse] = await Promise.all([
+      getAllData(examsUrl),  // Assuming you have an API for exams
+      getAllData(usersUrl),  // Assuming you have an API for users
+    ]);
+
+    // Assuming roomData contains both users and exams
+    const roomData = { exams: examDataResponse, users: usersDataResponse };
+
+    // Store the roomData into local reactive references
     examData.value = roomData.exams.find(exam => exam.id?.toString() === examID.value);
+    usersData.value = roomData.users;  // Set the users data for further use
+
+    // Initialize userAnswers for all papers
     if (examData.value) {
       examData.value.papers.forEach(paper => {
         const correctChoices = paper.options.filter(opt => opt.isCorrect);
-        // Always initialize as array for consistent checkbox behavior
+        // Initialize answers array for each paper
         userAnswers[paper.id] = [];
-
       });
     }
   } catch (error) {
     console.error("Error fetching data:", error);
   }
 };
+
 
 const maxScore = computed(() => {
   if (!examData.value) return 0;
