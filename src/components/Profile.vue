@@ -18,7 +18,7 @@ const showUpdateForm = ref(false);
 
 
 const updateUserProfile = async () => {
-    if (!updatedUser.value.name || !updatedUser.value.bio) {
+    if (!updatedUser.value.name) {
         errorMsg.value = 'Please fill in all fields before updating.';
         successMsg.value = '';
         return;
