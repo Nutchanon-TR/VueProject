@@ -1,3 +1,4 @@
+
 <script setup>
 import { ref, computed, reactive, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
@@ -17,7 +18,9 @@ const userLoginData = userLogin();
 const userID = ref(userLoginData.id);
 
 const route = useRoute();
-const examID = ref(route.params.examId || 'undifined');
+
+const examID = ref(route.params.examId || 'undefined');
+
 
 const fetchData = async () => {
   try {
@@ -27,7 +30,9 @@ const fetchData = async () => {
     if (examData.value) {
       examData.value.papers.forEach(paper => {
         const correctChoices = paper.options.filter(opt => opt.isCorrect);
-        userAnswers[paper.id] = correctChoices.length === 1 ? '' : [];
+        // Always initialize as array for consistent checkbox behavior
+        userAnswers[paper.id] = [];
+
       });
     }
   } catch (error) {
@@ -90,10 +95,23 @@ const submitExam = async () => {
   const user = usersData.value.find(u => u.id === userID.value);
   if (user) {
     const newHistory = user.history ? [...user.history] : [];
-    newHistory.push({
-      exam_id: parseInt(examID.value),
-      score: parseInt(totalScore.value),
-    });
+
+    
+    const existingExamIndex = newHistory.findIndex(entry => entry.exam_id === parseInt(examID.value));
+
+    if (existingExamIndex !== -1) {
+      newHistory[existingExamIndex] = {
+        exam_id: parseInt(examID.value),
+        score: parseInt(totalScore.value),
+      };
+    } else {
+      newHistory.push({
+        exam_id: parseInt(examID.value),
+        score: parseInt(totalScore.value),
+      });
+    }
+
+
     try {
       await updateSomeData(`${import.meta.env.VITE_API_URL}/users`, user.id, { history: newHistory });
       console.log("History updated successfully!");
@@ -105,7 +123,7 @@ const submitExam = async () => {
 
 const restartExam = () => {
   Object.keys(userAnswers).forEach(key => {
-    userAnswers[key] = Array.isArray(userAnswers[key]) ? [] : '';
+    userAnswers[key] = [];
   });
   examResult.value = null;
   totalScore.value = 0;
@@ -131,29 +149,88 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
+  <div class="exam-app bg-gray-100 min-h-screen">
     <navBar />
-    <div v-if="examData">
-      <h1 class="text-2xl font-bold mb-4">{{ examData.name }}</h1>
-      <div v-for="paper in examData.papers" :key="paper.id" class="mb-6">
-        <p class="font-semibold">{{ paper.question }}</p>
-        <div v-for="option in paper.options" :key="option.choice" class="ml-4">
-          <label>
-            <input
-              v-if="Array.isArray(userAnswers[paper.id])"
-              type="checkbox"
-              v-model="userAnswers[paper.id]"
-              :value="option.choice"
-              :disabled="isOptionDisabled(paper, option)"
-            />
-            <input
-              v-else
-              type="radio"
-              v-model="userAnswers[paper.id]"
-              :value="option.choice"
-            />
-            {{ option.choice }}
-          </label>
+    <div class="container mx-auto px-4 py-4">
+      <div v-if="examData" class="max-w-3xl mx-auto">
+        <!-- Fixed top control buttons -->
+        <div class="bg-gray-100 p-4 mb-4 rounded-lg shadow-sm flex">
+          <button 
+            @click="restartExam" 
+            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full mr-4">
+            RESTART
+          </button>
+          <button 
+            @click="$router.push('/')" 
+            class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded-full">
+            HOME
+          </button>
+        </div>
+        
+        <!-- Content area with white background -->
+        <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+          <!-- Exam theory/description section -->
+          <div class="mb-8 border-l-4 border-blue-400 pl-4">
+            <h2 class="text-2xl font-bold uppercase border-b-2 border-black pb-2 mb-4 break-words">VUE COMPONENT THEORY</h2>
+            <p class="text-gray-700 break-words">THIS IS DESCRIPTION. 01100101010010101010000111010010101010</p>
+            <div class="mt-4">
+              <span class="bg-blue-200 text-black px-6 py-2 rounded-full inline-block">CLIENT SIDE</span>
+            </div>
+          </div>
+          
+          <!-- Questions section - with fixed height and scrollable area -->
+          <div class="max-h-[500px] overflow-y-auto pr-2">
+            <div v-for="(paper, index) in examData.papers" :key="paper.id" class="mb-8 border-l-4 border-blue-400 pl-4">
+              <div class="mb-4">
+                <h3 class="text-xl font-bold mb-1">QUESTION {{ index + 1 }}</h3>
+                <p class="font-semibold uppercase break-words">{{ paper.question || 'WHAT IS CORRECT JILL IN THIS ANSWER EIE!?' }}</p>
+              </div>
+              
+              <div class="ml-4">
+                <div v-for="option in paper.options" :key="option.choice" class="mb-3">
+                  <label class="flex items-start cursor-pointer">
+                    <!-- Always use rounded checkbox style -->
+                    <div class="mt-1 mr-3">
+                      <div class="w-6 h-6 rounded-full border-2 border-blue-500 flex items-center justify-center">
+                        <div v-if="(Array.isArray(userAnswers[paper.id]) && userAnswers[paper.id].includes(option.choice)) || 
+                                  (!Array.isArray(userAnswers[paper.id]) && userAnswers[paper.id] === option.choice)" 
+                             class="w-4 h-4 rounded-full bg-blue-500"></div>
+                      </div>
+                    </div>
+                    
+                    <!-- Hidden actual form elements for functionality -->
+                    <input 
+                      v-if="Array.isArray(userAnswers[paper.id])"
+                      type="checkbox"
+                      v-model="userAnswers[paper.id]"
+                      :value="option.choice"
+                      :disabled="isOptionDisabled(paper, option)"
+                      class="hidden"
+                    />
+                    <input
+                      v-else
+                      type="checkbox"
+                      v-model="userAnswers[paper.id]"
+                      :value="option.choice"
+                      class="hidden"
+                    />
+                    <span class="text-lg break-words">{{ option.choice }}</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Submit button fixed at bottom -->
+          <div class="mt-6">
+            <button 
+              @click="submitExam" 
+              :disabled="isSubmitDisabled" 
+              class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 w-full rounded-lg text-lg disabled:bg-blue-300">
+              SUBMIT
+            </button>
+          </div>
+
         </div>
       </div>
       <button :disabled="isSubmitDisabled" @click="submitExam">ส่งคำตอบ</button>
@@ -161,72 +238,68 @@ onMounted(() => {
       <button @click="$router.push('/')">กลับหน้าหลัก</button>
     </div>
 
-    <!-- Popup Result -->
-    <div v-if="showResultPopup" class="overlay" @click="showResultPopup = false">
-      <div class="popup" @click.stop>
-        <h2 class="text-xl font-bold">ผลลัพธ์</h2>
-        <p>คะแนนรวม: {{ totalScore }} / {{ maxScore }}</p>
-        <p>ข้อที่ถูกทั้งหมด: {{ correctCount }}</p>
-        <div v-for="(result, index) in examResult" :key="index" class="my-4">
-          <p><strong>คำถาม:</strong> {{ result.question }}</p>
-          <p><strong>คะแนน:</strong> {{ result.score }}</p>
-          <ul>
-            <li v-for="(choice, i) in result.userChoices" :key="i">
-              {{ choice.choice }}
-              <span v-if="choice.selected">(เลือก)</span>
-              <span v-if="choice.isCorrect">✅</span>
-            </li>
-          </ul>
+    <!-- Popup Result with improved styling -->
+    <div v-if="showResultPopup" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4 z-50">
+      <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[80vh] overflow-auto" @click.stop>
+        <div class="p-6 border-b border-gray-200">
+          <h2 class="text-2xl font-bold">ผลลัพธ์</h2>
         </div>
-        <button @click="restartExam">เริ่มใหม่</button>
-        <button @click="$router.push('/')">กลับหน้าหลัก</button>
+        
+        <div class="p-6">
+          <div class="bg-blue-50 p-4 rounded-lg mb-6">
+            <div class="flex justify-between items-center flex-wrap">
+              <p class="text-xl font-semibold">คะแนนรวม: {{ totalScore }} / {{ maxScore }}</p>
+              <p class="text-lg">ข้อที่ถูกทั้งหมด: {{ correctCount }}</p>
+            </div>
+          </div>
+          
+          <div v-for="(result, index) in examResult" :key="index" class="mb-6 border-l-4 pl-4" :class="result.correct ? 'border-green-500' : 'border-red-500'">
+            <p class="font-bold mb-2 break-words">คำถาม: {{ result.question }}</p>
+            <p class="mb-2">คะแนน: {{ result.score }}</p>
+            <ul class="bg-gray-50 p-3 rounded">
+              <li v-for="(choice, i) in result.userChoices" :key="i" class="py-1 flex items-center break-words">
+                <span :class="{'font-semibold': choice.selected}">{{ choice.choice }}</span>
+                <span v-if="choice.selected" class="ml-2">(เลือก)</span>
+                <span v-if="choice.isCorrect" class="ml-2 text-green-600">✓</span>
+                <span v-if="choice.selected && !choice.isCorrect" class="ml-2 text-red-600">✗</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="p-6 border-t border-gray-200 flex justify-end space-x-4">
+          <button 
+            @click="restartExam" 
+            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
+            RESTART
+          </button>
+          <button 
+            @click="$router.push('/')" 
+            class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded-full">
+            HOME
+          </button>
+        </div>
+
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+/* Additional custom styles */
+.break-words {
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Ensure transitions are smooth */
 button {
-  background-color: #4caf50;
-  color: white;
-  padding: 10px;
-  margin: 5px;
-  border: none;
-  border-radius: 4px;
-}
-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+  transition: all 0.2s ease;
 }
 
-/* Popup Styles */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.popup {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  max-width: 80%;
-  width: 400px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.popup button {
-  background-color: #f44336;
-  color: white;
-}
-
-.popup button:hover {
-  background-color: #d32f2f;
+/* Style for exam questions display */
+.border-l-4 {
+  border-left-width: 4px;
 }
 </style>
+
