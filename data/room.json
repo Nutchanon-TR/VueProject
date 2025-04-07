@@ -20,13 +20,16 @@
       "imageURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQEtrZpSL4T_53zcFsGnhjpbYrvdJLpXBADw&s",
       "likeExam_Id": [
         "4",
+        "1",
+        "2",
+        "6",
         "5",
         "7"
       ],
       "history": [
         {
           "exam_id": 1,
-          "score": 0
+          "score": 4
         },
         {
           "exam_id": 2,
@@ -50,6 +53,10 @@
         },
         {
           "exam_id": 8,
+          "score": 1
+        },
+        {
+          "exam_id": 1,
           "score": 1
         }
       ],
@@ -388,7 +395,7 @@
       "name": "Physics Essentials",
       "description": "Test your understanding of fundamental physics concepts.",
       "category": "Science",
-      "likes": 5,
+      "likes": 6,
       "papers": [
         {
           "id": 1,

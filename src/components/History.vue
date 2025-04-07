@@ -23,7 +23,7 @@ const getExamWithOwner = (exams, users) => {
 const calculateExamStats = (examId) => {
   // รวบรวมคะแนนทั้งหมดสำหรับข้อสอบนี้จากผู้ใช้ทุกคน
   const allScores = [];
-  
+
   // วนลูปผ่านผู้ใช้ทุกคนเพื่อหาคนที่ทำข้อสอบนี้
   users.value.forEach(user => {
     if (user.history && Array.isArray(user.history)) {
@@ -33,17 +33,17 @@ const calculateExamStats = (examId) => {
       }
     }
   });
-  
+
   // ถ้าไม่พบคะแนน ให้คืนค่าเป็นศูนย์
   if (allScores.length === 0) {
     return { min: 0, max: 0, avg: 0 };
   }
-  
+
   // คำนวณ
   const min = Math.min(...allScores);
   const max = Math.max(...allScores);
   const avg = allScores.reduce((a, b) => a + b, 0) / allScores.length;
-  
+
   return { min, max, avg };
 };
 
@@ -68,11 +68,13 @@ const fetchExamsAndUsers = async () => {
     exams.value = getExamWithOwner(examsData, users.value);
 
     // กรองเฉพาะข้อสอบที่ผู้ใช้เคยทำ
-    userExams.value = exams.value.filter(exam =>
-      userLoginData.history.some(historyItem => historyItem.exam_id == exam.id)
-    );
-    console.log(userExams.value);
-    console.log(userLoginData.history);
+    userExams.value = userLoginData.history.map(historyItem => {
+      const exam = exams.value.find(e => e.id == historyItem.exam_id);
+      return {
+        ...exam,
+        score: historyItem.score // เพิ่มคะแนนของรอบนั้น
+      };
+    });
 
   } catch (error) {
     console.error(error.message);
@@ -83,9 +85,9 @@ const userLoginData = userLogin();
 
 onMounted(() => {
   console.log(userLoginData.name);
-  console.log(userLoginData.history);
+  // console.log(userLoginData.history);
   fetchExamsAndUsers();
-  
+
 });
 </script>
 
@@ -100,7 +102,7 @@ onMounted(() => {
             <p class="text-white">{{ exam.name }}</p>
           </div>
           <div class="text-right">
-            <p class="text-xl font-bold">{{ userLoginData.history.find(h => h.exam_id == exam.id)?.score }}</p>
+            <p class="text-xl font-bold">{{ exam.score }}</p>
           </div>
         </div>
 
@@ -108,16 +110,16 @@ onMounted(() => {
         <div class="bg-white p-4 flex justify-between items-center">
           <div>
             <p>
-              MIN: {{ calculateExamStats(exam.id).min }} 
-              MAX: {{ calculateExamStats(exam.id).max }} 
+              MIN: {{ calculateExamStats(exam.id).min }}
+              MAX: {{ calculateExamStats(exam.id).max }}
               AVG: {{ calculateExamStats(exam.id).avg.toFixed(2) }}
             </p>
           </div>
           <div>
-            <p>{{ exam.owner ? exam.owner.name : 'Unknown' }}</p>
+            <p>BY: {{ exam.owner ? exam.owner.name : 'Unknown' }}</p>
           </div>
         </div>
       </div>
-    </div>  
+    </div>
   </div>
 </template>
