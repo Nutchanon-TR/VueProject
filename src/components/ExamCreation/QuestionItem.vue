@@ -73,41 +73,5 @@ const updateOption = (updatedOption) => {
     </div>
   </div>
 </template>
-<!-- <template>
-  <div class="border p-3 rounded shadow-md mb-3 bg-white relative">
-    <div class="flex justify-between items-center mb-2">
-      <input
-        type="text"
-        v-model="question.question"
-        placeholder="Write your question ..."
-        class="w-full border-b-4 border-black font-bold text-lg focus:outline-none"
-      />
-    </div>
 
-    <p class="text-gray-500 text-sm font-bold">TYPE: {{ question.type.toUpperCase() }}</p> -->
-
-    <!-- <div class="mt-2 space-y-2">
-      <OptionItem
-        v-for="opt in question.options"
-        :key="opt.id"
-        :option="opt"
-        :questionId="question.id"
-        :questionType="question.type"
-        :mode="mode"
-        @updateOption="updateOption"
-        @deleteOption="deleteOption"
-      />
-      <button @click="addOption" class="text-gray-400 ml-6 hover:underline">➕ ADD OPTION</button>
-    </div> -->
-
-    <!-- Control panel -->
-    <!-- <div class="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-3 bg-blue-200 rounded-xl py-2 px-1 flex flex-col space-y-2 shadow-md z-10">
-      <button @click="toggleType" class="bg-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-blue-500 hover:bg-blue-100">M</button>
-      <button @click="$emit('toggleType')" class="bg-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-blue-500 hover:bg-blue-100">S</button>
-      <button @click="$emit('deleteQuestion')" class="bg-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-red-100">
-        <img src="../../assets/crosslogo.svg" alt="delete" class="w-4 h-4">
-      </button>
-    </div> -->
-  <!-- </div>
-</template> -->
 

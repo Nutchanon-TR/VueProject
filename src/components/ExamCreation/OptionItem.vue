@@ -38,25 +38,6 @@ const handleTextChange = (e) => {
   });
 };
 </script>
-
-<!-- <template>
-  <div class="flex items-center space-x-2">
-    <input
-      :type="questionType === 'single' ? 'radio' : 'checkbox'"
-      :name="questionType === 'single' ? 'question-' + questionId : undefined"
-      :checked="option.isCorrect"
-      @change="handleChange"
-    />
-    <input
-      type="text"
-      v-model="option.text"
-      @input="handleTextChange"
-      placeholder="Enter option..."
-      class="border p-1 rounded"
-    />
-    <button @click="removeOption" class="text-red-500">❌</button>
-  </div>
-</template> -->
 <template>
   <div class="flex items-center space-x-2 pl-2 py-[10px]">
     <input

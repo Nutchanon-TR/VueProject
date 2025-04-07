@@ -25,8 +25,6 @@ onMounted(async () => {
       quizName.value = quiz.name || "";
       description.value = quiz.description || "";
       selectedCategory.value = quiz.category || "";
-      
-      // แปลงข้อมูลคำถามให้ตรงกับโครงสร้างที่ต้องการ
       questions.value = quiz.papers.map((q) => ({
         id: q.id || Date.now(),
         question: q.question || "",
@@ -148,7 +146,7 @@ const setQuizDescription = (desc) =>{
     description.value =desc
 }
 
-// const setMode = "Creation"
+
 
 const submitQuiz = async () => {
   if (!checkQuestion()) return;
