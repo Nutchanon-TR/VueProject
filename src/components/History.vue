@@ -2,6 +2,7 @@
 import { ref, onMounted } from "vue";
 import { userLogin } from '@/stores/loginDataUser.js';
 import { getAllData } from "@/libs/apiData";
+import LoginPage from "@/views/Register/LoginPage.vue";
 
 const exams = ref([]); // เก็บข้อมูล exams
 const userExams = ref([]); // เก็บข้อสอบที่ตรงกับ history.exam_id
@@ -17,6 +18,36 @@ const getExamWithOwner = (exams, users) => {
     };
   });
 };
+
+// คำนวณสถิติสำหรับข้อสอบจากผู้ใช้ทุกคน
+const calculateExamStats = (examId) => {
+  // รวบรวมคะแนนทั้งหมดสำหรับข้อสอบนี้จากผู้ใช้ทุกคน
+  const allScores = [];
+  
+  // วนลูปผ่านผู้ใช้ทุกคนเพื่อหาคนที่ทำข้อสอบนี้
+  users.value.forEach(user => {
+    if (user.history && Array.isArray(user.history)) {
+      const examHistory = user.history.find(h => h.exam_id == examId);
+      if (examHistory) {
+        allScores.push(examHistory.score);
+      }
+    }
+  });
+  
+  // ถ้าไม่พบคะแนน ให้คืนค่าเป็นศูนย์
+  if (allScores.length === 0) {
+    return { min: 0, max: 0, avg: 0 };
+  }
+  
+  // คำนวณ
+  const min = Math.min(...allScores);
+  const max = Math.max(...allScores);
+  const avg = allScores.reduce((a, b) => a + b, 0) / allScores.length;
+  
+  return { min, max, avg };
+};
+
+
 
 // ฟังก์ชันดึงข้อมูล exams และ users
 const fetchExamsAndUsers = async () => {
@@ -50,42 +81,40 @@ const userLoginData = userLogin();
 
 onMounted(() => {
   console.log(userLoginData.name);
+  console.log(userLoginData.history);
   fetchExamsAndUsers();
 });
 </script>
 
-
-
 <template>
   <div class="w-full h-screen overflow-y-auto bg-gray-100 p-6">
-    <div v-if="userExams.length">
-      <h2 class="text-2xl font-bold mb-4">Your Exam History</h2>
+    <div class="flex-1 flex flex-col gap-4">
+      <div v-for="(exam, index) in userExams" :key="index" class="rounded-lg overflow-hidden">
+        <!-- Card Header -->
+        <div class="bg-blue-400 text-white p-4 flex justify-between items-center">
+          <div>
+            <h2 class="text-2xl font-bold">{{ exam.category }}</h2>
+            <p class="text-white">{{ exam.name }}</p>
+          </div>
+          <div class="text-right">
+            <p class="text-xl font-bold">{{ userLoginData.history.find(h => h.exam_id == exam.id)?.score }}</p>
+          </div>
+        </div>
 
-      <ul class="space-y-4">
-        <li v-for="(exam, index) in userExams" :key="index">
-          <button @click="console.log(exam)"
-            class="p-4 bg-white rounded-lg shadow-md border border-gray-300 w-full text-left hover:bg-gray-200 transition">
-            <h3 class="text-lg font-semibold text-gray-800">{{ exam.name }}</h3>
-            <p class="text-gray-600">{{ exam.description }}</p>
-            <p class="text-gray-600">Category: {{ exam.category }}</p>
-            <p class="text-gray-700">
-              Score:
-              <span
-                :class="userLoginData.history.find(h => h.exam_id == exam.id)?.score >= 5 ? 'text-green-600 font-bold' : 'text-red-600 font-bold'">
-                {{ userLoginData.history.find(h => h.exam_id == exam.id)?.score }}
-              </span>
+        <!-- Card Footer -->
+        <div class="bg-white p-4 flex justify-between items-center">
+          <div>
+            <p>
+              MIN: {{ calculateExamStats(exam.id).min }} 
+              MAX: {{ calculateExamStats(exam.id).max }} 
+              AVG: {{ calculateExamStats(exam.id).avg.toFixed(2) }}
             </p>
-            <p class="text-sm text-gray-500">
-              Created by: {{ exam.owner ? exam.owner.name : 'Unknown' }}
-            </p>
-          </button>
-        </li>
-      </ul>
-    </div>
-
-    <p v-else class="text-center text-gray-500 text-xl font-semibold mt-10">❌ History is empty</p>
+          </div>
+          <div>
+            <p>{{ exam.owner ? exam.owner.name : 'Unknown' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>  
   </div>
 </template>
-
-  
-

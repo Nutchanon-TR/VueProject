@@ -17,16 +17,16 @@
       "password": "p",
       "bio": "Unde repellat amet quisquam maiores perferendis laboriosam ex asperiores reiciendis.\nRerum ipsum atque dolor ipsum nemo.",
       "role": "professor",
-      "imageURL": "",
+      "imageURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhuzHMeFgPM2-s2PyZZkehPy88ZA6Oi06KCw&s",
       "likeExam_Id": [],
       "history": [
         {
           "exam_id": 1,
-          "score": 1
+          "score": 3
         },
         {
           "exam_id": 2,
-          "score": 2
+          "score": 10
         }
       ],
       "id": "1"

@@ -11,7 +11,7 @@ import History from "@/components/History.vue";
 const exams = ref([]);
 const ownedExams = ref([]);
 const users = ref([]);
-const isShowingCreatedExams = ref(true); // ✅ toggle state
+const isShowingCreatedExams = ref(true); 
 
 const router = useRouter();
 const userLoginData = userLogin();
@@ -66,7 +66,7 @@ onMounted(() => {
     <Profile />
 
     <div class="w-full md:w-4/5 flex flex-col">
-      <!-- ✅ Toggle Button -->
+      <!-- Toggle Button -->
       <div class="flex justify-end mb-4">
         <button
           @click="isShowingCreatedExams = !isShowingCreatedExams"
@@ -76,7 +76,7 @@ onMounted(() => {
         </button>
       </div>
 
-      <!-- ✅ Your Created Exams Section -->
+      <!-- Your Created Exams Section -->
       <div v-if="isShowingCreatedExams && ownedExams.length">
         <h2 class="text-lg font-semibold mb-4 text-gray-800">Your Created Exams</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -109,7 +109,7 @@ onMounted(() => {
         </div>
       </div>
 
-      <!-- ✅ History Section -->
+      <!-- History Section -->
       <div v-else>
         <History />
       </div>
