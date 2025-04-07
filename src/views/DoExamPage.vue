@@ -148,28 +148,15 @@ onMounted(() => {
     <navBar />
     <div class="container mx-auto px-4 py-4">
       <div v-if="examData" class="max-w-3xl mx-auto">
-        <!-- Fixed top control buttons -->
-        <div class="bg-gray-100 p-4 mb-4 rounded-lg shadow-sm flex">
-          <button 
-            @click="restartExam" 
-            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full mr-4">
-            RESTART
-          </button>
-          <button 
-            @click="$router.push('/')" 
-            class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded-full">
-            HOME
-          </button>
-        </div>
         
         <!-- Content area with white background -->
         <div class="bg-white p-6 rounded-lg shadow-md mb-6">
           <!-- Exam theory/description section -->
           <div class="mb-8 border-l-4 border-blue-400 pl-4">
-            <h2 class="text-2xl font-bold uppercase border-b-2 border-black pb-2 mb-4 break-words">VUE COMPONENT THEORY</h2>
-            <p class="text-gray-700 break-words">THIS IS DESCRIPTION. 01100101010010101010000111010010101010</p>
+            <h2 class="text-2xl font-bold uppercase border-b-2 border-black pb-2 mb-4 break-words">{{ examData.name }}</h2>
+            <p class="text-gray-700 break-words">{{examData.description}}</p>
             <div class="mt-4">
-              <span class="bg-blue-200 text-black px-6 py-2 rounded-full inline-block">CLIENT SIDE</span>
+              <span class="bg-blue-200 text-black px-6 py-2 rounded-full inline-block">{{ examData.category }}</span>
             </div>
           </div>
           
@@ -177,8 +164,16 @@ onMounted(() => {
           <div class="max-h-[500px] overflow-y-auto pr-2">
             <div v-for="(paper, index) in examData.papers" :key="paper.id" class="mb-8 border-l-4 border-blue-400 pl-4">
               <div class="mb-4">
-                <h3 class="text-xl font-bold mb-1">QUESTION {{ index + 1 }}</h3>
+                <div class="mb-4 flex justify-between items-center">
+                  <h3 class="text-xl font-bold mb-1">QUESTION {{ index + 1 }}</h3>
+                  <!-- Display if it's a multiple or single choice question on the right side -->
+                  <span class="text-sm text-gray-500">
+                    {{ paper.options.filter(option => option.isCorrect).length > 1 ? 'Multiple Choice' : 'Single Choice' }}
+                  </span>
+                </div>
                 <p class="font-semibold uppercase break-words">{{ paper.question || 'WHAT IS CORRECT JILL IN THIS ANSWER EIE!?' }}</p>
+                    <!-- Display if it's a multiple or single choice question -->
+
               </div>
               
               <div class="ml-4">
@@ -195,20 +190,21 @@ onMounted(() => {
                     
                     <!-- Hidden actual form elements for functionality -->
                     <input 
-                      v-if="Array.isArray(userAnswers[paper.id])"
-                      type="checkbox"
-                      v-model="userAnswers[paper.id]"
-                      :value="option.choice"
-                      :disabled="isOptionDisabled(paper, option)"
-                      class="hidden"
-                    />
-                    <input
-                      v-else
-                      type="checkbox"
-                      v-model="userAnswers[paper.id]"
-                      :value="option.choice"
-                      class="hidden"
-                    />
+                    v-if="paper.options.filter(option => option.isCorrect).length > 1"  
+                    type="checkbox"
+                    v-model="userAnswers[paper.id]"
+                    :value="option.choice"
+                    :disabled="isOptionDisabled(paper, option)"
+                    class="hidden"
+                  />
+                  <input 
+                    v-else  
+                    type="radio"
+                    v-model="userAnswers[paper.id]"
+                    :value="option.choice"
+                    :name="'question_' + paper.id"
+                    class="hidden"
+                  />
                     <span class="text-lg break-words">{{ option.choice }}</span>
                   </label>
                 </div>
@@ -221,9 +217,19 @@ onMounted(() => {
             <button 
               @click="submitExam" 
               :disabled="isSubmitDisabled" 
-              class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 w-full rounded-lg text-lg disabled:bg-blue-300">
+              class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full mr-4">
               SUBMIT
             </button>
+            <button 
+            @click="restartExam" 
+            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full mr-4">
+            RESTART
+          </button>
+          <button 
+            @click="$router.push('/')" 
+            class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded-full">
+            HOME
+          </button>
           </div>
         </div>
       </div>
