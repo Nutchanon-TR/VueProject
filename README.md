@@ -54,6 +54,9 @@ https://www.canva.com/design/DAGg3-m6WtU/0pYba9n7QDymJ7Y71w_vOQ/edit?utm_content
 - https://app.leb2.org/class
 - https://github.com/
 
+# Video explain_project
+- https://mailkmuttacth-my.sharepoint.com/:v:/g/personal/chitsanupong_chom_kmutt_ac_th/EXI0MUKnbEZJnGgkoAaYqIMBeL_hJuMvSjFFiMCIaFKLdA?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=rXnBXg
+
 ## ตารางงานของสมาชิกแต่ละสัปดาห์
 
 | งานแต่ละสัปดาห์ / สมาชิก | 66130500095 | 66130500115 | 66130500116 | 66130500117 |
