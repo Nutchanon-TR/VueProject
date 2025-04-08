@@ -74,7 +74,7 @@ const fetchExamsAndUsers = async () => {
         ...exam,
         score: historyItem.score // เพิ่มคะแนนของรอบนั้น
       };
-    });
+    }).reverse();
 
   } catch (error) {
     console.error(error.message);
@@ -93,30 +93,30 @@ onMounted(() => {
 
 <template>
   <div class="w-full h-screen overflow-y-auto bg-gray-100 p-6">
-    <div class="flex-1 flex flex-col gap-4">
+    <div class="flex-1 flex flex-col gap-6">
       <div v-for="(exam, index) in userExams" :key="index" class="rounded-lg overflow-hidden">
         <!-- Card Header -->
-        <div class="bg-blue-400 text-white p-4 flex justify-between items-center">
+        <div class="bg-blue-400 text-white p-5 flex justify-between items-center">
           <div>
-            <h2 class="text-2xl font-bold">{{ exam.category }}</h2>
-            <p class="text-white">{{ exam.name }}</p>
+            <h2 class="text-3xl font-bold">{{ exam.category }}</h2>
+            <p class="text-xl">{{ exam.name }}</p>
           </div>
           <div class="text-right">
-            <p class="text-xl font-bold">{{ exam.score }}</p>
+            <p class="text-2xl font-bold">{{ exam.score }}</p>
           </div>
         </div>
 
         <!-- Card Footer -->
-        <div class="bg-white p-4 flex justify-between items-center">
+        <div class="bg-white p-5 flex justify-between items-center text-lg text-gray-800">
           <div>
             <p>
-              MIN: {{ calculateExamStats(exam.id).min }}
-              MAX: {{ calculateExamStats(exam.id).max }}
-              AVG: {{ calculateExamStats(exam.id).avg.toFixed(2) }}
+              <span class="font-medium">MIN:</span> {{ calculateExamStats(exam.id).min }} &nbsp;
+              <span class="font-medium">MAX:</span> {{ calculateExamStats(exam.id).max }} &nbsp;
+              <span class="font-medium">AVG:</span> {{ calculateExamStats(exam.id).avg.toFixed(2) }}
             </p>
           </div>
           <div>
-            <p>BY: {{ exam.owner ? exam.owner.name : 'Unknown' }}</p>
+            <p class="italic">BY: <span class="font-semibold">{{ exam.owner ? exam.owner.name : 'Unknown' }}</span></p>
           </div>
         </div>
       </div>
