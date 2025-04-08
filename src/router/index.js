@@ -17,8 +17,6 @@ import ProfileStudent from "@/views/Student/ProfileStudent.vue";
 import AdminPage from "@/views/AdminPage.vue";
 //DoExam
 import DoExamPage from "@/views/DoExamPage.vue";
-//Manage
-import Manage from "@/views/Manage.vue";
 //Pinia
 import { userLogin } from "@/stores/loginDataUser.js";
 
@@ -77,12 +75,7 @@ const router = createRouter({
       path: "/admin",
       name: "AdminPage",
       component: AdminPage,
-    },
-    {
-      path: "/manage",
-      name: "Manage",
-      component: Manage,
-    },
+    }
   ],
 });
 

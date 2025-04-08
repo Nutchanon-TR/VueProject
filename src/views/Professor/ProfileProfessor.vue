@@ -30,6 +30,7 @@ const fetchExams = async () => {
   }
 };
 
+
 const deleteExam = async (examId) => {
   if (confirm("Are you sure you want to delete this exam?")) {
     try {
@@ -52,7 +53,6 @@ const deleteExam = async (examId) => {
               history: user.history,
               likeExam_Id: user.likeExam_Id,
             });
-            fetchExams()
           }
         }
 

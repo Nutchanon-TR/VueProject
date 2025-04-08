@@ -2,7 +2,6 @@
 import { ref, onMounted } from "vue";
 import { userLogin } from '@/stores/loginDataUser.js';
 import { getAllData } from "@/libs/apiData";
-import LoginPage from "@/views/Register/LoginPage.vue";
 
 const exams = ref([]); // เก็บข้อมูล exams
 const userExams = ref([]); // เก็บข้อสอบที่ตรงกับ history.exam_id
@@ -42,9 +41,6 @@ const calculateExamStats = (examId) => {
 
   return { min, max, avg };
 };
- 
-
-
 
 // ฟังก์ชันดึงข้อมูล exams และ users
 const fetchExamsAndUsers = async () => {

@@ -34,6 +34,6 @@ export const userLogin = defineStore('loginDataUser', () => {
     imageURL,
     history,
     likeExam_Id,
-    keepDataFromLogin,
+    keepDataFromLogin
   }
 })
