@@ -1,4 +1,21 @@
-{
+{ "category":[
+  {
+    "cat_id":1,
+    "cat_name":"Math"
+  },
+  {
+    "cat_id":2,
+    "cat_name":"Coding Language"
+  },
+  {
+    "cat_id":3,
+    "cat_name":"Science"
+  },
+  {
+    "cat_id":4,
+    "cat_name":"English"
+  }
+],
   "users": [
     {
       "email": "T@",

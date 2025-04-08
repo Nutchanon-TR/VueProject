@@ -1,6 +1,7 @@
 <script setup>
 
-import { ref,watch } from 'vue';
+import { ref,watch,onMounted } from 'vue';
+import {getAllData} from '../../libs/apiData';
 
 const emit = defineEmits(["quizCategory","sendQuizDescription","sendQuizName","mode"])
 
@@ -10,24 +11,19 @@ const props = defineProps({
   initialDescription: {type:String}
 })
 const isOpen = ref(false);
-const category = ref([
-    {
-        id:1,
-        name:"Math"
-    },
-    {
-        id:2,
-        name:"Coding Language"
-    },
-    {
-        id:3,
-        name:"Science"
-    },
-    {
-        id:4,
-        name:"English"
-    }
-])
+const category = ref([])
+
+onMounted(async ()=>{
+    try{
+    const catData = await getAllData(`${import.meta.env.VITE_API_URL}/category`)
+    category.value = catData.map(item => ({
+      id: item.cat_id,
+      name: item.cat_name
+    }));
+}catch(err){
+    console.log(err)
+}
+})
 const toggleDropdown = () => {
   isOpen.value = !isOpen.value;
 };
