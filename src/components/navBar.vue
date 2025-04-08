@@ -31,7 +31,6 @@ onMounted(async () => {
   console.log("userLoginData: ", userLoginData);
   console.log("userLoginData.email: ", userLoginData.email);
   console.log("userLoginData.firstName: ", userLoginData.name);
-  console.log("userLoginData.history: ", userLoginData.history[1]);
   console.log("nav bar eiei");
 });
 
@@ -42,7 +41,6 @@ const logout = () => {
   console.log("userLoginData: ", userLoginData);
   console.log("userLoginData.email: ", userLoginData.email);
   console.log("userLoginData.firstName: ", userLoginData.name);
-  console.log("userLoginData.history: ", userLoginData.history[1]);
   router.push({ name: "LoginPage" });
 };
 

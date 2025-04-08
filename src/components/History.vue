@@ -21,31 +21,28 @@ const getExamWithOwner = (exams, users) => {
 
 // คำนวณสถิติสำหรับข้อสอบจากผู้ใช้ทุกคน
 const calculateExamStats = (examId) => {
-  // รวบรวมคะแนนทั้งหมดสำหรับข้อสอบนี้จากผู้ใช้ทุกคน
   const allScores = [];
 
-  // วนลูปผ่านผู้ใช้ทุกคนเพื่อหาคนที่ทำข้อสอบนี้
   users.value.forEach(user => {
     if (user.history && Array.isArray(user.history)) {
-      const examHistory = user.history.find(h => h.exam_id == examId);
-      if (examHistory) {
-        allScores.push(examHistory.score);
-      }
+      const examHistories = user.history.filter(h => h.exam_id == examId);
+      examHistories.forEach(history => {
+        allScores.push(history.score);
+      });
     }
   });
 
-  // ถ้าไม่พบคะแนน ให้คืนค่าเป็นศูนย์
   if (allScores.length === 0) {
     return { min: 0, max: 0, avg: 0 };
   }
 
-  // คำนวณ
   const min = Math.min(...allScores);
   const max = Math.max(...allScores);
   const avg = allScores.reduce((a, b) => a + b, 0) / allScores.length;
 
   return { min, max, avg };
 };
+ 
 
 
 
@@ -87,7 +84,6 @@ onMounted(() => {
   console.log(userLoginData.name);
   // console.log(userLoginData.history);
   fetchExamsAndUsers();
-
 });
 </script>
 
@@ -102,7 +98,7 @@ onMounted(() => {
             <p class="text-xl">{{ exam.name }}</p>
           </div>
           <div class="text-right">
-            <p class="text-2xl font-bold">{{ exam.score }}</p>
+            <p class="text-2xl mr-[15px] font-bold">SCORES :  {{ exam.score }}</p>
           </div>
         </div>
 

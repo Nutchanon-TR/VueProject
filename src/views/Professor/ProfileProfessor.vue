@@ -1,11 +1,10 @@
 <script setup>
 import { ref, onMounted } from "vue";
-import { RouterLink, RouterView, useRouter } from "vue-router";
+import { RouterLink, useRouter } from "vue-router";
 import navBar from "@/components/navBar.vue";
 import { userLogin } from "@/stores/loginDataUser.js";
-import { getAllData } from "@/libs/apiData";
+import { getAllData,updateSomeData,deleteUserById } from "@/libs/apiData";
 import Profile from "@/components/Profile.vue";
-import { deleteUserById } from "@/libs/apiData";
 import History from "@/components/History.vue";
 
 const exams = ref([]);
@@ -24,7 +23,7 @@ const fetchExams = async () => {
       (exam) => exam.ownerExam_id == userLoginData.id
     );
 
-    const usersApiUrl = `${import.meta.env.VITE_API_URL}/users`;
+    const usersApiUrl = `${import.meta.env.VITE_API_URL}/users`
     users.value = await getAllData(usersApiUrl);
   } catch (error) {
     console.error(error.message);
@@ -37,10 +36,26 @@ const deleteExam = async (examId) => {
       const status = await deleteUserById(`${import.meta.env.VITE_API_URL}/exams`, examId);
       if (status === 200 || status === 204) {
         ownedExams.value = ownedExams.value.filter((exam) => exam.id !== examId);
-        users.value.forEach((user) => {
-          user.history = user.history.filter((record) => record.exam_id !== examId);
+
+        for (const user of users.value) {
+          const originalHistoryLength = user.history.length;
+          const originalLikeLength = user.likeExam_Id.length;
+
+          user.history = user.history.filter((record) => record.exam_id != examId);
           user.likeExam_Id = user.likeExam_Id.filter((id) => id !== examId);
-        });
+          console.log("Check: ",user.history, user.likeExam_Id);
+          if (
+            user.history.length !== originalHistoryLength ||
+            user.likeExam_Id.length !== originalLikeLength
+          ) {
+            await updateSomeData(`${import.meta.env.VITE_API_URL}/users`, user.id, {
+              history: user.history,
+              likeExam_Id: user.likeExam_Id,
+            });
+            fetchExams()
+          }
+        }
+
         alert("Exam and associated data deleted successfully.");
       } else {
         alert("Failed to delete the exam.");
@@ -53,6 +68,8 @@ const deleteExam = async (examId) => {
     router.push({ name: "ProfileProfessor" });
   }
 };
+ 
+ 
 
 onMounted(() => {
   console.log(userLoginData.name);
