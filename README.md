@@ -33,10 +33,6 @@
 - คำนวณคะแนน (Min, Max, Avg)
 - แสดงสรุปผลคะแนน
 
-### ระบบค้นหาและกรองข้อมูล
-- ค้นหาข้อสอบ
-- กรองข้อสอบตามหมวดหมู่
-
 ### ระบบจัดการสิทธิ์
 - อนุมัติ / ยกเลิกบทบาท Professor
 - จัดการสิทธิ์ผู้ใช้โดย Admin
@@ -56,6 +52,9 @@ https://www.canva.com/design/DAGg3-m6WtU/0pYba9n7QDymJ7Y71w_vOQ/edit?utm_content
 
 # Video explain_project
 - https://mailkmuttacth-my.sharepoint.com/:v:/g/personal/chitsanupong_chom_kmutt_ac_th/EXI0MUKnbEZJnGgkoAaYqIMBeL_hJuMvSjFFiMCIaFKLdA?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=rXnBXg
+
+# explain_Component and tutorial
+- https://www.canva.com/design/DAGkENX3O3k/1Ax2roYB1vxQuj5g-OVm6A/edit?utm_content=DAGkENX3O3k&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
 ## ตารางงานของสมาชิกแต่ละสัปดาห์
 
