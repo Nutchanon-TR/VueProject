@@ -157,7 +157,6 @@ onMounted(() => {
     <navBar />
     <div class="container mx-auto px-4 py-4">
       <div v-if="examData" class="max-w-3xl mx-auto">
-        
         <!-- Content area with white background -->
         <div class="bg-white p-6 rounded-lg shadow-md mb-6">
           <!-- Exam theory/description section -->
@@ -168,23 +167,24 @@ onMounted(() => {
               <span class="bg-blue-200 text-black px-6 py-2 rounded-full inline-block">{{ examData.category }}</span>
             </div>
           </div>
-          
-          <!-- Questions section - with fixed height and scrollable area -->
-          <div class="max-h-[500px] overflow-y-auto pr-2">
+
+          <!-- Questions section - Remove scroll, let it overflow with page -->
+          <div class="pr-2">
             <div v-for="(paper, index) in examData.papers" :key="paper.id" class="mb-8 border-l-4 border-blue-400 pl-4">
               <div class="mb-4">
-                <div class="mb-4 flex justify-between items-center">
-                  <h3 class="text-xl font-bold mb-1">QUESTION {{ index + 1 }}</h3>
-                  <!-- Display if it's a multiple or single choice question on the right side -->
-                  <span class="text-sm text-gray-500">
+                <div class="mb-4">
+                  <div class="flex flex-wrap items-baseline">
+                    <h3 class="text-xl font-bold mb-1 mr-2">QUESTION {{ index + 1 }} :</h3>
+                    <p class="font-semibold break-words text-blue-700 text-xl font-bold">
+                      {{ paper.question || 'No question' }}
+                    </p>
+                  </div>
+                  <span class="text-sm text-gray-500 block mt-1">
                     {{ paper.options.filter(option => option.isCorrect).length > 1 ? 'Multiple Choice' : 'Single Choice' }}
                   </span>
                 </div>
-                <p class="font-semibold uppercase break-words">{{ paper.question || 'WHAT IS CORRECT JILL IN THIS ANSWER EIE!?' }}</p>
-                    <!-- Display if it's a multiple or single choice question -->
-
               </div>
-              
+
               <div class="ml-4">
                 <div v-for="option in paper.options" :key="option.choice" class="mb-3">
                   <label class="flex items-start cursor-pointer">
@@ -193,103 +193,172 @@ onMounted(() => {
                       <div class="w-6 h-6 rounded-full border-2 border-blue-500 flex items-center justify-center">
                         <div v-if="(Array.isArray(userAnswers[paper.id]) && userAnswers[paper.id].includes(option.choice)) || 
                                   (!Array.isArray(userAnswers[paper.id]) && userAnswers[paper.id] === option.choice)" 
-                             class="w-4 h-4 rounded-full bg-blue-500"></div>
+                            class="w-4 h-4 rounded-full bg-blue-500"></div>
                       </div>
                     </div>
-                    
+
                     <!-- Hidden actual form elements for functionality -->
                     <input 
-                    v-if="paper.options.filter(option => option.isCorrect).length > 1"  
-                    type="checkbox"
-                    v-model="userAnswers[paper.id]"
-                    :value="option.choice"
-                    :disabled="isOptionDisabled(paper, option)"
-                    class="hidden"
-                  />
-                  <input 
-                    v-else  
-                    type="radio"
-                    v-model="userAnswers[paper.id]"
-                    :value="option.choice"
-                    :name="'question_' + paper.id"
-                    class="hidden"
-                  />
+                      v-if="paper.options.filter(option => option.isCorrect).length > 1"  
+                      type="checkbox"
+                      v-model="userAnswers[paper.id]"
+                      :value="option.choice"
+                      :disabled="isOptionDisabled(paper, option)"
+                      class="hidden"
+                    />
+                    <input 
+                      v-else  
+                      type="radio"
+                      v-model="userAnswers[paper.id]"
+                      :value="option.choice"
+                      :name="'question_' + paper.id"
+                      class="hidden"
+                    />
                     <span class="text-lg break-words">{{ option.choice }}</span>
                   </label>
                 </div>
               </div>
             </div>
           </div>
-          
+
           <!-- Submit button fixed at bottom -->
-          <div class="mt-6">
+          <div class="mt-6 flex justify-center space-x-4">
             <button 
               @click="submitExam" 
               :disabled="isSubmitDisabled" 
-              class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full mr-4">
+              class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
               SUBMIT
             </button>
             <button 
-            @click="restartExam" 
-            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full mr-4">
-            RESTART
-          </button>
-          <button 
-            @click="$router.push('/')" 
-            class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded-full">
-            HOME
-          </button>
+              @click="restartExam" 
+              class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-full">
+              RESTART
+            </button>
           </div>
+
 
         </div>
       </div>
-      <button :disabled="isSubmitDisabled" @click="submitExam">ส่งคำตอบ</button>
-      <button @click="restartExam">เริ่มใหม่</button>
-      <button @click="$router.push('/')">กลับหน้าหลัก</button>
     </div>
 
-    <!-- Popup Result with improved styling -->
-    <div v-if="showResultPopup" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4 z-50">
-      <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[80vh] overflow-auto" @click.stop>
-        <div class="p-6 border-b border-gray-200">
-          <h2 class="text-2xl font-bold">ผลลัพธ์</h2>
+
+
+    <!-- Popup Result with enhanced styling -->
+    <div v-if="showResultPopup" class="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center p-4 z-50 backdrop-blur-sm">
+      <div class="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[85vh] overflow-hidden flex flex-col" @click.stop>
+        <!-- Header -->
+        <div class="bg-gradient-to-r from-blue-600 to-blue-800 p-6 text-white">
+          <div class="flex justify-center items-center">
+            <h2 class="text-2xl font-bold">EXAM RESULTS</h2>
+          </div>
         </div>
         
-        <div class="p-6">
-          <div class="bg-blue-50 p-4 rounded-lg mb-6">
-            <div class="flex justify-between items-center flex-wrap">
-              <p class="text-xl font-semibold">คะแนนรวม: {{ totalScore }} / {{ maxScore }}</p>
-              <p class="text-lg">ข้อที่ถูกทั้งหมด: {{ correctCount }}</p>
+        <!-- Body with scrollable content -->
+        <div class="flex-1 overflow-auto p-6">
+          <!-- Score summary card -->
+          <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl mb-8 shadow-sm border border-blue-100">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+              <div class="flex items-center">
+                <div class="bg-blue-600 text-white rounded-full w-16 h-16 flex items-center justify-center mr-4">
+                  <span class="text-2xl font-bold">{{ totalScore }}</span>
+                </div>
+                <div>
+                  <p class="text-sm text-blue-700 uppercase font-semibold">TOTAL SCORE</p>
+                  <p class="text-xl font-bold">{{ totalScore }} / {{ maxScore }} POINTS</p>
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div class="bg-green-600 text-white rounded-full w-16 h-16 flex items-center justify-center mr-4">
+                  <span class="text-2xl font-bold">{{ correctCount }}</span>
+                </div>
+                <div>
+                  <p class="text-sm text-green-700 uppercase font-semibold">CORRECT</p>
+                  <p class="text-xl font-bold">{{ correctCount }} / {{ examResult?.length || 0 }} QUESTIONS</p>
+                </div>
+              </div>
             </div>
           </div>
           
-          <div v-for="(result, index) in examResult" :key="index" class="mb-6 border-l-4 pl-4" :class="result.correct ? 'border-green-500' : 'border-red-500'">
-            <p class="font-bold mb-2 break-words">คำถาม: {{ result.question }}</p>
-            <p class="mb-2">คะแนน: {{ result.score }}</p>
-            <ul class="bg-gray-50 p-3 rounded">
-              <li v-for="(choice, i) in result.userChoices" :key="i" class="py-1 flex items-center break-words">
-                <span :class="{'font-semibold': choice.selected}">{{ choice.choice }}</span>
-                <span v-if="choice.selected" class="ml-2">(เลือก)</span>
-                <span v-if="choice.isCorrect" class="ml-2 text-green-600">✓</span>
-                <span v-if="choice.selected && !choice.isCorrect" class="ml-2 text-red-600">✗</span>
+          <!-- Questions results -->
+          <div v-for="(result, index) in examResult" :key="index" 
+              class="mb-6 rounded-xl overflow-hidden border shadow-sm"
+              :class="result.correct ? 'border-green-300' : 'border-red-300'">
+            <!-- Question header -->
+            <div class="p-4" :class="result.correct ? 'bg-green-50' : 'bg-red-50'">
+              <div class="flex items-center">
+                <div class="rounded-full w-8 h-8 flex items-center justify-center mr-3"
+                    :class="result.correct ? 'bg-green-600 text-white' : 'bg-red-600 text-white'">
+                  <span>{{ index + 1 }}</span>
+                </div>
+                <p class="font-bold break-words flex-1">{{ result.question }}</p>
+              </div>
+              <div class="mt-2 flex justify-between items-center">
+                <p class="text-sm font-medium">SCORE: {{ result.score }}</p>
+                <span class="px-3 py-1 rounded-full text-sm font-medium"
+                      :class="result.correct ? 'bg-green-200 text-green-800' : 'bg-red-200 text-red-800'">
+                  {{ result.correct ? 'CORRECT' : 'INCORRECT' }}
+                </span>
+              </div>
+            </div>
+            
+            <!-- Answer options -->
+            <ul class="bg-white p-4 divide-y divide-gray-100">
+              <li v-for="(choice, i) in result.userChoices" :key="i" 
+                  class="py-3 flex items-center justify-between break-words"
+                  :class="{
+                    'bg-green-50': choice.isCorrect,
+                    'bg-red-50': choice.selected && !choice.isCorrect
+                  }">
+                <div class="flex items-center">
+                  <div class="w-6 h-6 rounded-full border flex items-center justify-center mr-3"
+                      :class="{
+                        'border-green-500 bg-green-100': choice.isCorrect,
+                        'border-red-500 bg-red-100': choice.selected && !choice.isCorrect,
+                        'border-gray-300': !choice.selected && !choice.isCorrect
+                      }">
+                    <span v-if="choice.selected" class="w-3 h-3 rounded-full"
+                          :class="{
+                            'bg-green-500': choice.isCorrect,
+                            'bg-red-500': !choice.isCorrect
+                          }"></span>
+                  </div>
+                  <span :class="{
+                    'font-semibold': choice.selected || choice.isCorrect,
+                    'text-green-700': choice.isCorrect,
+                    'text-red-700': choice.selected && !choice.isCorrect
+                  }">{{ choice.choice }}</span>
+                </div>
+                <div class="flex items-center">
+                  <span v-if="choice.selected" class="text-sm italic mr-2 text-gray-500">(SELECTED)</span>
+                  <span v-if="choice.isCorrect" class="text-green-600 font-bold">✓</span>
+                  <span v-if="choice.selected && !choice.isCorrect" class="text-red-600 font-bold">✗</span>
+                </div>
               </li>
             </ul>
           </div>
         </div>
         
-        <div class="p-6 border-t border-gray-200 flex justify-end space-x-4">
-          <button 
-            @click="restartExam" 
-            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
-            RESTART
-          </button>
-          <button 
-            @click="$router.push('/')" 
-            class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded-full">
-            HOME
-          </button>
+        <!-- Footer with action buttons -->
+        <div class="bg-gray-50 p-6 border-t border-gray-200">
+          <div class="flex justify-center gap-4">
+            <button 
+              @click="restartExam" 
+              class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition-all duration-200 flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+              RESTART
+            </button>
+            <button 
+              @click="$router.push('/')" 
+              class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-3 px-8 rounded-lg transition-all duration-200 flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7m-7-7v14" />
+              </svg>
+              HOME
+            </button>
+          </div>
         </div>
-
       </div>
     </div>
   </div>
