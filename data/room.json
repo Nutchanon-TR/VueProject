@@ -58,6 +58,10 @@
         {
           "exam_id": 1,
           "score": 1
+        },
+        {
+          "exam_id": 7,
+          "score": 0
         }
       ],
       "id": "1"

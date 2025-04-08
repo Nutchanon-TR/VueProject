@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted,defineEmits  } from "vue";
+import { ref, onMounted, defineEmits } from "vue";
 import { userLogin } from '@/stores/loginDataUser.js';
 import { updateSomeData } from "@/libs/apiData";
 
@@ -27,7 +27,7 @@ const updateUserProfile = async () => {
 
         const userId = userLoginData.id;
         const apiUrl = `${import.meta.env.VITE_API_URL}/users`;
-        
+
         const updatedData = await updateSomeData(apiUrl, userId, updatedUser.value);
         userLoginData.keepDataFromLogin(updatedData);
         successMsg.value = 'Profile updated successfully!';
@@ -47,7 +47,9 @@ onMounted(() => {
 </script>
 <template>
     <div class="w-full md:w-2/6 p-6 bg-white">
-        <img class="w-32 h-32 mx-auto rounded-full object-cover" :src="userLoginData.imageURL || 'https://static.vecteezy.com/system/resources/thumbnails/005/544/718/small_2x/profile-icon-design-free-vector.jpg'" alt="Profile Image" />
+        <img class="w-32 h-32 mx-auto rounded-full object-cover"
+            :src="userLoginData.imageURL || 'https://static.vecteezy.com/system/resources/thumbnails/005/544/718/small_2x/profile-icon-design-free-vector.jpg'"
+            alt="Profile Image" />
 
 
         <div v-if="!showUpdateForm" class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg text-center">
@@ -62,7 +64,7 @@ onMounted(() => {
             </div>
 
             <button @click="showUpdateForm = true"
-                class="mt-5 px-6 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full shadow-md hover:shadow-lg transition-transform transform hover:scale-105">
+                class="w-full mt-5 px-6 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full shadow-md hover:shadow-lg transition-transform transform hover:scale-105">
                 Edit Profile
             </button>
         </div>
@@ -71,7 +73,7 @@ onMounted(() => {
 
         <!-- ฟอร์มอัปเดตข้อมูล -->
         <div v-if="showUpdateForm" class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg text-center">
-            
+
             <p v-if="errorMsg" class="text-red-500 mb-3">{{ errorMsg }}</p>
             <p v-if="successMsg" class="text-green-500 mb-3">{{ successMsg }}</p>
 
@@ -91,15 +93,16 @@ onMounted(() => {
 
             <div class="mt-5 flex justify-center gap-4">
                 <button @click="updateUserProfile"
-                    class="px-6 py-2 bg-green-500 text-white rounded-full shadow-md hover:bg-green-600 transition-transform transform hover:scale-105">
-                    Update Profile
+                    class="px-5 py-2 bg-green-500 text-white rounded-lg text-sm hover:bg-green-600 transition-colors">
+                    Update
                 </button>
 
                 <button @click="showUpdateForm = false"
-                    class="px-6 py-2 bg-red-500 text-white rounded-full shadow-md hover:bg-red-600 transition-transform transform hover:scale-105">
+                    class="px-5 py-2 bg-gray-100 text-gray-800 rounded-lg text-sm hover:bg-gray-200 transition-colors">
                     Cancel
                 </button>
             </div>
+
         </div>
 
     </div>
