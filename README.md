@@ -3,12 +3,15 @@
 | รหัสนักศึกษา | ชื่อ | หน้าที่ |
 |--------------|------------------------|-------------------|
 | 66130500095 | นายชิษณุพงศ์ โฉมทอง | - หน้า Score Student<br> - หน้า Score Teacher<br> - หน้า Start Exam|
-| 66130500115 | นายณัฐชนน เจริญเสริมสิริ | - หน้า Login -> ตรวจสอบ Email ว่ากรอกผิดมั้ยหรือมีข้อมูลใน JSON มั้ย และตรวจรหัสผ่านว่าถูกมั้ย && เก็บข้อมูล user ที่ login เข้ามาลง cookie และผูก cookie กับ pinia ผ่าน id <br> - หน้า Signin -> ตรวจสอบว่า Email นี้เคยสมัครไว้แล้วยัง ตรวจสอบว่ามี @mail มั้ย หรือลืมกรอกอะไรมั้ย  <br> - Component Nav Bar -> ดึงข้อมูลชื่อ user ที่ login จาก pinia <br> - หน้า Admin -> สำหรับ Delete/Edit Professor <br> - หน้า Home   |
+| 66130500115 | นายณัฐชนน เจริญเสริมสิริ | - หน้า Login -> ตรวจสอบ Email ว่ากรอกผิดมั้ยหรือมีข้อมูลใน JSON มั้ย และตรวจรหัสผ่านว่าถูกมั้ย && เก็บข้อมูล user ที่ login เข้ามาลง cookie และผูก cookie กับ pinia ผ่าน id <br> - หน้า Signin -> ตรวจสอบว่า Email นี้เคยสมัครไว้แล้วยัง ตรวจสอบว่ามี @mail มั้ย หรือลืมกรอกอะไรมั้ย  <br> - Component Nav Bar -> ดึงข้อมูลชื่อ user ที่ login จาก pinia <br> - หน้า Admin -> สำหรับ Delete/Edit Professor <br> - หน้า Home <br> Navigate Guard -> ดักการเข้าถึง role และ หน้า register <br> - Like featrue -> กดไลค์แล้วไม่สามารถกดเพิ่มได้ <br> - ดัก frontend <br> - Logout -> ลบ id ออกจาก cookie   |
 | 66130500116 | นายธนกร โพธิ์ทรัพย์สุข | - Component Create<br> - Component Edit |
 | 66130500117 | นายปิยโชค มีวิเวิเศษ |  - Component แบบทดสอบ เช็คว่าถูกกี่ข้อ<br> - เก็บเป็น Score (ข้อที่เป็น Multiple Choice ได้ 1 คะแนน ต้องตอบถูกทุกข้อ) |
 
 
 # TesT2Hub
+
+![Screenshot 2025-04-09 013707](https://github.com/user-attachments/assets/6b07de8b-942b-4eba-a16c-4b56b5b28cf4)
+
 
 ## Description
 เว็บไซต์นี้เป็นแพลตฟอร์มสำหรับการสร้างและทำข้อสอบออนไลน์ โดยรองรับทั้งนักเรียนและอาจารย์ สามารถใช้ในการสร้าง จัดการ และตรวจสอบข้อสอบได้อย่างมีประสิทธิภาพ นักเรียนสามารถเข้าสอบ ดูผลคะแนน และศึกษาเฉลยได้ ขณะที่อาจารย์สามารถสร้างข้อสอบ ตรวจสอบผลสอบ และจัดการสิทธิ์ของผู้ใช้ได้ และมี admin คอยจัดการเรื่องการให้สิทธิ์
@@ -33,6 +36,10 @@
 - คำนวณคะแนน (Min, Max, Avg)
 - แสดงสรุปผลคะแนน
 
+### ระบบค้นหาและกรองข้อมูล
+- ค้นหาข้อสอบ
+- กรองข้อสอบตามหมวดหมู่
+
 ### ระบบจัดการสิทธิ์
 - อนุมัติ / ยกเลิกบทบาท Professor
 - จัดการสิทธิ์ผู้ใช้โดย Admin
@@ -40,6 +47,48 @@
 ### UI Design
 - ธีมหลักของเว็บเป็น Minimal (White, Black, Blue)
 - มีการออกแบบ Navbar, หน้าสรุปคะแนน และหน้าเริ่มต้นสอบ
+
+
+
+# How to use? (รายละเอียดเพิ่มเติมอยู่ในลิงก์ด้านล่าง)
+
+### Link: https://www.canva.com/design/DAGkENX3O3k/1Ax2roYB1vxQuj5g-OVm6A/edit?utm_content=DAGkENX3O3k&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
+
+## Login / Signup
+- ลงทะเบียนผู้ใช้ (Signup) และเข้าสู่ระบบ (Login) แบบปกติ
+
+
+## ระบบ Role (แบ่งออกเป็น 3 ประเภท)
+
+### 1. Admin
+- กด **Give Privilege** เพื่อเปลี่ยน role ของผู้ใช้ (เช่น เปลี่ยนเป็น Professor หรือ Student)
+- ลบผู้ใช้ (**Delete User**)
+
+### 2. Professor
+- กด **Create** เพื่อสร้างข้อสอบใหม่
+- กด **ชื่อผู้ใช้** ตรง **Nav Bar** → **Profile** เพื่อแก้ไขข้อมูลส่วนตัว
+- กดที่ **ชื่อข้อสอบ** เพื่อ **Edit** ข้อสอบ
+- กด **ถังขยะ (🗑️)** เพื่อลบข้อสอบ
+- **สามารถทำทุกอย่างเหมือน Student ได้** เช่น:
+  - ทำข้อสอบ
+  - แก้ไขโปรไฟล์
+  - ดูประวัติการทำข้อสอบ
+  - ไลค์ข้อสอบ
+
+### 3. Student
+- กดที่ **ข้อสอบหน้า Home** เพื่อเริ่มทำข้อสอบ
+- เข้า **หน้า Profile** → กด **Edit Profile** เพื่อแก้ไข:
+  - ชื่อ (Name)
+  - Bio
+  - รูปโปรไฟล์ (Profile Image)
+- ดู **ประวัติการทำข้อสอบ**
+- กด **ไลค์ข้อสอบ** ที่ชื่นชอบ
+
+
+## Logout
+- กด **ชื่อผู้ใช้** ตรง **Nav Bar** → แล้วกด **Logout** เพื่อออกจากระบบ
+
 
 
 # Design
@@ -50,15 +99,9 @@ https://www.canva.com/design/DAGg3-m6WtU/0pYba9n7QDymJ7Y71w_vOQ/edit?utm_content
 - https://app.leb2.org/class
 - https://github.com/
 
-# Video explain_project
-- https://mailkmuttacth-my.sharepoint.com/:v:/g/personal/chitsanupong_chom_kmutt_ac_th/EXI0MUKnbEZJnGgkoAaYqIMBeL_hJuMvSjFFiMCIaFKLdA?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=rXnBXg
-
-# explain_Component and tutorial
-- https://www.canva.com/design/DAGkENX3O3k/1Ax2roYB1vxQuj5g-OVm6A/edit?utm_content=DAGkENX3O3k&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
-
 ## ตารางงานของสมาชิกแต่ละสัปดาห์
 
-| งานแต่ละสัปดาห์ / สมาชิก | 66130500095 | 66130500115 | 66130500116 | 66130500117 |
+| งานแต่ละสัปดาห์ / สมาชิก | 66130500095(23%) | 66130500115(29%) | 66130500116(25%) | 66130500117(23%) |
 |----------------|------------|------------|------------|------------|
 | **Week 1**    | หา inspiration คิดว่าจะทำ project อะไรดี| คิดหัวข้อทำโปรเจค & fegureหลักโปรเจค          | ช่วยคิดหัวข้อในการทำโปรเจค          | คุยหัวข้อโปรเจค           |
 | **Week 2**    | UI design && add template readme| UI design & JSON design & คุย scope งาน          | Discuss And Help Design The UI          |ออกแบบUI คุย scope งาน         |
