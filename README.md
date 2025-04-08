@@ -2,7 +2,7 @@
 ## Member
 | รหัสนักศึกษา | ชื่อ | หน้าที่ |
 |--------------|------------------------|-------------------|
-| 66130500095 | นายชิษณุพงศ์ โฉมทอง | - หน้า Score Student<br> - หน้า Score Teacher<br> - หน้า Start Exam|
+| 66130500095 | นายชิษณุพงศ์ โฉมทอง | - Profile component and edit profile : แสดงข้อมูลของ user และสามารถแก้ไขชื่อ รูป bio <br> - history conponent แสดง Created Exams history สำหรับ user ที่เป็น professor && Exam History สำหรับ user ที่เป็น professor student<br> - delete exam สำหรับ user professor <br> -popup start exam แสดงรายละเอียดข้อสอบที่ user เลือกทำและถามยืนยันที่จะเริ่มทำข้อสอบ
 | 66130500115 | นายณัฐชนน เจริญเสริมสิริ | - หน้า Login -> ตรวจสอบ Email ว่ากรอกผิดมั้ยหรือมีข้อมูลใน JSON มั้ย และตรวจรหัสผ่านว่าถูกมั้ย && เก็บข้อมูล user ที่ login เข้ามาลง cookie และผูก cookie กับ pinia ผ่าน id <br> - หน้า Signin -> ตรวจสอบว่า Email นี้เคยสมัครไว้แล้วยัง ตรวจสอบว่ามี @mail มั้ย หรือลืมกรอกอะไรมั้ย  <br> - Component Nav Bar -> ดึงข้อมูลชื่อ user ที่ login จาก pinia <br> - หน้า Admin -> สำหรับ Delete/Edit Professor <br> - หน้า Home <br> Navigate Guard -> ดักการเข้าถึง role และ หน้า register <br> - Like featrue -> กดไลค์แล้วไม่สามารถกดเพิ่มได้ <br> - ดัก frontend <br> - Logout -> ลบ id ออกจาก cookie   |
 | 66130500116 | นายธนกร โพธิ์ทรัพย์สุข | - Component Create<br> - Component Edit |
 | 66130500117 | นายปิยโชค มีวิเวิเศษ |  - Component แบบทดสอบ เช็คว่าถูกกี่ข้อ<br> - เก็บเป็น Score (ข้อที่เป็น Multiple Choice ได้ 1 คะแนน ต้องตอบถูกทุกข้อ) |
@@ -93,6 +93,9 @@
 
 # Design
 https://www.canva.com/design/DAGg3-m6WtU/0pYba9n7QDymJ7Y71w_vOQ/edit?utm_content=DAGg3-m6WtU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
+# Video explain_project
+https://mailkmuttacth-my.sharepoint.com/:v:/g/personal/chitsanupong_chom_kmutt_ac_th/EXI0MUKnbEZJnGgkoAaYqIMBeL_hJuMvSjFFiMCIaFKLdA?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=AVmXe6
 
 # reference
 - https://testimate.app/
