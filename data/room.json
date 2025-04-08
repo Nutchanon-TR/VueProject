@@ -24,7 +24,8 @@
         "5",
         "9",
         "6",
-        "12"
+        "12",
+        "2"
       ],
       "history": [
         {
@@ -70,6 +71,14 @@
         {
           "exam_id": 6,
           "score": 0
+        },
+        {
+          "exam_id": 2,
+          "score": 0
+        },
+        {
+          "exam_id": 1,
+          "score": 1
         }
       ],
       "id": "1"
@@ -188,6 +197,29 @@
         "10",
         "14"
       ]
+    },
+    {
+      "id": "6617",
+      "email": "J@",
+      "name": "Fish",
+      "password": "j",
+      "bio": "",
+      "role": "professor",
+      "imageURL": "",
+      "history": [
+        {
+          "exam_id": 18,
+          "score": 0
+        },
+        {
+          "exam_id": 19,
+          "score": 1
+        }
+      ],
+      "likeExam_Id": [
+        "7",
+        "9"
+      ]
     }
   ],
   "exams": [
@@ -273,7 +305,7 @@
       "name": "Programming Basics",
       "description": "Test your knowledge of programming languages.",
       "category": "Coding Language",
-      "likes": 7,
+      "likes": 8,
       "papers": [
         {
           "id": 1,
@@ -501,7 +533,7 @@
       "name": "Hi",
       "description": "rew",
       "category": "English",
-      "likes": 1,
+      "likes": 2,
       "papers": [
         {
           "id": 2,
@@ -539,7 +571,7 @@
       "name": "eq",
       "description": "e",
       "category": "Math",
-      "likes": 1,
+      "likes": 2,
       "papers": [
         {
           "id": 2,
@@ -630,54 +662,6 @@
       ]
     },
     {
-      "id": "14",
-      "ownerExam_id": "04ea",
-      "name": "Jill love Fish",
-      "description": "gg",
-      "category": "English",
-      "likes": 1,
-      "papers": [
-        {
-          "id": 2,
-          "question": "gds",
-          "options": [
-            {
-              "choice": "dd",
-              "isCorrect": false
-            },
-            {
-              "choice": "gggg",
-              "isCorrect": true
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "15",
-      "ownerExam_id": "04ea",
-      "name": "Fish Fearf",
-      "description": "ddd",
-      "category": "Science",
-      "likes": 0,
-      "papers": [
-        {
-          "id": 2,
-          "question": "dss",
-          "options": [
-            {
-              "choice": "ss",
-              "isCorrect": false
-            },
-            {
-              "choice": "aaa",
-              "isCorrect": true
-            }
-          ]
-        }
-      ]
-    },
-    {
       "id": "16",
       "ownerExam_id": "1",
       "name": "123456",
@@ -696,6 +680,102 @@
             {
               "choice": "oo",
               "isCorrect": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "17",
+      "ownerExam_id": "1",
+      "name": "Jill is fish",
+      "description": "fessfes",
+      "category": "Coding Language",
+      "likes": 0,
+      "papers": [
+        {
+          "id": 2,
+          "question": "fd",
+          "options": [
+            {
+              "choice": "sdf",
+              "isCorrect": true
+            },
+            {
+              "choice": "fd",
+              "isCorrect": false
+            },
+            {
+              "choice": "ss",
+              "isCorrect": false
+            },
+            {
+              "choice": "dd",
+              "isCorrect": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "18",
+      "ownerExam_id": "6617",
+      "name": "Super Jill",
+      "description": "dwas",
+      "category": "Math",
+      "likes": 0,
+      "papers": [
+        {
+          "id": 2,
+          "question": "ffffffffff",
+          "options": [
+            {
+              "choice": "dda",
+              "isCorrect": true
+            },
+            {
+              "choice": "asd",
+              "isCorrect": false
+            },
+            {
+              "choice": "dsa",
+              "isCorrect": false
+            },
+            {
+              "choice": "www",
+              "isCorrect": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "19",
+      "ownerExam_id": "6617",
+      "name": "ควายยอร์ส",
+      "description": "กาก",
+      "category": "Coding Language",
+      "likes": 0,
+      "papers": [
+        {
+          "id": 2,
+          "question": "ดำ",
+          "options": [
+            {
+              "choice": "โง่",
+              "isCorrect": false
+            },
+            {
+              "choice": "กาก",
+              "isCorrect": false
+            },
+            {
+              "choice": "ควย",
+              "isCorrect": true
+            },
+            {
+              "choice": "กก",
+              "isCorrect": false
             }
           ]
         }
