@@ -31,12 +31,7 @@ const handleChange = (e) => {
   });
 };
 
-const handleTextChange = (e) => {
-  emit("updateOption", {
-    ...props.option,
-    text: e.target.value
-  });
-};
+//
 </script>
 <template>
   <div class="flex items-center space-x-2 pl-2 py-[10px]">
@@ -50,7 +45,6 @@ const handleTextChange = (e) => {
     <input
       type="text"
       v-model="option.text"
-      @input="handleTextChange"
       placeholder="Write Option ..."
       class="border-0 border-b-2 border-gray-300 focus:border-blue-500 focus:outline-none px-1 py-0.5 w-full text-lg font-bold text-gray-700 placeholder-gray-400"
     />

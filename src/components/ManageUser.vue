@@ -49,11 +49,12 @@ const givePrivilege = async(id,roleChanging) => {
 };
 
 const deleteUser = async(id) => {
-     confirm("Are you sure you want to delete this user?");
-          await findUserId(id);
-         await deleteUserById(`${import.meta.env.VITE_API_URL}/users`,id);
-          console.log("user has been deleted",id);
-         userData.value = await getAllData(`${import.meta.env.VITE_API_URL}/users`);
+  if(confirm("Are you sure you want to delete this user?")){
+    await findUserId(id);
+    await deleteUserById(`${import.meta.env.VITE_API_URL}/users`,id);
+    console.log("user has been deleted",id);
+    userData.value = await getAllData(`${import.meta.env.VITE_API_URL}/users`);
+  }
 };
 
 const findUserId = async(id) => {
