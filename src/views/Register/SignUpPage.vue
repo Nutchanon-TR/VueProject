@@ -49,7 +49,7 @@ const signUpChecking = () => {
   }
 };
 
-const createUser = (nameData, emailData, passwordData, imadeData) => {
+const createUser = async(nameData, emailData, passwordData, imadeData) => {
   if (
     nameData !== "" ||
     emailData !== "" ||
@@ -73,7 +73,7 @@ const createUser = (nameData, emailData, passwordData, imadeData) => {
     console.log("name: ", nameData);
     console.log("email: ", emailData);
     console.log("password: ", passwordData);
-    addData(`${import.meta.env.VITE_API_URL}/users`, postData.value);
+    await addData(`${import.meta.env.VITE_API_URL}/users`, postData.value);
     console.log("Congreate");
     goToLoginPage();
   } else {
@@ -82,8 +82,6 @@ const createUser = (nameData, emailData, passwordData, imadeData) => {
 };
 
 const goToLoginPage = () => {
-  console.log("Go to login page");
-  //route to login page
   router.push({ name: "LoginPage" });
 };
 </script>

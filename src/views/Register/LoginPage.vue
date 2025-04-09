@@ -13,6 +13,7 @@ onMounted(async () => {
   } catch (error) {
     console.error(error);
   }
+  console.log("userData: ", userData.value);
 });
 
 const email = ref("");
