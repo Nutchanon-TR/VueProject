@@ -10,7 +10,8 @@
 
 # TesT2Hub
 
-![Screenshot 2025-04-09 013707](https://github.com/user-attachments/assets/6b07de8b-942b-4eba-a16c-4b56b5b28cf4)
+![Screenshot 2025-04-09 194408](https://github.com/user-attachments/assets/5dad26a2-6bd5-443f-abca-211f2295f363)
+## Link: https://www.figma.com/board/MwbmXrxsWgxivOLEWeDyuA/Untitled?node-id=0-1&p=f&t=dVB4lkhZHOymhXdc-0
 
 
 ## Description
@@ -52,8 +53,7 @@
 
 # How to use? (รายละเอียดเพิ่มเติมอยู่ในลิงก์ด้านล่าง)
 
-### Link: https://www.canva.com/design/DAGkENX3O3k/1Ax2roYB1vxQuj5g-OVm6A/edit?utm_content=DAGkENX3O3k&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
-
+### Link totorial: https://www.canva.com/design/DAGkENX3O3k/1Ax2roYB1vxQuj5g-OVm6A/edit?utm_content=DAGkENX3O3k&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
 ## Login / Signup
 - ลงทะเบียนผู้ใช้ (Signup) และเข้าสู่ระบบ (Login) แบบปกติ
