@@ -61,8 +61,6 @@ const fetchExamsAndUsers = async () => {
     exams.value = getExamWithOwner(examsData, users.value);
     const userDataGetAll = await getDataById(`${import.meta.env.VITE_API_URL}/users`, userLoginData.id);
     const userHistory = userDataGetAll.history || [];
-    console.log("userHistory: ",userHistory);
-    console.log("userLoginData.history: ",userLoginData.history);
     // กรองเฉพาะข้อสอบที่ผู้ใช้เคยทำ
     userExams.value = userHistory.map(historyItem => {
       const exam = exams.value.find(e => e.id == historyItem.exam_id);
