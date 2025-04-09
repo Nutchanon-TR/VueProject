@@ -61,6 +61,8 @@ const maxScore = computed(() => {
 });
 
 const submitExam = async () => {
+  const confirmed = window.confirm("Are you sure you want to submit?");
+  if (!confirmed) return;
   if (!examData.value) return;
   let score = 0;
   let correctQuestions = 0;
@@ -126,6 +128,8 @@ const submitExam = async () => {
 };
 
 const restartExam = () => {
+  const confirmed = window.confirm("Are you sure you want to restart?");
+  if (!confirmed) return;
   Object.keys(userAnswers).forEach(key => {
     userAnswers[key] = [];
   });
