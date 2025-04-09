@@ -27,12 +27,12 @@ const toggleDropdown = () => {
   isDropdownOpen.value = !isDropdownOpen.value;
 };
 
-onMounted(async () => {
-  console.log("userLoginData: ", userLoginData);
-  console.log("userLoginData.email: ", userLoginData.email);
-  console.log("userLoginData.firstName: ", userLoginData.name);
-  console.log("nav bar eiei");
-});
+// onMounted(async () => {
+//   console.log("userLoginData: ", userLoginData);
+//   console.log("userLoginData.email: ", userLoginData.email);
+//   console.log("userLoginData.firstName: ", userLoginData.name);
+//   console.log("nav bar eiei");
+// });
 
 const logout = () => {
   console.log("logout");

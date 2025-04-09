@@ -34,6 +34,11 @@ const getRoleName = (role) => {
      }
 };
 
+const findUserId = async(id) => {
+         userDataById.value = await getDataById(`${import.meta.env.VITE_API_URL}/users`,id);
+         console.log("userDataById: ",userDataById.value);
+};
+
 const givePrivilege = async(id,roleChanging) => {
      await findUserId(id);
      console.log("id: ",userDataById.value.role);
@@ -57,10 +62,7 @@ const deleteUser = async(id) => {
   }
 };
 
-const findUserId = async(id) => {
-         userDataById.value = await getDataById(`${import.meta.env.VITE_API_URL}/users`,id);
-         console.log("userDataById: ",userDataById.value);
-};
+
 
 </script>
 

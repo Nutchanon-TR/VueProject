@@ -1,19 +1,8 @@
 <script setup>
 import navBar from "@/components/navBar.vue";
 import ManageUser from "@/components/ManageUser.vue";
-import { onMounted, ref } from "vue";
-import { getAllData } from "@/libs/apiData";
+import { ref } from "vue";
 
-const userData = ref([])
-
-onMounted(async () => {
-  try {
-    userData.value = await getAllData(`${import.meta.env.VITE_API_URL}/users`);
-    console.log("From admin page: ",userData.value);
-  } catch (error) {
-    console.error(error);
-  }
-});
 </script>
 
 <template>
@@ -31,4 +20,4 @@ onMounted(async () => {
     <hr class="border-t-2 border-gray-800 mt-4 mx-[50px] mb-[40px]">
     <ManageUser />
   </div>
-</template>
+</template> 

@@ -42,10 +42,12 @@
       "imageURL": "",
       "likeExam_Id": [
         "4",
-        "1",
         "9",
         "6",
-        "12"
+        "12",
+        "2",
+        "2",
+        "1"
       ],
       "history": [
         {
@@ -64,7 +66,6 @@
       "imageURL": "",
       "likeExam_Id": [
         "4",
-        "5",
         "2"
       ],
       "history": [
@@ -224,7 +225,7 @@
       "name": "fff",
       "password": "f",
       "bio": "",
-      "role": "student",
+      "role": "professor",
       "imageURL": "",
       "history": [],
       "likeExam_Id": []
@@ -236,6 +237,17 @@
       "password": "a",
       "bio": "",
       "role": "student",
+      "imageURL": "",
+      "history": [],
+      "likeExam_Id": []
+    },
+    {
+      "id": "9934",
+      "email": "K@",
+      "name": "kk",
+      "password": "k",
+      "bio": "",
+      "role": "professor",
       "imageURL": "",
       "history": [],
       "likeExam_Id": []
@@ -324,7 +336,7 @@
       "name": "Programming Fundamentals",
       "description": "Test your knowledge of programming languages.",
       "category": "Coding Language",
-      "likes": 7,
+      "likes": 9,
       "papers": [
         {
           "id": 1,
@@ -400,7 +412,7 @@
       "name": "Web Development Technologies",
       "description": "Test your knowledge of web technologies.",
       "category": "Coding Language",
-      "likes": 3,
+      "likes": 2,
       "papers": [
         {
           "id": 1,

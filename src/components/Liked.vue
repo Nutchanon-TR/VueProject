@@ -25,12 +25,6 @@ const likedByUserCheck = computed(() => {
 const toggleLike = async () => {
   try {
     if (!likedByUser.value) {
-      console.log("Adding like");
-
-      const currentExamData = await getDataById(
-        `${import.meta.env.VITE_API_URL}/exams`,
-        props.examId
-      );
 
       likeAmount.value += 1;
 
@@ -65,10 +59,10 @@ const toggleLike = async () => {
         }
       );
 
-      const index = userLoginData.likeExam_Id.indexOf(props.examId);
-      console.log("Index of examId in likeExam_Id:", index);
-      if (index > -1) {
-        userLoginData.likeExam_Id.splice(index, 1);
+      const indexUserLikeThisExam = userLoginData.likeExam_Id.indexOf(props.examId);
+      console.log("Index of examId in likeExam_Id:", indexUserLikeThisExam);
+      if (indexUserLikeThisExam > -1) {
+        userLoginData.likeExam_Id.splice(indexUserLikeThisExam, 1);
       }
       await updateSomeData(
         `${import.meta.env.VITE_API_URL}/users`,
