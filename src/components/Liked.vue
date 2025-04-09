@@ -48,8 +48,6 @@ const toggleLike = async () => {
 
       likedByUser.value = true;
     } else {
-      console.log("Removing like");
-
       likeAmount.value -= 1;
       await updateSomeData(
         `${import.meta.env.VITE_API_URL}/exams`,
@@ -60,7 +58,6 @@ const toggleLike = async () => {
       );
 
       const indexUserLikeThisExam = userLoginData.likeExam_Id.indexOf(props.examId);
-      console.log("Index of examId in likeExam_Id:", indexUserLikeThisExam);
       if (indexUserLikeThisExam > -1) {
         userLoginData.likeExam_Id.splice(indexUserLikeThisExam, 1);
       }
@@ -74,8 +71,6 @@ const toggleLike = async () => {
       likedByUser.value = false;
     }
 
-    console.log("Current like status:", likedByUser.value);
-    console.log("Current like count:", likeAmount.value);
   } catch (error) {
     console.error("Error updating like:", error);
   }

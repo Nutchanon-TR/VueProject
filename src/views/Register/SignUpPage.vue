@@ -16,7 +16,6 @@ const postData = ref("");
 onMounted(async () => {
   try {
     userData.value = await getAllData(`${import.meta.env.VITE_API_URL}/users`);
-    console.log(userData.value);
   } catch (error) {
     console.error(error);
   }
@@ -27,24 +26,17 @@ const signUpChecking = () => {
   errorMsg.value = "";
   if (email.value === "") {
     errorMsg.value = "Please fill your email";
-    console.log("error: ", errorMsg.value);
   } else if (email.value === "@") {
     errorMsg.value = "กวนตีนอ่อ😡";
-    console.log("error: ", errorMsg.value);
   } else if (!email.value.includes("@")) {
     errorMsg.value = "Please fill @ on your email";
-    console.log("error: ", errorMsg.value);
   } else if (userExist) {
     errorMsg.value = "User has already exist";
-    console.log("error: ", errorMsg.value);
   } else if (password.value === "") {
     errorMsg.value = "Please fill your password";
-    console.log("error: ", errorMsg.value);
   } else if (name.value === "") {
     errorMsg.value = "Please fill your name";
-    console.log("error: ", errorMsg.value);
   } else {
-    console.log("Email is complete");
     createUser(name.value, email.value, password.value, imageURL.value);
   }
 };
@@ -68,13 +60,7 @@ const createUser = async(nameData, emailData, passwordData, imadeData) => {
       likeExam_Id: [],
     };
     postData.value = user;
-    console.log(postData.value);
-    console.log(userData.value);
-    console.log("name: ", nameData);
-    console.log("email: ", emailData);
-    console.log("password: ", passwordData);
     await addData(`${import.meta.env.VITE_API_URL}/users`, postData.value);
-    console.log("Congreate");
     goToLoginPage();
   } else {
     console.log("Cant access");

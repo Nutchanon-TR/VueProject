@@ -39,11 +39,6 @@ const updateUserProfile = async () => {
     }
 };
 
-onMounted(() => {
-    console.log(userLoginData.name);
-    console.log(userLoginData.imageURL);
-
-});
 </script>
 <template>
     <div class="w-full md:w-2/6 p-6 bg-white">

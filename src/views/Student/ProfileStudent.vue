@@ -11,9 +11,6 @@ const updateImage = (newImg) => {
   updateImageUser.value = newImg;
 }
 
-onMounted(() => {
-  console.log(userLoginData.name);
-});
 </script>
 
 

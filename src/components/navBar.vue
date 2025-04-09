@@ -27,20 +27,9 @@ const toggleDropdown = () => {
   isDropdownOpen.value = !isDropdownOpen.value;
 };
 
-// onMounted(async () => {
-//   console.log("userLoginData: ", userLoginData);
-//   console.log("userLoginData.email: ", userLoginData.email);
-//   console.log("userLoginData.firstName: ", userLoginData.name);
-//   console.log("nav bar eiei");
-// });
-
 const logout = () => {
-  console.log("logout");
   document.cookie = "-1; path=/; max-age=0; secure"; // clear cookie
   userLoginData.keepDataFromLogin(idUserData);
-  console.log("userLoginData: ", userLoginData);
-  console.log("userLoginData.email: ", userLoginData.email);
-  console.log("userLoginData.firstName: ", userLoginData.name);
   router.push({ name: "LoginPage" });
 };
 

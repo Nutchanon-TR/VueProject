@@ -44,7 +44,6 @@ const deleteExam = async (examId) => {
 
           user.history = user.history.filter((record) => record.exam_id != examId);
           user.likeExam_Id = user.likeExam_Id.filter((id) => id !== examId);
-          console.log("Check: ",user.history, user.likeExam_Id);
           if (
             user.history.length !== originalHistoryLength ||
             user.likeExam_Id.length !== originalLikeLength
@@ -72,7 +71,6 @@ const deleteExam = async (examId) => {
  
 
 onMounted(() => {
-  console.log(userLoginData.name);
   fetchExams();
 });
 const updateImageUser = ref("");

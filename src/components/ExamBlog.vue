@@ -12,7 +12,6 @@ onMounted(async () => {
   try {
     examData.value = await getAllData(`${import.meta.env.VITE_API_URL}/exams`);
     userData.value = await getAllData(`${import.meta.env.VITE_API_URL}/users`);
-    console.log("Exam Data:", examData.value);
   } catch (error) {
     console.error(error);
   }
@@ -25,8 +24,6 @@ const byProfessor = (ownerId) => {
 
 const openExamModal = (exam) => {
   selectedExam.value = exam; // ตั้งค่าข้อสอบที่เลือก
-  console.log(selectedExam.value);
-  console.log(selectedExam.value.id);
 };
 
 const closeModal = () => {

@@ -120,7 +120,6 @@ const submitExam = async () => {
 
     try {
       await updateSomeData(`${import.meta.env.VITE_API_URL}/users`, user.id, { history: newHistory });
-      console.log("History updated successfully!");
     } catch (err) {
       console.error("Failed to update history:", err);
     }

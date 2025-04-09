@@ -42,12 +42,10 @@
       "imageURL": "",
       "likeExam_Id": [
         "4",
-        "9",
         "6",
         "12",
         "2",
-        "2",
-        "1"
+        "9"
       ],
       "history": [
         {
@@ -260,7 +258,7 @@
       "name": "Mathematics Fundamentals",
       "description": "Test your mathematical skills.",
       "category": "Math",
-      "likes": 4,
+      "likes": 3,
       "papers": [
         {
           "id": 1,
@@ -336,7 +334,7 @@
       "name": "Programming Fundamentals",
       "description": "Test your knowledge of programming languages.",
       "category": "Coding Language",
-      "likes": 9,
+      "likes": 8,
       "papers": [
         {
           "id": 1,

@@ -9,11 +9,9 @@ const userData = ref([]);
 onMounted(async () => {
   try {
     userData.value = await getAllData(`${import.meta.env.VITE_API_URL}/users`);
-    console.log(userData.value);
   } catch (error) {
     console.error(error);
   }
-  console.log("userData: ", userData.value);
 });
 
 const email = ref("");
@@ -24,22 +22,15 @@ const loginChecking = (pass) => {
   errorMsg.value = "";
   if (email.value === "") {
     errorMsg.value = "Please fill your email";
-    console.log("error: ", errorMsg.value);
   } else if (!email.value.includes("@")) {
     errorMsg.value = "Please fill @ on your email";
-    console.log("error: ", errorMsg.value);
   } else if (!userExist) {
     errorMsg.value = "User not exist";
-    console.log("error: ", errorMsg.value);
   } else if (pass === "") {
     errorMsg.value = "Please fill your password";
-    console.log("error: ", errorMsg.value);
   } else if (userExist.password !== pass) {
     errorMsg.value = "Password is incorrect";
-    console.log("error: ", errorMsg.value);
   } else {
-    console.log("eiei");
-    console.log(userExist.id);
     informUser(userExist.id);
   }
 };
@@ -65,10 +56,6 @@ const informUser = async (userId) => {
     document.cookie
   );
   userLoginData.keepDataFromLogin(idUserData.value);
-  console.log("userLoginData: ", userLoginData);
-  console.log("userLoginData.email: ", userLoginData.email);
-  console.log("userLoginData.firstName: ", userLoginData.name);
-  console.log("userLoginData.history: ", userLoginData.history[1]);
   checkRoleRouteUser();
 };
 

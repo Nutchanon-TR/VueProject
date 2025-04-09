@@ -18,7 +18,6 @@ const toggleDropdown = (userId) => {
 onMounted(async () => {
   try {
     userData.value = await getAllData(`${import.meta.env.VITE_API_URL}/users`);
-    console.log("From admin page: ", userData.value);
 } catch (error) {
      console.error(error);
 }
@@ -36,16 +35,12 @@ const getRoleName = (role) => {
 
 const findUserId = async(id) => {
          userDataById.value = await getDataById(`${import.meta.env.VITE_API_URL}/users`,id);
-         console.log("userDataById: ",userDataById.value);
 };
 
 const givePrivilege = async(id,roleChanging) => {
      await findUserId(id);
-     console.log("id: ",userDataById.value.role);
-     console.log("roleChanging: ",roleChanging);
      if(userDataById.value.role !== roleChanging){
          await updateSomeData(`${import.meta.env.VITE_API_URL}/users`,id,{role:roleChanging});
-         console.log("role has been changed");
          userData.value = await getAllData(`${import.meta.env.VITE_API_URL}/users`);
      }else{
          console.log("role is the same");
@@ -57,7 +52,6 @@ const deleteUser = async(id) => {
   if(confirm("Are you sure you want to delete this user?")){
     await findUserId(id);
     await deleteUserById(`${import.meta.env.VITE_API_URL}/users`,id);
-    console.log("user has been deleted",id);
     userData.value = await getAllData(`${import.meta.env.VITE_API_URL}/users`);
   }
 };

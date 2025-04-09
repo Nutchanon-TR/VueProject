@@ -77,8 +77,6 @@ const fetchExamsAndUsers = async () => {
 const userLoginData = userLogin();
 
 onMounted(() => {
-  console.log(userLoginData.name);
-  // console.log(userLoginData.history);
   fetchExamsAndUsers();
 });
 </script>
