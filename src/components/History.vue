@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { userLogin } from '@/stores/loginDataUser.js';
-import { getAllData } from "@/libs/apiData";
+import { getAllData,getDataById } from "@/libs/apiData";
 
 const exams = ref([]); // เก็บข้อมูล exams
 const userExams = ref([]); // เก็บข้อสอบที่ตรงกับ history.exam_id
@@ -59,9 +59,12 @@ const fetchExamsAndUsers = async () => {
 
     // รวมข้อมูล owner เข้าไปใน exams
     exams.value = getExamWithOwner(examsData, users.value);
-
+    const userDataGetAll = await getDataById(`${import.meta.env.VITE_API_URL}/users`, userLoginData.id);
+    const userHistory = userDataGetAll.history || [];
+    console.log("userHistory: ",userHistory);
+    console.log("userLoginData.history: ",userLoginData.history);
     // กรองเฉพาะข้อสอบที่ผู้ใช้เคยทำ
-    userExams.value = userLoginData.history.map(historyItem => {
+    userExams.value = userHistory.map(historyItem => {
       const exam = exams.value.find(e => e.id == historyItem.exam_id);
       return {
         ...exam,

@@ -24,7 +24,7 @@
   "users": [
     {
       "email": "T@",
-      "name": "TerZa",
+      "name": "AdminEiei",
       "password": "admin",
       "bio": "I'm admin",
       "role": "admin",
@@ -35,7 +35,7 @@
     },
     {
       "email": "P@",
-      "name": "Super Poor",
+      "name": "SuperProf",
       "password": "p",
       "bio": "Unde repellat amet quisquam maiores perferendis laboriosam ex asperiores reiciendis.\nRerum ipsum atque dolor ipsum nemo.",
       "role": "professor",
@@ -45,7 +45,7 @@
         "6",
         "12",
         "2",
-        "9"
+        "5"
       ],
       "history": [
         {
@@ -57,13 +57,14 @@
     },
     {
       "email": "S@",
-      "name": "Stupid Eiei0007",
+      "name": "StudyMan",
       "password": "s",
       "bio": "Ipsam distinctio temporibus corporis eaque itaque praesentium ipsam necessitatibus facere.",
       "role": "student",
       "imageURL": "",
       "likeExam_Id": [
         "4",
+        "17",
         "2"
       ],
       "history": [
@@ -74,14 +75,6 @@
         {
           "exam_id": 1,
           "score": 0
-        },
-        {
-          "exam_id": 8,
-          "score": 0
-        },
-        {
-          "exam_id": 8,
-          "score": 1
         }
       ],
       "id": "2"
@@ -410,7 +403,7 @@
       "name": "Web Development Technologies",
       "description": "Test your knowledge of web technologies.",
       "category": "Coding Language",
-      "likes": 2,
+      "likes": 3,
       "papers": [
         {
           "id": 1,
@@ -600,7 +593,7 @@
       "name": "Mathematical Equations",
       "description": "Examination of mathematical concepts",
       "category": "Math",
-      "likes": 2,
+      "likes": 1,
       "papers": [
         {
           "id": 2,
@@ -720,7 +713,7 @@
       "name": "Advanced Programming",
       "description": "Examination of advanced programming concepts",
       "category": "Coding Language",
-      "likes": 0,
+      "likes": 1,
       "papers": [
         {
           "id": 2,

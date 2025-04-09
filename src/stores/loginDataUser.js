@@ -9,7 +9,6 @@ export const userLogin = defineStore('loginDataUser', () => {
   const bio = ref('')
   const role = ref('')
   const imageURL = ref('')
-  const history = ref([])
   const likeExam_Id = ref([])
 
   function keepDataFromLogin(data) {
@@ -19,7 +18,6 @@ export const userLogin = defineStore('loginDataUser', () => {
     password.value = data.password
     bio.value = data.bio
     role.value = data.role
-    history.value = data.history
     imageURL.value = data.imageURL
     likeExam_Id.value = data.likeExam_Id
   }
@@ -32,7 +30,6 @@ export const userLogin = defineStore('loginDataUser', () => {
     bio,
     role,
     imageURL,
-    history,
     likeExam_Id,
     keepDataFromLogin
   }

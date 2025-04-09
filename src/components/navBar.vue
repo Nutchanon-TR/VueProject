@@ -57,7 +57,7 @@ const useImage = computed(() => {
   return (
     props.updateImage ||
     userLoginData.imageURL ||
-    "https://www.tech101.in/wp-content/uploads/2018/07/blank-profile-picture.png"
+    'https://static.vecteezy.com/system/resources/thumbnails/005/544/718/small_2x/profile-icon-design-free-vector.jpg'
   );
 });
 </script>
